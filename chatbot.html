@@ -4966,10 +4966,13 @@ async function initChat() {
     return;
   }
 
+  const hour = new Date().getHours();
+  const timeGreeting = hour < 12 ? 'GOOD MORNING' : hour < 17 ? 'GOOD AFTERNOON' : 'GOOD EVENING';
+
   await addMessage('bot',
-    '>> CYBERFORGE AI ONLINE.\n' +
+    `>> ${timeGreeting}, OPERATOR. CYBERFORGE AI ONLINE.\n` +
     '>> Neural matrix loaded. Natural intent matching ACTIVE.\n' +
-    '>> Enter your query, Operator.\n' +
+    '>> Enter your query.\n' +
     '>> Ask naturally - I will find the best match.'
   );
 
