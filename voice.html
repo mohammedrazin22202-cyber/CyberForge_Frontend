@@ -1380,10 +1380,10 @@ body.cyber-mode #matrix-rain {
 // If left empty, it will automatically default to 'http://localhost:6161' when running locally.
 const PROD_BACKEND_URL = 'https://mohammed-razin-h-portfolio.onrender.com'; 
 
-const API_BASE_URL = PROD_BACKEND_URL || (
+const API_BASE_URL = (
   window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
     ? (window.location.port === '6161' ? '' : 'http://localhost:6161')
-    : ''
+    : PROD_BACKEND_URL || ''
 );
 
 const CF_THEME_KEY = 'cfTheme';
