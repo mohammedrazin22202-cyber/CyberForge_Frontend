@@ -4732,6 +4732,16 @@ async function sendMessage() {
     });
 
     const data = await res.json();
+
+    // Adaptive typing delay to simulate natural AI thinking
+    // Scales based on response length: 4ms per char, clamped between 600ms and 1500ms
+    const responseLen = (data.response || '').length;
+    const targetDelay = Math.min(1500, Math.max(600, responseLen * 4));
+    const elapsed = Date.now() - _queryStart;
+    if (elapsed < targetDelay) {
+      await new Promise(resolve => setTimeout(resolve, targetDelay - elapsed));
+    }
+
     hideTyping();
 
     // Update confidence ring with real score (scale to 0–100%)
