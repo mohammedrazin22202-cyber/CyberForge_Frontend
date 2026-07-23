@@ -872,7 +872,7 @@
   #header-centre {
     display: none;
   }
-  #mute-btn {
+  #mute-btn, #export-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -889,7 +889,7 @@
                 background 0.18s ease, box-shadow 0.18s ease, transform 0.15s ease;
     box-shadow: 0 0 6px rgba(0,255,136,0.18), inset 0 0 4px rgba(0,255,136,0.06);
   }
-  #mute-btn svg {
+  #mute-btn svg, #export-btn svg {
     width: 13px;
     height: 13px;
     display: block;
@@ -897,14 +897,14 @@
     filter: drop-shadow(0 0 3px rgba(0,255,136,0.50));
     transition: filter 0.18s ease;
   }
-  #mute-btn:hover {
+  #mute-btn:hover, #export-btn:hover {
     color: #00ffcc;
     border-color: rgba(0,255,170,0.80);
     background: rgba(0,255,136,0.10);
     box-shadow: 0 0 12px rgba(0,255,136,0.35), inset 0 0 6px rgba(0,255,136,0.08);
     transform: scale(1.10);
   }
-  #mute-btn:hover svg {
+  #mute-btn:hover svg, #export-btn:hover svg {
     filter: drop-shadow(0 0 5px rgba(0,255,170,0.75));
   }
   #mute-btn.muted {
@@ -923,7 +923,7 @@
     box-shadow: 0 0 12px rgba(255,60,60,0.35), inset 0 0 6px rgba(255,60,60,0.08);
     transform: scale(1.10);
   }
-  #mute-btn:active { transform: scale(0.92); }
+  #mute-btn:active, #export-btn:active { transform: scale(0.92); }
 
   /* ── CLR button — desktop text, mobile icon ── */
   #clr-btn {
@@ -2944,6 +2944,13 @@
         <line x1="17" y1="9" x2="23" y2="15"/>
       </svg>
     </button>
+    <button id="export-btn" aria-label="Export chat logs" title="Export conversation logs">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+    </button>
     <span><span class="status-dot" id="conn-dot"></span><span id="conn-label">CONNECTING...</span></span>
     <div class="operator-badge"><span class="op-dot"></span>M.RAZIN</div>
     <span id="clock">00:00:00</span>
@@ -4796,6 +4803,37 @@ clrConfirm.addEventListener('click', () => {
     '', [], false
   );
   _broadcastClear();
+});
+
+// ── Export Session Logs ──────────────────────────────────────────────────────
+const exportBtn = document.getElementById('export-btn');
+exportBtn.addEventListener('click', () => {
+  const history = _getChatHistory();
+  if (history.length === 0) {
+    alert("No chat history to export.");
+    return;
+  }
+  let logText = `===================================================\n`;
+  logText += `  CYBERFORGE CHAT LOGS\n`;
+  logText += `  Exported: ${new Date().toLocaleString()}\n`;
+  logText += `===================================================\n\n`;
+
+  history.forEach((msg, idx) => {
+    const roleUpper = msg.role.toUpperCase();
+    logText += `[${roleUpper}] (${msg.meta || 'SYSTEM'})\n`;
+    logText += `${msg.text}\n`;
+    logText += `---------------------------------------------------\n`;
+  });
+
+  const blob = new Blob([logText], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `cyberforge_chat_log_${Date.now()}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 });
 
 // ── Queued message label ─────────────────────────────────────────────────────
