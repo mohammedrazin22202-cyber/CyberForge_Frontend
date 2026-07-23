@@ -4744,7 +4744,7 @@ async function sendMessage() {
 
   } catch (err) {
     hideTyping();
-    await addMessage('bot', '>> CONNECTION ERROR. Backend unreachable.\n>> Ensure app.py is running on port 5000.');
+    await addMessage('bot', '>> CONNECTION ERROR. Backend unreachable.\n>> Ensure app.py is running on port 6161.');
     addActivity('ERROR: fetch failed');
   }
 
