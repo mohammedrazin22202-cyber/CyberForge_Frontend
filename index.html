@@ -3319,6 +3319,36 @@
     background:rgba(0,0,0,0.88);
     z-index:-1;
 }
+  /* ── RESUME MODAL ── */
+  #resume-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.93);
+    z-index: 99996;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    padding: 20px;
+  }
+  #resume-modal.active { display: flex; }
+  .resume-card {
+    flex: 1 1 280px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    padding: 24px;
+    text-align: center;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 260px;
+  }
+  .resume-card:hover {
+    border-color: var(--matrix-green) !important;
+    box-shadow: 0 0 20px rgba(0,255,65,0.15);
+  }
 /* ===== END PATCH ===== */
 
 </style>
@@ -3352,7 +3382,7 @@
       </div>
       <div class="loader-action-btns" id="loader-action-btns">
         <button class="loader-enter-btn" onclick="enterPortfolio()">&gt;&gt; ENTER PORTFOLIO &lt;&lt;</button>
-        <a href="My_Resume.pdf" download="Mohammed_Razin_H_Resume.pdf" class="loader-resume-btn">⬇ Download Resume</a>
+        <a href="#" onclick="openResumeModal(event)" class="loader-resume-btn">⬇ Download Resume</a>
       </div>
     </div>
 
@@ -3431,6 +3461,34 @@
     <div class="tsmodal-pills" id="ts-pills"></div>
   </div>
 </div>
+
+<!-- RESUME SELECTION MODAL -->
+<div id="resume-modal" onclick="closeResumeModal(event)">
+  <div class="certmodal-box" style="width: min(700px, 95vw);">
+    <div class="certmodal-header">
+      <div class="certmodal-title">Select Resume Profile</div>
+      <button class="certmodal-close" onclick="closeResumeModal(event)" style="background:none;border:none;color:var(--text-dim);font-family:monospace;font-size:1.2rem;cursor:pointer;transition:color 0.2s;">✕</button>
+    </div>
+    <div class="certmodal-body" style="padding: 30px 20px; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; overflow-y: auto;">
+      <div class="resume-card">
+        <div>
+          <div style="font-size: 2.5rem; margin-bottom: 12px;">📊</div>
+          <div style="font-family: 'Orbitron', monospace; color: var(--matrix-green); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">Data Analyst</div>
+          <p style="font-size: 0.8rem; color: var(--text-dim); line-height: 1.5; margin-bottom: 20px;">Focuses on SQL, Power BI, ETL processes, and database query optimization.</p>
+        </div>
+        <a href="My_Resume.pdf" download="Mohammed_Razin_Data_Analyst.pdf" class="cert-btn" style="text-transform: uppercase; width: 100%; box-sizing: border-box; text-decoration: none;">⬇ Download Resume</a>
+      </div>
+      <div class="resume-card">
+        <div>
+          <div style="font-size: 2.5rem; margin-bottom: 12px;">🧪</div>
+          <div style="font-family: 'Orbitron', monospace; color: var(--matrix-green); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">Data Scientist</div>
+          <p style="font-size: 0.8rem; color: var(--text-dim); line-height: 1.5; margin-bottom: 20px;">Focuses on Machine Learning, predictive modeling, Scikit-learn, and Python analytics.</p>
+        </div>
+        <a href="My_Resume_Data_Scientist.pdf" download="Mohammed_Razin_Data_Scientist.pdf" class="cert-btn" style="text-transform: uppercase; width: 100%; box-sizing: border-box; text-decoration: none;">⬇ Download Resume</a>
+      </div>
+    </div>
+  </div>
+</div>
 <button id="site-back-btn" onclick="showVisitorModalFromSite()" title="Leave a note">Close</button>
 
 <canvas id="matrix-canvas"></canvas>
@@ -3443,7 +3501,7 @@
     <a class="cf-os-link" href="index.html">Portfolio</a>
     <a class="cf-os-link" href="chatbot.html" target="_blank" rel="noopener">Chatbot</a>
     <a class="cf-os-link" href="voice.html" target="_blank" rel="noopener">Voice</a>
-    <a class="cf-os-link" href="My_Resume.pdf" download="Mohammed_Razin_H_Resume.pdf">Resume</a>
+    <a class="cf-os-link" href="#" onclick="openResumeModal(event)">Resume</a>
     <a class="cf-os-link" href="https://github.com/mohammedrazin22202-cyber" target="_blank" rel="noopener">GitHub</a>
     <a class="cf-os-link" href="https://www.linkedin.com/in/razin88307" target="_blank" rel="noopener">LinkedIn</a>
   </div>
@@ -3500,7 +3558,7 @@
     </div>
     <div class="hero-cta">
       <a href="#projects" class="btn">View Projects</a>
-      <a href="My_Resume.pdf" download="Mohammed_Razin_H_Resume.pdf" class="btn btn-ghost">Download Resume</a>
+      <a href="#" onclick="openResumeModal(event)" class="btn btn-ghost">Download Resume</a>
       <a href="#contact" class="btn btn-ghost">Contact Me</a>
     </div>
   </div>
@@ -4062,7 +4120,7 @@
       <a href="tel:+919342234674" class="btn">Call Me</a>
       <a href="chatbot.html" target="_blank" rel="noopener" class="btn">Chatbot</a>
       <a href="voice.html" target="_blank" rel="noopener" class="btn">Voice Agent</a>
-      <a href="My_Resume.pdf" download="Mohammed_Razin_H_Resume.pdf" class="btn btn-ghost">Download Resume</a>
+      <a href="#" onclick="openResumeModal(event)" class="btn btn-ghost">Download Resume</a>
     </div>
   </div>
 </section>
@@ -4203,6 +4261,17 @@ function closeCertModal(e) {
   if (!e || e.target === document.getElementById('cert-modal') || e.target.classList.contains('certmodal-close')) {
     document.getElementById('cert-modal').classList.remove('active');
     document.getElementById('cert-modal-body').innerHTML = '';
+  }
+}
+
+// ── RESUME MODAL ──
+function openResumeModal(e) {
+  if (e) e.preventDefault();
+  document.getElementById('resume-modal').classList.add('active');
+}
+function closeResumeModal(e) {
+  if (!e || e.target === document.getElementById('resume-modal') || e.target.classList.contains('certmodal-close')) {
+    document.getElementById('resume-modal').classList.remove('active');
   }
 }
 
@@ -4623,7 +4692,7 @@ document.addEventListener('click', function(e) {
 <div id="cf-mobile-actions" aria-label="Quick actions">
   <button type="button" onclick="toggleAssistantDrawer(true)">Chat</button>
   <a href="voice.html" target="_blank" rel="noopener">Voice</a>
-  <a href="My_Resume.pdf" download="Mohammed_Razin_H_Resume.pdf">Resume</a>
+  <a href="#" onclick="openResumeModal(event)">Resume</a>
   <a href="#contact">Contact</a>
 </div>
 
