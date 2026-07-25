@@ -36,7 +36,7 @@
     caret-color: var(--cyan);
   }
 
-  /* ── CINEMATIC BOOT SCREEN ── */
+  /* ΓöÇΓöÇ CINEMATIC BOOT SCREEN ΓöÇΓöÇ */
   #loader {
     position: fixed;
     inset: 0;
@@ -437,7 +437,7 @@
     50%      { box-shadow: 0 0 30px rgba(0,255,65,0.5); }
   }
 
-  /* ── MATRIX RAIN ── */
+  /* ΓöÇΓöÇ MATRIX RAIN ΓöÇΓöÇ */
   #matrix-canvas {
     position: fixed;
     top: 0; left: 0;
@@ -447,7 +447,7 @@
     pointer-events: none;
   }
 
-  /* ── SCANLINES OVERLAY ── */
+  /* ΓöÇΓöÇ SCANLINES OVERLAY ΓöÇΓöÇ */
   body::after {
     content: '';
     position: fixed;
@@ -555,7 +555,7 @@
 
   .nav-links a.active::after { transform: scaleX(1); }
 
-  /* ── HAMBURGER MENU ── */
+  /* ΓöÇΓöÇ HAMBURGER MENU ΓöÇΓöÇ */
   .nav-hamburger {
     display: none;
     flex-direction: column;
@@ -615,7 +615,7 @@
     text-shadow: 0 0 10px var(--matrix-green);
   }
 
-  /* ── HERO ── */
+  /* ΓöÇΓöÇ HERO ΓöÇΓöÇ */
   #hero {
     position: relative;
     z-index: 1;
@@ -696,7 +696,7 @@
     animation: fadeInDown 0.7s 1.1s forwards;
   }
 
-  /* ── HERO RIGHT TERMINAL CARD ── */
+  /* ΓöÇΓöÇ HERO RIGHT TERMINAL CARD ΓöÇΓöÇ */
   .hero-right {
     flex-shrink: 0;
     width: min(440px, 42vw);
@@ -842,7 +842,7 @@
 
   .btn-ghost::before { background: var(--matrix-mid); }
 
-  /* ── SECTION BASE ── */
+  /* ΓöÇΓöÇ SECTION BASE ΓöÇΓöÇ */
   section {
     position: relative;
     z-index: 1;
@@ -881,7 +881,7 @@
   }
 
 
-  /* ── OS SECTION DIVIDER ── */
+  /* ΓöÇΓöÇ OS SECTION DIVIDER ΓöÇΓöÇ */
   .section-divider {
     width: 100%;
     display: flex;
@@ -907,7 +907,7 @@
     white-space: nowrap;
   }
 
-  /* ── ABOUT ── */
+  /* ΓöÇΓöÇ ABOUT ΓöÇΓöÇ */
   #about {
     border-top: none;
   }
@@ -1041,7 +1041,7 @@
     z-index: 1;
   }
 
-  /* ── SKILLS ── */
+  /* ΓöÇΓöÇ SKILLS ΓöÇΓöÇ */
   #skills { border-top: 1px solid var(--border); }
 
   .skills-grid {
@@ -1113,7 +1113,7 @@
     transition: width 1.5s ease;
   }
 
-  /* ── PROJECTS ── */
+  /* ΓöÇΓöÇ PROJECTS ΓöÇΓöÇ */
   #projects { border-top: 1px solid var(--border); }
 
   .project-card {
@@ -1288,7 +1288,7 @@
     text-transform: uppercase;
   }
 
-  /* ── WORKFLOW ── */
+  /* ΓöÇΓöÇ WORKFLOW ΓöÇΓöÇ */
   #workflow { border-top: 1px solid var(--border); }
 
   .workflow-track {
@@ -1468,7 +1468,7 @@
   }
 
   .workflow-help-list li::before {
-    content: '▸';
+    content: 'Γû╕';
     position: absolute;
     left: 0;
     color: var(--matrix-green);
@@ -1476,7 +1476,7 @@
     top: 2px;
   }
 
-  /* ── ACHIEVEMENTS ── */
+  /* ΓöÇΓöÇ ACHIEVEMENTS ΓöÇΓöÇ */
   #achievements { border-top: 1px solid var(--border); }
 
   .achieve-grid {
@@ -1531,7 +1531,103 @@
     text-transform: uppercase;
   }
 
-  /* ── EDUCATION ── */
+  /* ΓöÇΓöÇ WORK EXPERIENCE ΓöÇΓöÇ */
+  #experience { border-top: 1px solid var(--border); }
+
+  .exp-timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .exp-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--matrix-green), transparent);
+  }
+
+  .exp-item {
+    position: relative;
+    margin-bottom: 44px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    padding: 30px;
+    transition: all 0.3s;
+  }
+
+  .exp-item:hover {
+    border-color: var(--matrix-green);
+    box-shadow: 0 0 30px rgba(0,255,65,0.12);
+    transform: translateX(4px);
+  }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -45px;
+    top: 35px;
+    width: 10px; height: 10px;
+    border: 1px solid var(--matrix-green);
+    background: var(--black);
+    box-shadow: 0 0 12px var(--matrix-green);
+    transform: rotate(45deg);
+    z-index: 2;
+  }
+
+  .exp-company {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    color: var(--matrix-green);
+    margin-bottom: 4px;
+    transition: color 0.2s, text-shadow 0.2s;
+  }
+
+  .exp-link-wrapper {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .exp-link-wrapper:hover .exp-company {
+    color: var(--cyan);
+    text-shadow: 0 0 16px var(--cyan-glow), 0 0 32px rgba(0,229,255,0.2);
+  }
+
+  .exp-link-wrapper:hover .project-link-icon {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  .exp-role {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    color: var(--matrix-mid);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .exp-desc {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.05rem;
+    color: #ffffff;
+    line-height: 1.7;
+  }
+
+  .exp-desc ul {
+    margin-top: 8px;
+    padding-left: 20px;
+    list-style-type: square;
+  }
+
+  .exp-desc li {
+    margin-bottom: 6px;
+  }
+
+  /* ΓöÇΓöÇ EDUCATION ΓöÇΓöÇ */
   #education { border-top: 1px solid var(--border); }
 
   .edu-timeline {
@@ -1585,7 +1681,7 @@
     color: #ffffff;
   }
 
-  /* ── CURRENTLY LEARNING ── */
+  /* ΓöÇΓöÇ CURRENTLY LEARNING ΓöÇΓöÇ */
   #learning { border-top: 1px solid var(--border); }
 
   .learning-grid {
@@ -1687,7 +1783,7 @@
     text-align: right;
   }
 
-  /* ── CERTIFICATIONS ── */
+  /* ΓöÇΓöÇ CERTIFICATIONS ΓöÇΓöÇ */
   #certs { border-top: 1px solid var(--border); }
 
   .cert-grid {
@@ -1748,7 +1844,7 @@
     text-transform: uppercase;
   }
 
-  /* ── CONTACT ── */
+  /* ΓöÇΓöÇ CONTACT ΓöÇΓöÇ */
   #contact {
     border-top: 1px solid var(--border);
     text-align: center;
@@ -1818,7 +1914,7 @@
     text-shadow: 0 0 10px var(--matrix-green);
   }
 
-  /* ── FOOTER ── */
+  /* ΓöÇΓöÇ FOOTER ΓöÇΓöÇ */
   footer {
     position: relative;
     z-index: 1;
@@ -1831,7 +1927,7 @@
     text-transform: uppercase;
   }
 
-  /* ── CERT ACTIONS ── */
+  /* ΓöÇΓöÇ CERT ACTIONS ΓöÇΓöÇ */
   .cert-actions {
     display: flex;
     gap: 10px;
@@ -1859,7 +1955,7 @@
     box-shadow: 0 0 10px rgba(0,255,65,0.2);
   }
 
-  /* ── CERT VIEWER MODAL ── */
+  /* ΓöÇΓöÇ CERT VIEWER MODAL ΓöÇΓöÇ */
   #cert-modal {
     display: none;
     position: fixed;
@@ -1943,7 +2039,7 @@
     border: none;
   }
 
-  /* ── TECH STACK BUTTON & MODAL ── */
+  /* ΓöÇΓöÇ TECH STACK BUTTON & MODAL ΓöÇΓöÇ */
   .tech-stack-btn {
     font-family: 'Share Tech Mono', monospace;
     font-size: 0.7rem;
@@ -2078,7 +2174,7 @@
 
 
 
-  /* ── VISITOR MODAL ── */
+  /* ΓöÇΓöÇ VISITOR MODAL ΓöÇΓöÇ */
   #visitor-modal {
     display: none;
     position: fixed;
@@ -2268,7 +2364,7 @@
     font-family: 'Orbitron', monospace;
   }
 
-  /* ── ANIMATIONS ── */
+  /* ΓöÇΓöÇ ANIMATIONS ΓöÇΓöÇ */
   @keyframes fadeInDown {
     from { opacity: 0; transform: translateY(-20px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -2291,7 +2387,7 @@
   }
 
 
-  /* ── CYAN ACCENT STATES ── */
+  /* ΓöÇΓöÇ CYAN ACCENT STATES ΓöÇΓöÇ */
   .accent-cyan {
     color: var(--cyan) !important;
     text-shadow: 0 0 10px var(--cyan-glow) !important;
@@ -2369,7 +2465,7 @@
     filter: sepia(1) saturate(5) hue-rotate(160deg);
   }
 
-  /* ── SCROLL REVEAL ── */
+  /* ΓöÇΓöÇ SCROLL REVEAL ΓöÇΓöÇ */
   .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -2381,7 +2477,7 @@
     transform: translateY(0);
   }
 
-  /* ── RESPONSIVE ── */
+  /* ΓöÇΓöÇ RESPONSIVE ΓöÇΓöÇ */
   @media (max-width: 768px) {
     nav { padding: 12px 20px; }
     .nav-links { gap: 16px; }
@@ -2390,7 +2486,7 @@
     section { padding: 60px 20px; }
     /* project-card padding now handled in the mobile block above */
 
-    /* ── PROJECT CARDS — mobile fix ── */
+    /* ΓöÇΓöÇ PROJECT CARDS ΓÇö mobile fix ΓöÇΓöÇ */
     #projects {
       padding: 60px 16px;
     }
@@ -2446,7 +2542,7 @@
 
 
 
-    /* ── SECTION TITLES — scale down on mobile ── */
+    /* ΓöÇΓöÇ SECTION TITLES ΓÇö scale down on mobile ΓöÇΓöÇ */
     .section-title {
       font-size: clamp(1.2rem, 6vw, 1.8rem);
       letter-spacing: 1px;
@@ -2455,7 +2551,7 @@
       word-break: break-word;
     }
 
-    /* ── AI MODULES GRID — single column on mobile ── */
+    /* ΓöÇΓöÇ AI MODULES GRID ΓÇö single column on mobile ΓöÇΓöÇ */
     .learning-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
@@ -2488,7 +2584,7 @@
       margin-top: 6px;
     }
 
-    /* ── NAV — hamburger on mobile ── */
+    /* ΓöÇΓöÇ NAV ΓÇö hamburger on mobile ΓöÇΓöÇ */
     nav {
       top: 8px;
       width: calc(100vw - 16px);
@@ -2499,7 +2595,7 @@
     .nav-links { display: none; }         /* hide desktop links */
     .nav-hamburger { display: flex; }     /* show hamburger */
 
-    /* ── HERO SECTION — centered on mobile ── */
+    /* ΓöÇΓöÇ HERO SECTION ΓÇö centered on mobile ΓöÇΓöÇ */
     #hero {
       padding: 80px 20px 40px;
       text-align: center;
@@ -2540,7 +2636,7 @@
       width: min(100%, 420px);
     }
 
-    /* ── CONTACT SECTION — mobile centering & email fix ── */
+    /* ΓöÇΓöÇ CONTACT SECTION ΓÇö mobile centering & email fix ΓöÇΓöÇ */
     #contact {
       padding: 60px 16px;
       text-align: center;
@@ -2577,7 +2673,7 @@
 
   }
 
-  /* ── BOOT SCREEN MOBILE — separate breakpoint to avoid desktop bleed ── */
+  /* ΓöÇΓöÇ BOOT SCREEN MOBILE ΓÇö separate breakpoint to avoid desktop bleed ΓöÇΓöÇ */
   @media (max-width: 600px) {
     .loader-inner {
       grid-template-columns: 1fr;
@@ -2663,7 +2759,7 @@
     }
   }
 
-  /* ── CYBERFORGE AI CHAT BUTTON ── */
+  /* ΓöÇΓöÇ CYBERFORGE AI CHAT BUTTON ΓöÇΓöÇ */
   /* CyberForge OS UI additions */
   body.theme-matrix {
     --matrix-green: #00ff41;
@@ -2712,7 +2808,8 @@
     opacity: 0.7;
   }
   body.cyber-mode .project-card,
-  body.cyber-mode .terminal-card {
+  body.cyber-mode .terminal-card,
+  body.cyber-mode .exp-item {
     box-shadow: 0 0 42px var(--matrix-glow), inset 0 0 34px rgba(0,255,65,0.05);
   }
 
@@ -3195,7 +3292,8 @@
 .workflow-help,
 .certmodal-box,
 .tsmodal-box,
-.vmodal-box{
+.vmodal-box,
+.exp-item{
     position:relative;
     overflow:hidden;
 }
@@ -3213,7 +3311,8 @@
 .workflow-help::after,
 .certmodal-box::after,
 .tsmodal-box::after,
-.vmodal-box::after{
+.vmodal-box::after,
+.exp-item::after{
     content:"";
     position:absolute;
     inset:0;
@@ -3237,7 +3336,7 @@
   <div class="loader-inner">
     <!-- Top header bar -->
     <div class="loader-header">
-      <span class="loader-header-id">CYBERFORGE OS v2.6.1 — SECURE BOOT SEQUENCE</span>
+      <span class="loader-header-id">CYBERFORGE OS v2.6.1 ΓÇö SECURE BOOT SEQUENCE</span>
       <div class="loader-header-status">
         <div class="loader-status-dot"></div>
         <span id="loader-status-text">INITIALIZING</span>
@@ -3247,31 +3346,31 @@
     <!-- Left: identity panel -->
     <div class="loader-left">
       <img src="cyberforge_logo.png" alt="CyberForge" class="loader-logo-img" />
-      <div class="loader-name-big">MOHAMMED<br>RAZIN</div>
+      <div class="loader-name-big">MOHAMMED<br>RAZIN H</div>
       <div class="loader-role-tags">
         <div class="loader-role-tag">Data Analyst</div>
         <div class="loader-role-tag">AI System Builder</div>
       </div>
       <div class="loader-action-btns" id="loader-action-btns">
         <button class="loader-enter-btn" onclick="enterPortfolio()">&gt;&gt; ENTER PORTFOLIO &lt;&lt;</button>
-        <a href="My_Resume.pdf" download="Mohammed_Razin_H_Resume.pdf" class="loader-resume-btn">⬇ Download Resume</a>
+        <a href="My_Resume.pdf" download="Mohammed_Razin_H_Resume.pdf" class="loader-resume-btn">Γ¼ç Download Resume</a>
       </div>
     </div>
 
     <!-- Right: terminal log panel -->
     <div class="loader-right">
-      <div class="loader-terminal-header">// SYSTEM LOG — BOOT SEQUENCE</div>
+      <div class="loader-terminal-header">// SYSTEM LOG ΓÇö BOOT SEQUENCE</div>
       <div class="loader-terminal">
         <div class="loader-terminal-line" id="lt1"><span class="dim">[0.12s]</span> BIOS POST check... <span class="ok">[PASS]</span></div>
         <div class="loader-terminal-line" id="lt2"><span class="dim">[0.31s]</span> Loading kernel modules... <span class="ok">[OK]</span></div>
         <div class="loader-terminal-line" id="lt3"><span class="dim">[0.58s]</span> Mounting data volumes... <span class="ok">[OK]</span></div>
-        <div class="loader-terminal-line" id="lt4"><span class="dim">[0.84s]</span> ENV: Python 3.12 · Pandas 2.2 · SQL <span class="ok">[READY]</span></div>
+        <div class="loader-terminal-line" id="lt4"><span class="dim">[0.84s]</span> ENV: Python 3.12 ┬╖ Pandas 2.2 ┬╖ SQL <span class="ok">[READY]</span></div>
         <div class="loader-terminal-line" id="lt5"><span class="dim">[1.02s]</span> Scanning dataset registry... <span class="warn">[650K+ records]</span></div>
         <div class="loader-terminal-line" id="lt6"><span class="dim">[1.24s]</span> Running ETL pipeline validation... <span class="ok">[OK]</span></div>
         <div class="loader-terminal-line" id="lt7"><span class="dim">[1.41s]</span> Power BI connector... <span class="ok">[LINKED]</span></div>
-        <div class="loader-terminal-line" id="lt8"><span class="dim">[1.67s]</span> LeetCode engine... 1750+ solved · 90% acc <span class="ok">[✓]</span></div>
+        <div class="loader-terminal-line" id="lt8"><span class="dim">[1.67s]</span> LeetCode engine... 1750+ solved ┬╖ 90% acc <span class="ok">[Γ£ô]</span></div>
         <div class="loader-terminal-line" id="lt9"><span class="dim">[1.89s]</span> Portfolio assets... <span class="ok">[VERIFIED]</span></div>
-        <div class="loader-terminal-line" id="lt10"><span class="dim">[2.04s]</span> All systems nominal. <span class="ok">[SYSTEM READY ✓]</span></div>
+        <div class="loader-terminal-line" id="lt10"><span class="dim">[2.04s]</span> All systems nominal. <span class="ok">[SYSTEM READY Γ£ô]</span></div>
       </div>
     </div>
 
@@ -3291,19 +3390,19 @@
 <div id="visitor-modal">
   <div class="vmodal-box">
     <div class="vmodal-step" id="vstep-1">
-      <div class="vmodal-label">Before you go —</div>
+      <div class="vmodal-label">Before you go ΓÇö</div>
       <h2 class="vmodal-title">Where are you from?</h2>
       <p class="vmodal-sub">Mind sharing your company or college? Helps Razin know who's visiting. Totally optional.</p>
       <input class="vinput" id="vcompany-input" type="text" placeholder="Company / College name..." maxlength="80" />
       <button class="vrather-btn" onclick="setRatherNotSay()">Rather not say</button>
       <div class="vmodal-actions">
         <button class="vskip-btn2" onclick="skipAndEnter()">Skip</button>
-        <button class="vsubmit-btn" onclick="submitVisitor()">Done →</button>
+        <button class="vsubmit-btn" onclick="submitVisitor()">Done ΓåÆ</button>
       </div>
     </div>
 
     <div class="vmodal-step" id="vstep-3" style="display:none;">
-      <div class="vthanks-icon">✓</div>
+      <div class="vthanks-icon">Γ£ô</div>
       <h2 class="vmodal-title">Thanks for stopping by!</h2>
       <p class="vmodal-sub">Enjoy the portfolio.</p>
     </div>
@@ -3316,8 +3415,8 @@
     <div class="certmodal-header">
       <div class="certmodal-title" id="cert-modal-title"></div>
       <div class="certmodal-btns">
-        <a class="cert-btn" id="cert-modal-download">⬇ Download</a>
-        <button class="certmodal-close" onclick="closeCertModal()">✕</button>
+        <a class="cert-btn" id="cert-modal-download">Γ¼ç Download</a>
+        <button class="certmodal-close" onclick="closeCertModal()">Γ£ò</button>
       </div>
     </div>
     <div class="certmodal-body" id="cert-modal-body"></div>
@@ -3327,7 +3426,7 @@
 <!-- TECH STACK MODAL -->
 <div id="techstack-modal" onclick="closeTechStack(event)">
   <div class="tsmodal-box">
-    <button class="tsmodal-close" onclick="closeTechStack()">✕</button>
+    <button class="tsmodal-close" onclick="closeTechStack()">Γ£ò</button>
     <div class="tsmodal-label" id="ts-label">Tech Stack</div>
     <h3 class="tsmodal-title" id="ts-title"></h3>
     <div class="tsmodal-pills" id="ts-pills"></div>
@@ -3367,6 +3466,7 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Capabilities</a></li>
+    <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#workflow">Workflow</a></li>
     <li><a href="#learning">Learning</a></li>
@@ -3382,6 +3482,7 @@
 <div class="nav-mobile-panel" id="nav-mobile-panel">
   <a href="#about"        onclick="closeMobileNav()">About</a>
   <a href="#skills"       onclick="closeMobileNav()">Capabilities</a>
+  <a href="#experience"   onclick="closeMobileNav()">Experience</a>
   <a href="#projects"     onclick="closeMobileNav()">Projects</a>
   <a href="#workflow"     onclick="closeMobileNav()">Workflow</a>
   <a href="#learning"     onclick="closeMobileNav()">Learning</a>
@@ -3392,8 +3493,8 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-left">
-    <div class="hero-pre">Data Analyst · Chennai, India</div>
-    <h1 class="hero-name glitch-hover">MOHAMMED<br>RAZIN</h1>
+    <div class="hero-pre">Data Analyst ┬╖ Chennai, India</div>
+    <h1 class="hero-name glitch-hover">MOHAMMED<br>RAZIN H</h1>
     <div class="hero-titles">
       <div class="hero-title-line">Data Analyst</div>
       <div class="hero-title-line">AI System Builder</div>
@@ -3415,15 +3516,15 @@
       </div>
       <div class="terminal-body">
         <div class="t-line"><span class="t-prompt">$</span><span class="t-key">whoami</span></div>
-        <div class="t-line"><span class="t-comment"># Mohammed Razin — Data Analyst</span></div>
+        <div class="t-line"><span class="t-comment"># Mohammed Razin ΓÇö Data Analyst</span></div>
         <div class="t-line">&nbsp;</div>
         <div class="t-line"><span class="t-prompt">$</span><span class="t-key">cat</span><span class="t-val">specialization.txt</span></div>
-        <div class="t-line"><span class="t-highlight">Python</span><span class="t-val"> • </span><span class="t-highlight">SQL</span><span class="t-val"> • </span><span class="t-highlight">Pandas</span><span class="t-val"> • </span><span class="t-highlight">ETL</span></div>
-        <div class="t-line"><span class="t-highlight">Power BI</span><span class="t-val"> • </span><span class="t-highlight">Machine Learning</span></div>
+        <div class="t-line"><span class="t-highlight">Python</span><span class="t-val"> ΓÇó </span><span class="t-highlight">SQL</span><span class="t-val"> ΓÇó </span><span class="t-highlight">Pandas</span><span class="t-val"> ΓÇó </span><span class="t-highlight">ETL</span></div>
+        <div class="t-line"><span class="t-highlight">Power BI</span><span class="t-val"> ΓÇó </span><span class="t-highlight">Machine Learning</span></div>
         <div class="t-line">&nbsp;</div>
         <div class="t-line"><span class="t-prompt">$</span><span class="t-key">python3</span><span class="t-val">stats.py</span></div>
         <div class="t-line"><span class="t-key">records_processed</span><span class="t-val"> = </span><span class="t-highlight">650K+</span></div>
-        <div class="t-line"><span class="t-key">manual_effort_red</span><span class="t-val"> = </span><span class="t-highlight">70%</span></div>
+        <div class="t-line"><span class="t-key">efficiency_gain</span><span class="t-val">  = </span><span class="t-highlight">41%</span></div>
         <div class="t-line"><span class="t-key">leetcode_solved</span><span class="t-val">  = </span><span class="t-highlight">1750+</span></div>
         <div class="t-line">&nbsp;</div>
         <div class="t-line"><span class="t-prompt">$</span><span class="t-val">_</span><span class="t-cursor-blink"></span></div>
@@ -3440,24 +3541,11 @@
     <div class="about-text reveal">
       <div class="about-block">
         <div class="about-block-label">ROLE:</div>
-        <div class="about-block-val">Data Analyst & Python Developer</div>
+        <div class="about-block-val">Data Analyst &amp; Python Developer</div>
       </div>
       <div class="about-block">
         <div class="about-block-label">SPECIALIZATION:</div>
-        <div class="about-block-val"><span class="ab-highlight">Python</span> • <span class="ab-highlight">R</span> • <span class="ab-highlight">SQL</span> • <span class="ab-highlight">Pandas</span> • <span class="ab-highlight">ETL</span> • <span class="ab-highlight">Power BI</span> • <span class="ab-highlight">Machine Learning</span> • <span class="ab-highlight">SQLite</span> • <span class="ab-highlight">MongoDB</span></div>
-      </div>
-      <div class="about-block">
-        <div class="about-block-label">EXPERIENCE:</div>
-        <div class="about-block-val">
-          <strong>Data Analyst & Python Developer</strong> @ Al Haseena Exports Pvt. Ltd.<br>
-          <span style="color:var(--matrix-mid); font-size:0.85em;">Dec 2025 – Apr 2026</span>
-          <ul style="margin-left: 16px; margin-top: 5px; list-style-type: square; font-size: 0.85em; line-height: 1.5; color: rgba(255,255,255,0.7);">
-            <li>Developed LogiSense 360 predictive platform using Python, Flask, Scikit-learn, SQLite, and MongoDB.</li>
-            <li>Built regression and classification models to forecast delays and identify spoilage risks.</li>
-            <li>Created interactive KPI dashboards and business reporting modules.</li>
-            <li>Automated shipment monitoring via intelligent alert generation.</li>
-          </ul>
-        </div>
+        <div class="about-block-val"><span class="ab-highlight">Python</span> ΓÇó <span class="ab-highlight">R</span> ΓÇó <span class="ab-highlight">SQL</span> ΓÇó <span class="ab-highlight">Pandas</span> ΓÇó <span class="ab-highlight">ETL</span> ΓÇó <span class="ab-highlight">Power BI</span></div>
       </div>
       <div class="about-block">
         <div class="about-block-label">DATA EXPERIENCE:</div>
@@ -3465,14 +3553,11 @@
       </div>
       <div class="about-block">
         <div class="about-block-label">FOCUS AREAS:</div>
-        <div class="about-block-val">Data cleaning • EDA • KPI dashboards • Predictive Analytics<br>Actionable insights & reporting automation</div>
+        <div class="about-block-val">Data cleaning ΓÇó EDA ΓÇó KPI dashboards<br>Actionable insights for decision-making</div>
       </div>
       <div class="about-block">
         <div class="about-block-label">EDUCATION:</div>
-        <div class="about-block-val">
-          MCA @ Measi Institute of Information Technology (2024–2026)<br>
-          B.Com @ The New College (2021–2024)
-        </div>
+        <div class="about-block-val">MCA @ Measi Institute of Information Technology<br>University of Madras ┬╖ 2024ΓÇô2026</div>
       </div>
     </div>
     <div class="about-stats reveal">
@@ -3481,8 +3566,8 @@
         <div class="stat-label">Records Processed</div>
       </div>
       <div class="stat-box">
-        <div class="stat-number" data-target="70" data-suffix="%">0</div>
-        <div class="stat-label">Manual Effort Reduced</div>
+        <div class="stat-number" data-target="41" data-suffix="%">0</div>
+        <div class="stat-label">Efficiency Gain</div>
       </div>
       <div class="stat-box">
         <div class="stat-number" data-target="1750" data-suffix="+">0</div>
@@ -3506,7 +3591,7 @@
       <div class="skill-item"><span class="skill-name">Python (Intermediate)</span><div class="skill-bar"><div class="skill-fill" data-width="92%"></div></div><span class="skill-pct">92%</span></div>
       <div class="skill-item"><span class="skill-name">Pandas</span><div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div><span class="skill-pct">88%</span></div>
       <div class="skill-item"><span class="skill-name">NumPy</span><div class="skill-bar"><div class="skill-fill" data-width="82%"></div></div><span class="skill-pct">82%</span></div>
-      <div class="skill-item"><span class="skill-name">SQL (CTEs, Window Functions, Subqueries, Stored Procedures, Views, Optimization)</span><div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div><span class="skill-pct">88%</span></div>
+      <div class="skill-item"><span class="skill-name">SQL (Joins, CTEs, Window Functions, Subqueries, Stored Procedures, Views, Optimization)</span><div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div><span class="skill-pct">88%</span></div>
       <div class="skill-item"><span class="skill-name">R</span><div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div><span class="skill-pct">70%</span></div>
     </div>
     <div class="skill-category reveal">
@@ -3543,10 +3628,40 @@
   </div>
 </section>
 
+<!-- EXPERIENCE -->
+<section id="experience" data-sys="SYS.03">
+  <div class="os-badge">[ WORK LOG ]</div>
+  <h2 class="section-title reveal"><span style="color:var(--cyan-mid);font-size:0.5em;letter-spacing:4px;vertical-align:middle;margin-right:12px;">SYS.03</span>Experience</h2>
+  <div class="exp-timeline reveal">
+    <a href="https://logisense-rc4l.onrender.com/" target="_blank" rel="noopener" class="exp-link-wrapper">
+      <div class="exp-item">
+        <div class="exp-company">Al Haseena Exports Pvt. Ltd. <span class="project-link-icon">Γåù</span></div>
+        <div class="exp-role">Data Analyst &amp; Python Developer (Dec 2025 ΓÇô Apr 2026)</div>
+        <div class="exp-desc">
+          Developed and deployed <strong>LogiSense 360</strong>, a predictive logistics &amp; delivery analytics platform, to automate operational workflows and improve delivery performance tracking.
+          <ul>
+            <li>Engineered end-to-end pipelines using Python, Flask, SQLite, and MongoDB to automate shipment monitoring and forecast delivery delays.</li>
+            <li>Built and evaluated regression and classification models using scikit-learn to identify operational risks and improve forecasting accuracy.</li>
+            <li>Designed interactive dashboards for admins, drivers, and customers to monitor business metrics and key performance indicators.</li>
+            <li>Automated shipment monitoring via intelligent alert generation, reducing exception resolution times.</li>
+          </ul>
+          <div class="workflow-tags" style="margin-top: 20px;">
+            <span class="workflow-tag">Python</span>
+            <span class="workflow-tag">Flask</span>
+            <span class="workflow-tag">Scikit-learn</span>
+            <span class="workflow-tag">SQLite</span>
+            <span class="workflow-tag">MongoDB</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
 <!-- PROJECTS -->
-<section id="projects" data-sys="SYS.03">
+<section id="projects" data-sys="SYS.04">
   <div class="os-badge">[ PROJECTS ]</div>
-  <h2 class="section-title reveal"><span style="color:var(--cyan-mid);font-size:0.5em;letter-spacing:4px;vertical-align:middle;margin-right:12px;">SYS.03</span>Projects</h2>
+  <h2 class="section-title reveal"><span style="color:var(--cyan-mid);font-size:0.5em;letter-spacing:4px;vertical-align:middle;margin-right:12px;">SYS.04</span>Projects</h2>
   <div class="project-card reveal">
     <div class="project-number">01</div>
     <div class="project-tag">Featured Project</div>
@@ -3585,79 +3700,33 @@
         <div class="preview-kpi"><strong>100%</strong><span>validated quality</span></div>
       </div>
     </div>
-    <button class="tech-stack-btn" onclick="openTechStack('vconnect')">⚡ Tech Stack</button>
+    <button class="tech-stack-btn" onclick="openTechStack('vconnect')">ΓÜí Tech Stack</button>
     <div class="par-block">
       <div class="par-row"><span class="par-label">Problem</span><span class="par-text">Fragmented village-level data with inconsistencies and missing values</span></div>
       <div class="par-row"><span class="par-label">Action</span><span class="par-text">Built ETL pipeline using Python (Pandas), cleaned 650K+ records, created Power BI dashboards</span></div>
-      <div class="par-row"><span class="par-label">Result</span><span class="par-text">Structured large-scale dataset → enabled clear insights for decision-making</span></div>
+      <div class="par-row"><span class="par-label">Result</span><span class="par-text">Structured large-scale dataset ΓåÆ enabled clear insights for decision-making</span></div>
     </div>
   </div>
 
   <div class="project-card reveal" style="margin-top: 28px;">
     <div class="project-number">02</div>
-    <div class="project-tag">Professional Experience Project @ Al Haseena Exports</div>
-    <h3 class="project-title"><a href="https://logisense-rc4l.onrender.com/" target="_blank" rel="noopener" class="project-title-link">LOGISENSE 360: PREDICTIVE LOGISTICS ANALYTICS PLATFORM <span class="project-link-icon">↗</span></a></h3>
+    <div class="project-tag">Python Automation Project</div>
+    <h3 class="project-title">CYBERFORGE: INTELLIGENT QUERY RESPONSE CHATBOT SYSTEM</h3>
     <p class="project-desc">
-      A predictive logistics analytics platform developed to automate shipment monitoring, forecast delivery delays, and identify spoilage risks. Built and evaluated regression and classification models using historical logistics data to identify operational risks, evaluate metrics, and display actionable insights through live KPI dashboards for admins, drivers, and customers.
-    </p>
-    <div class="project-metrics">
-      <div class="metric">
-        <div class="metric-value">3500+</div>
-        <div class="metric-label">Delivery Records</div>
-      </div>
-      <div class="metric">
-        <div class="metric-value">30%</div>
-        <div class="metric-label">Improvement Opportunities</div>
-      </div>
-      <div class="metric">
-        <div class="metric-value">20%</div>
-        <div class="metric-label">Reduction in Manual Analysis</div>
-      </div>
-    </div>
-    <div class="project-preview" aria-label="LogiSense dashboard preview">
-      <div class="preview-screen" data-title="LOGISENSE 360 OPS DASHBOARD">
-        <div class="preview-chart">
-          <span class="preview-bar" style="--h:58%"></span>
-          <span class="preview-bar" style="--h:76%"></span>
-          <span class="preview-bar" style="--h:42%"></span>
-          <span class="preview-bar" style="--h:84%"></span>
-          <span class="preview-bar" style="--h:67%"></span>
-        </div>
-        <div class="preview-line"></div>
-      </div>
-      <div class="preview-kpis">
-        <div class="preview-kpi"><strong>3.5K+</strong><span>delivery rows</span></div>
-        <div class="preview-kpi"><strong>30%</strong><span>optimization signals</span></div>
-        <div class="preview-kpi"><strong>20%</strong><span>manual work reduced</span></div>
-      </div>
-    </div>
-    <button class="tech-stack-btn" onclick="openTechStack('logisense')">⚡ Tech Stack</button>
-    <div class="par-block">
-      <div class="par-row"><span class="par-label">Problem</span><span class="par-text">Manual shipment monitoring, unpredicted delays, and spoilage risks</span></div>
-      <div class="par-row"><span class="par-label">Action</span><span class="par-text">Built a predictive platform using Flask, SQLite, and MongoDB; trained regression/classification Scikit-learn models</span></div>
-      <div class="par-row"><span class="par-label">Result</span><span class="par-text">Automated anomaly detection → enabled proactive route planning & alert generation</span></div>
-    </div>
-  </div>
-
-  <div class="project-card reveal" style="margin-top: 28px;">
-    <div class="project-number">03</div>
-    <div class="project-tag">Intelligent Knowledge Retrieval Platform</div>
-    <h3 class="project-title">CYBERFORGE: INTELLIGENT KNOWLEDGE RETRIEVAL PLATFORM</h3>
-    <p class="project-desc">
-      An intelligent knowledge retrieval platform that processes user queries against a structured 150-response knowledge base containing 500+ indexed keywords. Integrates a custom relevance-scoring algorithm that ranks candidate responses in real time, and features multilingual voice/text interaction and intelligent autocomplete to enhance accessibility and user experience.
+      A Python-based automated chatbot system designed to deliver fast and accurate responses using structured keyword-matching logic. Engineered a scalable response architecture with 150+ predefined query mappings to streamline user interaction and improve response efficiency. Developed intelligent text-processing workflows for real-time query detection, response routing, and conversational handling. Focused on creating a lightweight yet reliable chatbot solution capable of maintaining high response accuracy and smooth user experience across multiple interaction scenarios.
     </p>
     <div class="project-metrics">
       <div class="metric">
         <div class="metric-value">150+</div>
-        <div class="metric-label">Structured Responses</div>
-      </div>
-      <div class="metric">
-        <div class="metric-value">500+</div>
-        <div class="metric-label">Indexed Keywords</div>
+        <div class="metric-label">Predefined Responses</div>
       </div>
       <div class="metric">
         <div class="metric-value">100%</div>
-        <div class="metric-label">Real-Time Relevance</div>
+        <div class="metric-label">Keyword Match Accuracy</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">40%</div>
+        <div class="metric-label">Faster Query Handling</div>
       </div>
     </div>
     <div class="project-preview" aria-label="CyberForge chatbot dashboard preview">
@@ -3673,24 +3742,24 @@
       </div>
       <div class="preview-kpis">
         <div class="preview-kpi"><strong>150+</strong><span>response routes</span></div>
-        <div class="preview-kpi"><strong>500+</strong><span>indexed words</span></div>
-        <div class="preview-kpi"><strong>100%</strong><span>real-time rank</span></div>
+        <div class="preview-kpi"><strong>100%</strong><span>mapped answers</span></div>
+        <div class="preview-kpi"><strong>40%</strong><span>faster handling</span></div>
       </div>
     </div>
-    <button class="tech-stack-btn" onclick="openTechStack('cyberforge')">⚡ Tech Stack</button>
+    <button class="tech-stack-btn" onclick="openTechStack('cyberforge')">ΓÜí Tech Stack</button>
     <div class="par-block">
-      <div class="par-row"><span class="par-label">Problem</span><span class="par-text">Users needed accurate, real-time responses to query logs with multilingual & voice accessibility</span></div>
-      <div class="par-row"><span class="par-label">Action</span><span class="par-text">Built a modular Flask/SQLite platform with relevance-scoring algorithm, autocomplete, and voice features</span></div>
-      <div class="par-row"><span class="par-label">Result</span><span class="par-text">Fast response retrieval and high match relevance → elevated user accessibility and automation</span></div>
+      <div class="par-row"><span class="par-label">Problem</span><span class="par-text">Users required quick and reliable answers for repetitive queries without manual intervention</span></div>
+      <div class="par-row"><span class="par-label">Action</span><span class="par-text">Built a Python chatbot using keyword-matching logic, structured response mapping, and automated query handling workflows</span></div>
+      <div class="par-row"><span class="par-label">Result</span><span class="par-text">Improved response efficiency ΓåÆ reduced repetitive manual support interactions ΓåÆ enhanced user accessibility</span></div>
     </div>
   </div>
 </section>
 
 <!-- ACHIEVEMENTS -->
 <!-- WORKFLOW -->
-<section id="workflow" data-sys="SYS.04">
+<section id="workflow" data-sys="SYS.05">
   <div class="os-badge">[ WORKFLOW PROTOCOL ]</div>
-  <h2 class="section-title reveal"><span style="color:var(--cyan-mid);font-size:0.5em;letter-spacing:4px;vertical-align:middle;margin-right:12px;">SYS.04</span>Workflow Protocol</h2>
+  <h2 class="section-title reveal"><span style="color:var(--cyan-mid);font-size:0.5em;letter-spacing:4px;vertical-align:middle;margin-right:12px;">SYS.05</span>Workflow Protocol</h2>
   <div class="workflow-track">
 
     <div class="workflow-step reveal">
@@ -3700,9 +3769,9 @@
         <div class="workflow-line"></div>
       </div>
       <div class="workflow-card">
-        <div class="workflow-icon">⬇</div>
+        <div class="workflow-icon">Γ¼ç</div>
         <div class="workflow-title">Data Ingestion</div>
-        <div class="workflow-desc">Pulling data from APIs, CSV files, and databases — structured or messy, it all starts here.</div>
+        <div class="workflow-desc">Pulling data from APIs, CSV files, and databases ΓÇö structured or messy, it all starts here.</div>
         <div class="workflow-tags">
           <span class="workflow-tag">APIs</span>
           <span class="workflow-tag">CSV</span>
@@ -3718,7 +3787,7 @@
         <div class="workflow-line"></div>
       </div>
       <div class="workflow-card">
-        <div class="workflow-icon">🧹</div>
+        <div class="workflow-icon">≡ƒº╣</div>
         <div class="workflow-title">Cleaning</div>
         <div class="workflow-desc">Handling missing values, removing outliers, and standardizing formats so the data is ready to trust.</div>
         <div class="workflow-tags">
@@ -3736,9 +3805,9 @@
         <div class="workflow-line"></div>
       </div>
       <div class="workflow-card">
-        <div class="workflow-icon">🔍</div>
+        <div class="workflow-icon">≡ƒöì</div>
         <div class="workflow-title">EDA</div>
-        <div class="workflow-desc">Digging into the data — finding patterns, trends, and correlations that aren't obvious on the surface.</div>
+        <div class="workflow-desc">Digging into the data ΓÇö finding patterns, trends, and correlations that aren't obvious on the surface.</div>
         <div class="workflow-tags">
           <span class="workflow-tag">Patterns</span>
           <span class="workflow-tag">Correlations</span>
@@ -3754,9 +3823,9 @@
         <div class="workflow-line"></div>
       </div>
       <div class="workflow-card">
-        <div class="workflow-icon">🤖</div>
+        <div class="workflow-icon">≡ƒñû</div>
         <div class="workflow-title">Modeling</div>
-        <div class="workflow-desc">When the problem calls for it — applying statistical or ML models to predict, classify, or cluster.</div>
+        <div class="workflow-desc">When the problem calls for it ΓÇö applying statistical or ML models to predict, classify, or cluster.</div>
         <div class="workflow-tags">
           <span class="workflow-tag">If Applicable</span>
           <span class="workflow-tag">Scikit-learn</span>
@@ -3772,9 +3841,9 @@
         <div class="workflow-line"></div>
       </div>
       <div class="workflow-card">
-        <div class="workflow-icon">📊</div>
+        <div class="workflow-icon">≡ƒôè</div>
         <div class="workflow-title">Visualization</div>
-        <div class="workflow-desc">Turning numbers into stories — interactive dashboards and charts that make insights impossible to miss.</div>
+        <div class="workflow-desc">Turning numbers into stories ΓÇö interactive dashboards and charts that make insights impossible to miss.</div>
         <div class="workflow-tags">
           <span class="workflow-tag">Power BI</span>
           <span class="workflow-tag">Tableau</span>
@@ -3789,9 +3858,9 @@
         <div class="workflow-diamond"></div>
       </div>
       <div class="workflow-card workflow-card-final">
-        <div class="workflow-icon">💡</div>
-        <div class="workflow-title">Insights → Decisions</div>
-        <div class="workflow-desc">The end goal — translating analysis into clear, actionable recommendations that drive real business outcomes.</div>
+        <div class="workflow-icon">≡ƒÆí</div>
+        <div class="workflow-title">Insights ΓåÆ Decisions</div>
+        <div class="workflow-desc">The end goal ΓÇö translating analysis into clear, actionable recommendations that drive real business outcomes.</div>
         <div class="workflow-tags">
           <span class="workflow-tag">KPI Reports</span>
           <span class="workflow-tag">Stakeholders</span>
@@ -3814,58 +3883,58 @@
 </section>
 
 <!-- ACHIEVEMENTS -->
-<section id="achievements" data-sys="SYS.05">
+<section id="achievements" data-sys="SYS.06">
   <div class="os-badge">[ ACHIEVEMENTS ]</div>
-  <h2 class="section-title reveal"><span style="color:var(--cyan-mid);font-size:0.5em;letter-spacing:4px;vertical-align:middle;margin-right:12px;">SYS.05</span>Achievements</h2>
+  <h2 class="section-title reveal"><span style="color:var(--cyan-mid);font-size:0.5em;letter-spacing:4px;vertical-align:middle;margin-right:12px;">SYS.06</span>Achievements</h2>
   <div class="achieve-grid">
     <div class="achieve-card reveal">
-      <div class="achieve-icon">🏆</div>
+      <div class="achieve-icon">≡ƒÅå</div>
       <div class="achieve-title">Intra-College Hackathon</div>
-      <div class="achieve-desc">1st Place at MEASI Institute of Information Technology hackathon — competing and delivering under pressure.</div>
-      <div class="achieve-year">Measi IIT · 2025</div>
+      <div class="achieve-desc">2nd Prize at Measi Institute of Information Technology hackathon ΓÇö competing and delivering under pressure.</div>
+      <div class="achieve-year">Measi IIT ┬╖ 2025</div>
     </div>
     <div class="achieve-card reveal">
-      <div class="achieve-icon">🥈</div>
+      <div class="achieve-icon">≡ƒÑê</div>
       <div class="achieve-title">MGR University Hackathon</div>
       <div class="achieve-desc">2nd Place in Inter-College Hackathon organized by the Department of IT at MGR University, Chennai.</div>
-      <div class="achieve-year">MGR University · 2025</div>
+      <div class="achieve-year">MGR University ┬╖ 2025</div>
     </div>
     <div class="achieve-card reveal">
-      <div class="achieve-icon">⚡</div>
+      <div class="achieve-icon">ΓÜí</div>
       <div class="achieve-title">LeetCode Elite</div>
-      <div class="achieve-desc">Solved 1750+ algorithmic problems on LeetCode with a remarkable ~90% acceptance rate — top-tier problem-solving pedigree.</div>
-      <div class="achieve-year">LeetCode · 2026</div>
+      <div class="achieve-desc">Solved 1750+ algorithmic problems on LeetCode with a remarkable ~90% acceptance rate ΓÇö top-tier problem-solving pedigree.</div>
+      <div class="achieve-year">LeetCode ┬╖ 2026</div>
     </div>
   </div>
 </section>
 
 <!-- EDUCATION -->
-<section id="education" data-sys="SYS.06">
+<section id="education" data-sys="SYS.07">
   <div class="os-badge">[ EDUCATION LOG ]</div>
-  <h2 class="section-title reveal"><span style="color:var(--cyan-mid);font-size:0.5em;letter-spacing:4px;vertical-align:middle;margin-right:12px;">SYS.06</span>Education Log</h2>
+  <h2 class="section-title reveal"><span style="color:var(--cyan-mid);font-size:0.5em;letter-spacing:4px;vertical-align:middle;margin-right:12px;">SYS.07</span>Education Log</h2>
   <div class="edu-timeline reveal">
     <div class="edu-item">
-      <div class="edu-year">2024 – 2026</div>
+      <div class="edu-year">2024 ΓÇô 2026</div>
       <div class="edu-degree">Master of Computer Applications (MCA)</div>
-      <div class="edu-school">Measi Institute of Information Technology · University of Madras</div>
+      <div class="edu-school">Measi Institute of Information Technology ┬╖ University of Madras</div>
     </div>
     <div class="edu-item">
-      <div class="edu-year">2021 – 2024</div>
+      <div class="edu-year">2021 ΓÇô 2024</div>
       <div class="edu-degree">Bachelor of Commerce (B.Com)</div>
-      <div class="edu-school">The New College · University of Madras</div>
+      <div class="edu-school">The New College ┬╖ University of Madras</div>
     </div>
   </div>
 </section>
 
 <!-- CERTIFICATIONS -->
 <!-- CURRENTLY LEARNING -->
-<section id="learning" data-sys="SYS.07">
+<section id="learning" data-sys="SYS.08">
   <div class="os-badge">[ AI MODULES ]</div>
-  <h2 class="section-title reveal"><span style="color:var(--cyan-mid);font-size:0.5em;letter-spacing:4px;vertical-align:middle;margin-right:12px;">SYS.07</span>AI Modules</h2>
+  <h2 class="section-title reveal"><span style="color:var(--cyan-mid);font-size:0.5em;letter-spacing:4px;vertical-align:middle;margin-right:12px;">SYS.08</span>AI Modules</h2>
   <div class="learning-grid">
 
     <div class="learning-card reveal">
-      <div class="learning-icon">🗄️</div>
+      <div class="learning-icon">≡ƒùä∩╕Å</div>
       <div class="learning-card-body">
       <div class="learning-title">Advanced SQL</div>
       <div class="learning-desc">Joins, Window Functions, Query Optimization</div>
@@ -3877,7 +3946,7 @@
     </div>
 
     <div class="learning-card reveal">
-      <div class="learning-icon">🤖</div>
+      <div class="learning-icon">≡ƒñû</div>
       <div class="learning-card-body">
       <div class="learning-title">Machine Learning Fundamentals</div>
       <div class="learning-desc">Supervised & Unsupervised Learning, Model Evaluation</div>
@@ -3889,7 +3958,7 @@
     </div>
 
     <div class="learning-card reveal">
-      <div class="learning-icon">⚙️</div>
+      <div class="learning-icon">ΓÜÖ∩╕Å</div>
       <div class="learning-card-body">
       <div class="learning-title">Data Engineering & ETL Optimization</div>
       <div class="learning-desc">Pipeline Architecture, Batch Processing, Automation</div>
@@ -3901,7 +3970,7 @@
     </div>
 
     <div class="learning-card reveal">
-      <div class="learning-icon">📊</div>
+      <div class="learning-icon">≡ƒôè</div>
       <div class="learning-card-body">
       <div class="learning-title">Advanced Power BI Dashboarding</div>
       <div class="learning-desc">DAX, Custom Visuals, Row-Level Security</div>
@@ -3913,7 +3982,7 @@
     </div>
 
     <div class="learning-card reveal">
-      <div class="learning-icon">🐍</div>
+      <div class="learning-icon">≡ƒÉì</div>
       <div class="learning-card-body">
       <div class="learning-title">Data Structures & Algorithms in Python</div>
       <div class="learning-desc">Arrays, Trees, Sorting, Dynamic Programming</div>
@@ -3927,18 +3996,18 @@
   </div>
 </section>
 
-<section id="certs" data-sys="SYS.08">
+<section id="certs" data-sys="SYS.09">
   <div class="os-badge">[ CREDENTIALS ]</div>
-  <h2 class="section-title reveal"><span style="color:var(--cyan-mid);font-size:0.5em;letter-spacing:4px;vertical-align:middle;margin-right:12px;">SYS.08</span>Credentials</h2>
+  <h2 class="section-title reveal"><span style="color:var(--cyan-mid);font-size:0.5em;letter-spacing:4px;vertical-align:middle;margin-right:12px;">SYS.09</span>Credentials</h2>
   <div class="cert-grid">
     <div class="cert-card reveal">
       <div class="cert-num">01</div>
       <div class="cert-info">
         <div class="cert-name">Data Science and Analytics</div>
-        <div class="cert-issuer">GUVI · May 2025 · ID: p04715a8Ng76fB0q3T</div>
+        <div class="cert-issuer">GUVI ┬╖ May 2025 ┬╖ ID: p04715a8Ng76fB0q3T</div>
         <div class="cert-actions">
-          <button class="cert-btn" onclick="viewCert('cert_guvi_dsa.png', 'Data Science and Analytics')">👁 View</button>
-          <a class="cert-btn" href="cert_guvi_dsa.png" download="Razin_GUVI_DataScience.png">⬇ Download</a>
+          <button class="cert-btn" onclick="viewCert('cert_guvi_dsa.png', 'Data Science and Analytics')">≡ƒæü View</button>
+          <a class="cert-btn" href="cert_guvi_dsa.png" download="Razin_GUVI_DataScience.png">Γ¼ç Download</a>
         </div>
       </div>
     </div>
@@ -3946,10 +4015,10 @@
       <div class="cert-num">02</div>
       <div class="cert-info">
         <div class="cert-name">Data Acquisition and Manipulation</div>
-        <div class="cert-issuer">GUVI · May 2025 · ID: 783u4jd2Z11f294x1a</div>
+        <div class="cert-issuer">GUVI ┬╖ May 2025 ┬╖ ID: 783u4jd2Z11f294x1a</div>
         <div class="cert-actions">
-          <button class="cert-btn" onclick="viewCert('cert_guvi_dam.png', 'Data Acquisition and Manipulation')">👁 View</button>
-          <a class="cert-btn" href="cert_guvi_dam.png" download="Razin_GUVI_DataAcquisition.png">⬇ Download</a>
+          <button class="cert-btn" onclick="viewCert('cert_guvi_dam.png', 'Data Acquisition and Manipulation')">≡ƒæü View</button>
+          <a class="cert-btn" href="cert_guvi_dam.png" download="Razin_GUVI_DataAcquisition.png">Γ¼ç Download</a>
         </div>
       </div>
     </div>
@@ -3957,10 +4026,10 @@
       <div class="cert-num">03</div>
       <div class="cert-info">
         <div class="cert-name">Data Visualization with Python</div>
-        <div class="cert-issuer">Great Learning · Dec 2024 · ID: JDYXJWXQ</div>
+        <div class="cert-issuer">Great Learning ┬╖ Dec 2024 ┬╖ ID: JDYXJWXQ</div>
         <div class="cert-actions">
-          <button class="cert-btn" onclick="viewCert('cert_greatlearning_dvp.pdf', 'Data Visualization with Python', true)">👁 View</button>
-          <a class="cert-btn" href="cert_greatlearning_dvp.pdf" download="Razin_GreatLearning_DataViz.pdf">⬇ Download</a>
+          <button class="cert-btn" onclick="viewCert('cert_greatlearning_dvp.pdf', 'Data Visualization with Python', true)">≡ƒæü View</button>
+          <a class="cert-btn" href="cert_greatlearning_dvp.pdf" download="Razin_GreatLearning_DataViz.pdf">Γ¼ç Download</a>
         </div>
       </div>
     </div>
@@ -3968,9 +4037,9 @@
 </section>
 
 <!-- CONTACT -->
-<section id="contact" data-sys="SYS.09">
+<section id="contact" data-sys="SYS.10">
   <div class="os-badge">[ CONNECT ]</div>
-  <h2 class="section-title reveal"><span style="color:var(--cyan-mid);font-size:0.5em;letter-spacing:4px;vertical-align:middle;margin-right:12px;">SYS.09</span>Connect</h2>
+  <h2 class="section-title reveal"><span style="color:var(--cyan-mid);font-size:0.5em;letter-spacing:4px;vertical-align:middle;margin-right:12px;">SYS.10</span>Connect</h2>
   <br><br>
   <div class="contact-box reveal">
     <div class="section-label" style="margin-bottom:10px; font-size:0.95rem;">I'd love to hear from you</div>
@@ -3979,7 +4048,7 @@
     </p>
     <a href="mailto:mohammedrazin22202@gmail.com?subject=Reaching%20out%20from%20your%20Portfolio" class="contact-email">mohammedrazin22202@gmail.com</a>
     <a href="tel:+919342234674" class="contact-phone">+91 93422 34674</a>
-    <a href="https://www.linkedin.com/in/razin88307" target="_blank" class="contact-linkedin">LinkedIn — Mohammed Razin</a>
+    <a href="https://www.linkedin.com/in/razin88307" target="_blank" class="contact-linkedin">LinkedIn ΓÇö Mohammed Razin</a>
     <div style="font-size:0.95rem; letter-spacing:2px; color:var(--matrix-mid);">Chennai, Tamil Nadu, India</div>
     <br>
     <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
@@ -3993,7 +4062,7 @@
 </section>
 
 <footer>
-  &copy; 2026 Mohammed Razin — Built with passion, powered by data
+  &copy; 2026 Mohammed Razin ΓÇö Built with passion, powered by data
 </footer>
 
 <script>
@@ -4117,7 +4186,7 @@ function initCyberForgeOS() {
 }
 document.addEventListener('DOMContentLoaded', initCyberForgeOS);
 
-// ── CERT VIEWER ──
+// ΓöÇΓöÇ CERT VIEWER ΓöÇΓöÇ
 function viewCert(file, title, isPdf = false) {
   document.getElementById('cert-modal-title').textContent = title;
   const body = document.getElementById('cert-modal-body');
@@ -4139,7 +4208,7 @@ function closeCertModal(e) {
   }
 }
 
-// ── TECH STACK MODAL ──
+// ΓöÇΓöÇ TECH STACK MODAL ΓöÇΓöÇ
 const techStacks = {
   vconnect: {
     title: 'V Connect',
@@ -4176,13 +4245,13 @@ function closeTechStack(e) {
   }
 }
 
-// ── LOADER MATRIX RAIN ──
+// ΓöÇΓöÇ LOADER MATRIX RAIN ΓöÇΓöÇ
 (function() {
   const lc = document.getElementById('loader-canvas');
   const lctx = lc.getContext('2d');
   lc.width = window.innerWidth; lc.height = window.innerHeight;
 
-  const lchars = 'アイウエオカキクケコサシスセソ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ<>{}|/\\';
+  const lchars = 'πéóπéñπéªπé¿πé¬πé½πé¡πé»πé▒πé│πé╡πé╖πé╣πé╗πé╜0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ<>{}|/\\';
   const lfs = 14;
   let lcols = Math.floor(lc.width / lfs);
   let ldrops = Array.from({length: lcols}, () => Math.random() * -80);
@@ -4217,7 +4286,7 @@ function closeTechStack(e) {
   window._startLoaderRain = startRain;
 })();
 
-// ── LOADER SEQUENCE ──
+// ΓöÇΓöÇ LOADER SEQUENCE ΓöÇΓöÇ
 (function() {
   if (localStorage.getItem(CF_BOOT_KEY) === '1') {
     const loader = document.getElementById('loader');
@@ -4278,7 +4347,7 @@ if (localStorage.getItem(CF_BOOT_KEY) !== '1') {
   document.body.style.overflow = 'hidden';
 }
 
-// ── VISITOR MODAL ──
+// ΓöÇΓöÇ VISITOR MODAL ΓöÇΓöÇ
 const SUPABASE_URL = 'https://xyzcompanysupabase.supabase.co'; // <-- Replace with your Supabase URL
 const SUPABASE_KEY = 'your-anon-key-here';                     // <-- Replace with your anon key
 
@@ -4287,7 +4356,7 @@ let ratherNotSay = false;
 let openedFromLoader = false;
 
 function showVisitorModal() {
-  // Called from loader ✕ — hide loader, show modal
+  // Called from loader Γ£ò ΓÇö hide loader, show modal
   openedFromLoader = true;
   document.getElementById('loader').classList.add('hidden');
   document.body.style.overflow = '';
@@ -4295,7 +4364,7 @@ function showVisitorModal() {
 }
 
 function showVisitorModalFromSite() {
-  // Called from site ✕ — just show modal
+  // Called from site Γ£ò ΓÇö just show modal
   openedFromLoader = false;
   resetAndOpenModal();
 }
@@ -4318,7 +4387,7 @@ function setRatherNotSay() {
   input.value = '';
   input.placeholder = "That's totally fine!";
   input.disabled = true;
-  document.querySelector('.vrather-btn').textContent = '✓ Noted, no worries!';
+  document.querySelector('.vrather-btn').textContent = 'Γ£ô Noted, no worries!';
 }
 
 async function submitVisitor() {
@@ -4372,7 +4441,7 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ<>{}[]|/\\';
+const chars = 'πéóπéñπéªπé¿πé¬πé½πé¡πé»πé▒πé│πé╡πé╖πé╣πé╗πé╜πé┐πâüπâäπâåπâêπâèπâïπâîπâìπâÄπâÅπâÆπâòπâÿπâ¢πâ₧πâƒπâáπâíπâóπâñπâªπâ¿πâ⌐πâ¬πâ½πâ¼πâ¡πâ»πâ▓πâ│0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ<>{}[]|/\\';
 const fontSize = 14;
 let columns = Math.floor(canvas.width / fontSize);
 let drops = Array.from({length: columns}, () => Math.random() * -100);
@@ -4396,7 +4465,7 @@ function drawMatrix() {
 }
 setInterval(drawMatrix, 50);
 
-// ── SCROLL REVEAL ──
+// ΓöÇΓöÇ SCROLL REVEAL ΓöÇΓöÇ
 const revealEls = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
@@ -4408,7 +4477,7 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 revealEls.forEach(el => observer.observe(el));
 
-// ── SKILL BARS ──
+// ΓöÇΓöÇ SKILL BARS ΓöÇΓöÇ
 const skillObs = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -4421,7 +4490,7 @@ const skillObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 document.querySelectorAll('.skill-category').forEach(el => skillObs.observe(el));
 
-// ── COUNTER ANIMATION ──
+// ΓöÇΓöÇ COUNTER ANIMATION ΓöÇΓöÇ
 function animateCounter(el, target, suffix='') {
   const duration = 2000;
   const start = Date.now();
@@ -4446,7 +4515,7 @@ const counterObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el));
 
-// ── LEARNING BARS ──
+// ΓöÇΓöÇ LEARNING BARS ΓöÇΓöÇ
 const learnObs = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -4461,7 +4530,7 @@ const learnObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 document.querySelectorAll('.learning-card').forEach(el => learnObs.observe(el));
 
-// ── GLITCH TITLE EFFECT ──
+// ΓöÇΓöÇ GLITCH TITLE EFFECT ΓöÇΓöÇ
 setInterval(() => {
   const title = document.querySelector('.hero-name');
   if (title && Math.random() > 0.85) {
@@ -4472,7 +4541,7 @@ setInterval(() => {
   }
 }, 3000);
 
-// ── ACTIVE NAV TRACKING ──
+// ΓöÇΓöÇ ACTIVE NAV TRACKING ΓöÇΓöÇ
 (function() {
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
@@ -4488,7 +4557,7 @@ setInterval(() => {
   sections.forEach(s => observer.observe(s));
 })();
 
-// ── MOBILE NAV HAMBURGER ──
+// ΓöÇΓöÇ MOBILE NAV HAMBURGER ΓöÇΓöÇ
 function toggleMobileNav() {
   const btn   = document.getElementById('nav-hamburger');
   const panel = document.getElementById('nav-mobile-panel');
@@ -4509,7 +4578,7 @@ document.addEventListener('click', function(e) {
     closeMobileNav();
   }
 });
-</script><a id="cf-chat-toggle" href="chatbot.html" target="_blank" rel="noopener" title="CyberForge AI — Open chatbot">⬡</a>
+</script><a id="cf-chat-toggle" href="chatbot.html" target="_blank" rel="noopener" title="CyberForge AI ΓÇö Open chatbot">Γ¼í</a>
 
 <div id="cf-launcher" role="dialog" aria-modal="true" aria-label="Try asking CyberForge">
   <div class="cf-launcher-box">
