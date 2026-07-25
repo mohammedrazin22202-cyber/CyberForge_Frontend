@@ -3331,7 +3331,6 @@
   <div class="loader-vignette"></div>
   <div class="loader-scanlines"></div>
   <button id="loader-close-btn" onclick="enterPortfolio()">SKIP INTRO</button>
-  <button class="loader-skip-forever" onclick="skipBootForever()">SKIP FOREVER</button>
 
   <div class="loader-inner">
     <!-- Top header bar -->
@@ -4073,7 +4072,6 @@
 </footer>
 
 <script>
-const CF_BOOT_KEY = 'cfPortfolioBootDone';
 const CF_THEME_KEY = 'cfTheme';
 const CF_MODE_KEY = 'cfExperienceMode';
 const CF_GITHUB_URL = 'https://github.com/mohammedrazin22202-cyber';
@@ -4126,11 +4124,7 @@ function showWelcomeBack(message) {
   window.__cfWelcomeTimer = setTimeout(() => toast.classList.remove('show'), 3600);
 }
 
-function skipBootForever() {
-  localStorage.setItem(CF_BOOT_KEY, '1');
-  enterPortfolio();
-  showWelcomeBack('Boot skipped forever. Welcome back, operator.');
-}
+
 
 function openCommandLauncher() {
   document.getElementById('cf-launcher')?.classList.add('open');
@@ -4187,9 +4181,6 @@ function initCyberForgeOS() {
     });
   }
 
-  if (localStorage.getItem(CF_BOOT_KEY) === '1') {
-    showWelcomeBack('Welcome back. Portfolio boot skipped; your OS settings are restored.');
-  }
 }
 document.addEventListener('DOMContentLoaded', initCyberForgeOS);
 
@@ -4288,19 +4279,12 @@ function closeTechStack(e) {
     loaderRain = null;
   }
 
-  if (localStorage.getItem(CF_BOOT_KEY) !== '1') startRain();
+  startRain();
   window._stopLoaderRain  = stopRain;
   window._startLoaderRain = startRain;
 })();
 
-// ── LOADER SEQUENCE ──
 (function() {
-  if (localStorage.getItem(CF_BOOT_KEY) === '1') {
-    const loader = document.getElementById('loader');
-    if (loader) loader.classList.add('hidden');
-    document.body.style.overflow = '';
-    return;
-  }
   const lines       = ['lt1','lt2','lt3','lt4','lt5','lt6','lt7','lt8','lt9','lt10'];
   const lineProgress= [8, 18, 28, 40, 52, 63, 74, 84, 93, 100];
   const lineDelays  = [300, 520, 760, 1020, 1260, 1480, 1700, 1940, 2160, 2400];
@@ -4340,7 +4324,6 @@ function closeTechStack(e) {
 })();
 
 function enterPortfolio() {
-  localStorage.setItem(CF_BOOT_KEY, '1');
   window._stopLoaderRain && window._stopLoaderRain();
   document.getElementById('loader').classList.add('hidden');
   document.body.style.overflow = '';
@@ -4350,9 +4333,7 @@ function enterPortfolio() {
 }
 
 // Prevent scroll while loading
-if (localStorage.getItem(CF_BOOT_KEY) !== '1') {
-  document.body.style.overflow = 'hidden';
-}
+document.body.style.overflow = 'hidden';
 
 // ── VISITOR MODAL ──
 const SUPABASE_URL = 'https://xyzcompanysupabase.supabase.co'; // <-- Replace with your Supabase URL
