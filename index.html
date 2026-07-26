@@ -4248,15 +4248,15 @@ function closeCertModal(e) {
   }
 }
 
-// ── RESUME MODAL ──
+// ── RESUME DOWNLOAD ──
 function openResumeModal(e) {
   if (e) e.preventDefault();
-  document.getElementById('resume-modal').classList.add('active');
-}
-function closeResumeModal(e) {
-  if (!e || e.target === document.getElementById('resume-modal') || e.target.classList.contains('certmodal-close')) {
-    document.getElementById('resume-modal').classList.remove('active');
-  }
+  const link = document.createElement('a');
+  link.href = 'My_Resume.pdf';
+  link.download = 'Mohammed_Razin_Data_Analyst.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
 // ── TECH STACK MODAL ──
