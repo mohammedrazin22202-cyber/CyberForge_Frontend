@@ -45,8 +45,94 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 1s ease, visibility 1s ease;
     overflow: hidden;
+    transition: opacity 1s ease, visibility 1s ease;
+    cursor: none;
+  }
+  #loader * {
+    cursor: none;
+  }
+
+  /* Sniper Custom Cursor */
+  #custom-cursor {
+    position: fixed;
+    width: 36px;
+    height: 36px;
+    pointer-events: none;
+    z-index: 100000;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  /* Central dot */
+  .crosshair-dot {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 4px; height: 4px;
+    background: var(--matrix-green);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 6px var(--matrix-green);
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+
+  /* Outer crosshair ring */
+  .crosshair-ring {
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--matrix-green);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 255, 65, 0.35);
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+
+  /* Outer ticks */
+  .crosshair-tick {
+    position: absolute;
+    background: var(--matrix-green);
+    box-shadow: 0 0 4px var(--matrix-green);
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+
+  .crosshair-tick.t {
+    top: -4px; left: 50%;
+    width: 1px; height: 6px;
+    transform: translateX(-50%);
+  }
+
+  .crosshair-tick.b {
+    bottom: -4px; left: 50%;
+    width: 1px; height: 6px;
+    transform: translateX(-50%);
+  }
+
+  .crosshair-tick.l {
+    left: -4px; top: 50%;
+    width: 6px; height: 1px;
+    transform: translateY(-50%);
+  }
+
+  .crosshair-tick.r {
+    right: -4px; top: 50%;
+    width: 6px; height: 1px;
+    transform: translateY(-50%);
+  }
+
+  /* Target lock-on hover effects */
+  #custom-cursor.lock-on {
+    transform: translate(-50%, -50%) rotate(45deg) scale(1.15);
+  }
+
+  #custom-cursor.lock-on .crosshair-ring {
+    border-color: #ff3333;
+    box-shadow: 0 0 12px rgba(255, 51, 51, 0.7);
+  }
+
+  #custom-cursor.lock-on .crosshair-dot,
+  #custom-cursor.lock-on .crosshair-tick {
+    background: #ff3333;
+    box-shadow: 0 0 6px #ff3333;
   }
 
   #loader.hidden {
@@ -55,19 +141,17 @@
     pointer-events: none;
   }
 
-  #loader-canvas {
+  #decrypt-canvas {
     position: absolute;
     inset: 0;
     width: 100%; height: 100%;
-    opacity: 0.35;
     z-index: 1;
-    pointer-events: none;
   }
 
   .loader-vignette {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.85) 100%);
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.9) 100%);
     z-index: 2;
     pointer-events: none;
   }
@@ -86,328 +170,258 @@
     100% { background-position: 0 100px; }
   }
 
-  .loader-inner {
-    position: relative;
-    z-index: 10;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr auto;
-    width: min(960px, 94vw);
-    height: min(580px, 86vh);
-    border: 1px solid rgba(0,255,65,0.3);
-    background: rgba(0,0,0,0.75);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 80px rgba(0,255,65,0.12), inset 0 0 80px rgba(0,255,65,0.02);
-    overflow: hidden;
-  }
-
-  .loader-inner::before, .loader-inner::after {
-    content: '';
-    position: absolute;
-    width: 24px; height: 24px;
-    border-color: var(--matrix-green);
-    border-style: solid;
-    z-index: 11;
-  }
-  .loader-inner::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; box-shadow: -4px -4px 16px rgba(0,255,65,0.4); }
-  .loader-inner::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; box-shadow: 4px 4px 16px rgba(0,255,65,0.4); }
-
-  .loader-header {
-    grid-column: 1 / -1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 13px 24px;
-    border-bottom: 1px solid rgba(0,255,65,0.15);
-    background: rgba(0,255,65,0.04);
-  }
-
-  .loader-header-id {
-    font-size: 0.58rem;
-    letter-spacing: 5px;
-    color: var(--matrix-mid);
-    text-transform: uppercase;
-  }
-
-  .loader-header-status {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.58rem;
-    letter-spacing: 3px;
-    color: var(--cyan);
-    text-shadow: 0 0 8px var(--cyan-glow);
-  }
-
-  .loader-status-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 8px var(--cyan);
-    animation: pulse-dot 1.5s ease-in-out infinite;
-  }
-
-  @keyframes pulse-dot {
-    0%,100% { opacity: 1; transform: scale(1); }
-    50%      { opacity: 0.4; transform: scale(0.7); }
-  }
-
-  .loader-left {
+  /* Center HUD Layout */
+  .hud-center {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    padding: 36px 40px;
-    border-right: 1px solid rgba(0,255,65,0.12);
-    gap: 18px;
+    z-index: 10;
   }
 
-  .loader-logo-img {
-    width: min(200px, 35vw);
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 0 20px rgba(0,255,65,0.5));
-    opacity: 0;
-    animation: loaderFadeIn 0.7s 0.3s forwards;
+  /* Round Loading Container around Name */
+  .name-ring-container {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 50%;
+    box-shadow: inset 0 0 30px rgba(0, 255, 65, 0.05);
+    backdrop-filter: blur(8px);
   }
 
-  .loader-name-big {
+  .name-progress-svg {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    transform: rotate(-90deg);
+  }
+
+  .name-progress-svg circle {
+    fill: none;
+    stroke-width: 4px;
+  }
+
+  .name-progress-svg .track {
+    stroke: rgba(0, 255, 65, 0.04);
+  }
+
+  .name-progress-svg .fill {
+    stroke: var(--matrix-green);
+    stroke-dasharray: 911;
+    stroke-dashoffset: 911;
+    transition: stroke-dashoffset 0.12s linear;
+    filter: drop-shadow(0 0 8px var(--matrix-green));
+  }
+
+  /* ── Continuous Electric Name Glitch ── */
+  .electric-name {
     font-family: 'Orbitron', monospace;
-    font-size: clamp(1.5rem, 3.2vw, 2.6rem);
+    font-size: clamp(1.3rem, 3.2vw, 2.1rem);
     font-weight: 900;
-    line-height: 1;
+    line-height: 1.15;
     letter-spacing: 2px;
     color: var(--matrix-green);
-    text-shadow: 0 0 40px var(--matrix-green), 0 0 80px rgba(0,255,65,0.2);
-    opacity: 0;
-    animation: loaderFadeIn 0.7s 0.6s forwards;
-  }
-
-  .loader-role-tags {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    opacity: 0;
-    animation: loaderFadeIn 0.6s 0.9s forwards;
-  }
-
-  .loader-role-tag {
-    font-size: 0.6rem;
-    letter-spacing: 5px;
-    color: rgba(0,163,18,0.8);
+    text-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+    position: relative;
+    text-align: center;
     text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    z-index: 10;
+    pointer-events: none;
+    user-select: none;
   }
 
-  .loader-role-tag::before {
-    content: '';
-    display: inline-block;
-    width: 20px; height: 1px;
-    background: var(--matrix-green);
-    box-shadow: 0 0 6px var(--matrix-green);
-  }
-
-  .loader-action-btns {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    opacity: 0;
-    transition: opacity 0.5s;
-  }
-
-  .loader-action-btns.show { opacity: 1; }
-
-  .loader-enter-btn {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    padding: 12px 24px;
-    border: 1px solid var(--matrix-green);
+  .electric-name::before,
+  .electric-name::after {
+    content: "MOHAMMED\A RAZIN H";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: transparent;
+    overflow: hidden;
+    white-space: pre-wrap;
+  }
+
+  .electric-name::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00c1;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-anim-1 1s infinite linear alternate-reverse;
+  }
+
+  .electric-name::after {
+    left: -2px;
+    text-shadow: -2px 0 #00e5ff;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-anim-2 1s infinite linear alternate-reverse;
+  }
+
+  @keyframes glitch-anim-1 {
+    0% { clip: rect(10px, 9999px, 30px, 0); }
+    10% { clip: rect(85px, 9999px, 5px, 0); }
+    20% { clip: rect(42px, 9999px, 73px, 0); }
+    30% { clip: rect(95px, 9999px, 12px, 0); }
+    40% { clip: rect(3px, 9999px, 92px, 0); }
+    50% { clip: rect(78px, 9999px, 55px, 0); }
+    60% { clip: rect(25px, 9999px, 85px, 0); }
+    70% { clip: rect(54px, 9999px, 34px, 0); }
+    80% { clip: rect(90px, 9999px, 60px, 0); }
+    90% { clip: rect(15px, 9999px, 80px, 0); }
+    100% { clip: rect(62px, 9999px, 20px, 0); }
+  }
+
+  @keyframes glitch-anim-2 {
+    0% { clip: rect(65px, 9999px, 15px, 0); }
+    10% { clip: rect(5px, 9999px, 85px, 0); }
+    20% { clip: rect(92px, 9999px, 20px, 0); }
+    30% { clip: rect(12px, 9999px, 95px, 0); }
+    40% { clip: rect(82px, 9999px, 5px, 0); }
+    50% { clip: rect(55px, 9999px, 78px, 0); }
+    60% { clip: rect(85px, 9999px, 25px, 0); }
+    70% { clip: rect(34px, 9999px, 54px, 0); }
+    80% { clip: rect(60px, 9999px, 90px, 0); }
+    90% { clip: rect(80px, 9999px, 15px, 0); }
+    100% { clip: rect(20px, 9999px, 62px, 0); }
+  }
+
+  /* Status and Progress percentage */
+  .status-row {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .glow-percent {
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px var(--matrix-green);
+    letter-spacing: 2px;
+  }
+
+  /* Action Buttons */
+  .enter-btn {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 18px 28px;
+    border: 1px solid rgba(0, 255, 65, 0.4);
+    background: rgba(0, 255, 65, 0.02);
     color: var(--matrix-green);
     cursor: pointer;
-    text-shadow: 0 0 10px var(--matrix-green);
-    box-shadow: 0 0 20px rgba(0,255,65,0.15);
-    transition: all 0.25s;
-    display: block;
-    width: 100%;
-    text-align: center;
-    animation: pulse-border 2s infinite;
-  }
-
-  .loader-enter-btn:hover {
-    background: var(--matrix-green);
-    color: #000;
-    box-shadow: 0 0 40px var(--matrix-glow);
-    text-shadow: none;
-  }
-
-  .loader-resume-btn {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.64rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 10px 24px;
-    border: 1px solid rgba(0,163,18,0.5);
-    background: transparent;
-    color: var(--matrix-mid);
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.25s;
-    display: block;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.05);
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    opacity: 0;
+    pointer-events: none;
+    width: 280px;
     text-align: center;
     position: relative;
     overflow: hidden;
   }
 
-  .loader-resume-btn::before {
+  .enter-btn.show {
+    opacity: 1;
+    pointer-events: all;
+    animation: btn-pulse 2s infinite ease-in-out;
+  }
+
+  /* Rolling scanlines inside the button */
+  .enter-btn::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--matrix-mid);
-    transform: translateX(-101%);
-    transition: transform 0.25s;
-    z-index: -1;
-  }
-  .loader-resume-btn:hover { color: #000; }
-  .loader-resume-btn:hover::before { transform: translateX(0); }
-
-  .loader-right {
-    display: flex;
-    flex-direction: column;
-    padding: 24px 26px;
-    overflow: hidden;
-    gap: 0;
+    background: repeating-linear-gradient(0deg, rgba(0, 255, 65, 0.04), rgba(0, 255, 65, 0.04) 1px, transparent 1px, transparent 3px);
+    pointer-events: none;
+    z-index: 2;
   }
 
-  .loader-terminal-header {
-    font-size: 0.56rem;
-    letter-spacing: 4px;
-    color: rgba(0,163,18,0.5);
-    text-transform: uppercase;
-    margin-bottom: 14px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(0,255,65,0.1);
+  @keyframes btn-pulse {
+    0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 65, 0.1), inset 0 0 8px rgba(0, 255, 65, 0.03); border-color: rgba(0, 255, 65, 0.4); }
+    50% { box-shadow: 0 0 25px rgba(0, 255, 65, 0.3), inset 0 0 15px rgba(0, 255, 65, 0.1); border-color: rgba(0, 255, 65, 0.85); }
   }
 
-  .loader-terminal {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    overflow: hidden;
-  }
-
-  .loader-terminal-line {
-    font-size: 0.7rem;
-    letter-spacing: 0.3px;
-    color: var(--matrix-mid);
-    padding: 3px 0;
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-  .loader-terminal-line.active {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .loader-terminal-line .ok   { color: var(--matrix-green); text-shadow: 0 0 8px var(--matrix-green); }
-  .loader-terminal-line .warn { color: var(--cyan); text-shadow: 0 0 6px var(--cyan-glow); }
-  .loader-terminal-line .err  { color: #ff5555; }
-  .loader-terminal-line .dim  { color: rgba(0,163,18,0.4); }
-
-  .loader-footer {
-    grid-column: 1 / -1;
-    border-top: 1px solid rgba(0,255,65,0.12);
-    background: rgba(0,255,65,0.02);
-    padding: 12px 24px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .loader-bar-label {
-    font-size: 0.56rem;
-    letter-spacing: 3px;
-    color: var(--matrix-mid);
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-
-  #loader-percent {
-    color: var(--matrix-green);
-    text-shadow: 0 0 8px var(--matrix-green);
-    font-size: 0.75rem;
-    min-width: 38px;
-    text-align: right;
-    white-space: nowrap;
-  }
-
-  .loader-bar-track {
-    flex: 1;
-    height: 4px;
-    background: rgba(0,255,65,0.06);
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(0,255,65,0.12);
-  }
-
-  .loader-bar-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, var(--matrix-mid), var(--matrix-green));
-    box-shadow: 0 0 16px var(--matrix-green), 0 0 32px rgba(0,255,65,0.3);
-    transition: width 0.12s linear;
-    position: relative;
-  }
-
-  .loader-bar-fill::after {
-    content: '';
+  /* Cyber brackets on the button */
+  .btn-bracket {
     position: absolute;
-    right: 0; top: 0;
-    width: 20px; height: 100%;
-    background: rgba(255,255,255,0.5);
-    filter: blur(3px);
-  }
-
-  .loader-bar-shine {
-    position: absolute;
-    top: 0; right: 0;
-    width: 40px; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-    animation: shine 1.4s infinite;
-  }
-
-  #loader-close-btn {
-    position: absolute;
-    top: 14px; right: 18px;
-    background: transparent;
-    border: 1px solid rgba(0,255,65,0.2);
-    color: rgba(0,163,18,0.6);
-    font-size: 0.56rem;
-    padding: 6px 18px;
-    cursor: pointer;
-    z-index: 100;
-    transition: all 0.2s;
-    font-family: 'Share Tech Mono', monospace;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    white-space: nowrap;
-    height: auto;
-    min-width: fit-content;
-  }
-  #loader-close-btn:hover {
+    width: 6px;
+    height: 6px;
     border-color: var(--matrix-green);
-    color: var(--matrix-green);
-    box-shadow: 0 0 10px var(--matrix-glow);
+    border-style: solid;
+    transition: all 0.3s ease;
+    z-index: 5;
+  }
+  .btn-bracket.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+  .btn-bracket.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+  .btn-bracket.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+  .btn-bracket.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+  /* Moving laser beam across the button on hover */
+  .btn-scanner {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+    transition: all 0.5s ease;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  /* Small status code on top left */
+  .btn-status-sub {
+    position: absolute;
+    top: 3px;
+    left: 8px;
+    font-size: 0.45rem;
+    color: rgba(0, 255, 65, 0.45);
+    letter-spacing: 1px;
+    pointer-events: none;
+    font-family: 'Share Tech Mono', monospace;
+    z-index: 5;
+  }
+
+  .enter-btn:hover {
+    background: rgba(0, 255, 65, 0.15);
+    border-color: var(--matrix-green);
+    color: #fff;
+    box-shadow: 0 0 35px rgba(0, 255, 65, 0.45);
+    animation: btn-glitch-text 0.15s steps(2, start) infinite;
+  }
+
+  @keyframes btn-glitch-text {
+    0% { text-shadow: 2px 0 #ff00c1, -2px 0 #00e5ff; }
+    50% { text-shadow: -2px 0 #ff00c1, 2px 0 #00e5ff; }
+    100% { text-shadow: 2px 0 #ff00c1, -2px 0 #00e5ff; }
+  }
+
+  .enter-btn:hover .btn-scanner {
+    left: 150%;
+    transition: left 0.8s ease-in-out;
+  }
+
+  .enter-btn:hover .btn-bracket.tl { top: 3px; left: 3px; }
+  .enter-btn:hover .btn-bracket.tr { top: 3px; right: 3px; }
+  .enter-btn:hover .btn-bracket.bl { bottom: 3px; left: 3px; }
+  .enter-btn:hover .btn-bracket.br { bottom: 3px; right: 3px; }
+
+  /* Screen shake glitch transition */
+  .screen-glitch {
+    animation: screen-shake 0.4s linear;
+  }
+
+  @keyframes screen-shake {
+    0%, 100% { transform: translate(0, 0) skew(0deg); }
+    20% { transform: translate(-4px, 3px) skew(-1.5deg); filter: hue-rotate(45deg) saturate(1.5); }
+    40% { transform: translate(4px, -2px) skew(1.5deg); }
+    60% { transform: translate(-3px, -3px) skew(0deg); filter: hue-rotate(-45deg) contrast(1.2); }
+    80% { transform: translate(3px, 4px) skew(2.5deg); }
   }
 
   .nav-logo-img {
@@ -3357,62 +3371,43 @@
 
 <!-- CINEMATIC BOOT SCREEN -->
 <div id="loader">
-  <canvas id="loader-canvas"></canvas>
+  <!-- Sniper Crosshair Custom Cursor -->
+  <div id="custom-cursor">
+    <div class="crosshair-dot"></div>
+    <div class="crosshair-ring"></div>
+    <div class="crosshair-tick t"></div>
+    <div class="crosshair-tick b"></div>
+    <div class="crosshair-tick l"></div>
+    <div class="crosshair-tick r"></div>
+  </div>
+
+  <canvas id="decrypt-canvas"></canvas>
   <div class="loader-vignette"></div>
   <div class="loader-scanlines"></div>
-  <button id="loader-close-btn" onclick="enterPortfolio()">SKIP INTRO</button>
 
-  <div class="loader-inner">
-    <!-- Top header bar -->
-    <div class="loader-header">
-      <span class="loader-header-id">CYBERFORGE OS v2.6.1 — SECURE BOOT SEQUENCE</span>
-      <div class="loader-header-status">
-        <div class="loader-status-dot"></div>
-        <span id="loader-status-text">INITIALIZING</span>
-      </div>
+  <div class="hud-center">
+    <!-- Round Loading around Name -->
+    <div class="name-ring-container">
+      <svg class="name-progress-svg" viewBox="0 0 320 320">
+        <circle class="track" cx="160" cy="160" r="145" />
+        <circle class="fill" id="circular-bar" cx="160" cy="160" r="145" stroke-dasharray="911" stroke-dashoffset="911" />
+      </svg>
+      <div class="electric-name">MOHAMMED<br>RAZIN H</div>
     </div>
-
-    <!-- Left: identity panel -->
-    <div class="loader-left">
-      <img src="cyberforge_logo.png" alt="CyberForge" class="loader-logo-img" />
-      <div class="loader-name-big">MOHAMMED<br>RAZIN H</div>
-      <div class="loader-role-tags">
-        <div class="loader-role-tag">Data Scientist</div>
-        <div class="loader-role-tag">Data Analyst</div>
-        <div class="loader-role-tag">AI System Builder</div>
-      </div>
-      <div class="loader-action-btns" id="loader-action-btns">
-        <button class="loader-enter-btn" onclick="enterPortfolio()">&gt;&gt; ENTER PORTFOLIO &lt;&lt;</button>
-        <a href="#" onclick="openResumeModal(event)" class="loader-resume-btn">⬇ Download Resume</a>
-      </div>
+    
+    <div class="status-row">
+      <span class="glow-percent" id="loader-percent">0%</span>
     </div>
-
-    <!-- Right: terminal log panel -->
-    <div class="loader-right">
-      <div class="loader-terminal-header">// SYSTEM LOG — BOOT SEQUENCE</div>
-      <div class="loader-terminal">
-        <div class="loader-terminal-line" id="lt1"><span class="dim">[0.12s]</span> BIOS POST check... <span class="ok">[PASS]</span></div>
-        <div class="loader-terminal-line" id="lt2"><span class="dim">[0.31s]</span> Loading kernel modules... <span class="ok">[OK]</span></div>
-        <div class="loader-terminal-line" id="lt3"><span class="dim">[0.58s]</span> Mounting data volumes... <span class="ok">[OK]</span></div>
-        <div class="loader-terminal-line" id="lt4"><span class="dim">[0.84s]</span> ENV: Python 3.12 · Pandas 2.2 · SQL <span class="ok">[READY]</span></div>
-        <div class="loader-terminal-line" id="lt5"><span class="dim">[1.02s]</span> Scanning dataset registry... <span class="warn">[650K+ records]</span></div>
-        <div class="loader-terminal-line" id="lt6"><span class="dim">[1.24s]</span> Running ETL pipeline validation... <span class="ok">[OK]</span></div>
-        <div class="loader-terminal-line" id="lt7"><span class="dim">[1.41s]</span> Power BI connector... <span class="ok">[LINKED]</span></div>
-        <div class="loader-terminal-line" id="lt8"><span class="dim">[1.67s]</span> LeetCode engine... 1750+ solved · 90% acc <span class="ok">[✓]</span></div>
-        <div class="loader-terminal-line" id="lt9"><span class="dim">[1.89s]</span> Portfolio assets... <span class="ok">[VERIFIED]</span></div>
-        <div class="loader-terminal-line" id="lt10"><span class="dim">[2.04s]</span> All systems nominal. <span class="ok">[SYSTEM READY ✓]</span></div>
-      </div>
-    </div>
-
-    <!-- Bottom progress bar -->
-    <div class="loader-footer">
-      <span class="loader-bar-label">BOOT PROGRESS</span>
-      <div class="loader-bar-track">
-        <div class="loader-bar-fill" id="loader-bar"></div>
-        <div class="loader-bar-shine"></div>
-      </div>
-      <span id="loader-percent">0%</span>
-    </div>
+    
+    <button class="enter-btn" id="enter-btn" onclick="enterPortfolio()">
+      <span class="btn-bracket tl"></span>
+      <span class="btn-bracket tr"></span>
+      <span class="btn-bracket bl"></span>
+      <span class="btn-bracket br"></span>
+      <span class="btn-scanner"></span>
+      <span class="btn-status-sub">SYS_BOOT: READY</span>
+      ACCESS PORTFOLIO
+    </button>
   </div>
 </div>
 
@@ -4297,96 +4292,203 @@ function closeTechStack(e) {
 }
 
 // ── LOADER MATRIX RAIN ──
-(function() {
-  const lc = document.getElementById('loader-canvas');
-  const lctx = lc.getContext('2d');
-  lc.width = window.innerWidth; lc.height = window.innerHeight;
+  (function() {
+    const canvas = document.getElementById('decrypt-canvas');
+    const ctx = canvas.getContext('2d');
+    let animId = null;
+    
+    const rows = 24;
+    const cols = 40;
+    
+    let mouseX = -9999, mouseY = -9999;
+    let chargeProgress = 0;
+    let particles = [];
 
-  const lchars = 'アイウエオカキクケコサシスセソ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ<>{}|/\\';
-  const lfs = 14;
-  let lcols = Math.floor(lc.width / lfs);
-  let ldrops = Array.from({length: lcols}, () => Math.random() * -80);
-  let loaderRain = null;
+    // Click particle burst trigger
+    canvas.addEventListener('click', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+      
+      for (let i = 0; i < 20; i++) {
+        particles.push({
+          x: clickX,
+          y: clickY,
+          vx: (Math.random() - 0.5) * 8,
+          vy: (Math.random() - 0.5) * 8,
+          life: 1.0,
+          decay: 0.02 + Math.random() * 0.03,
+          char: Math.random() > 0.5 ? "1" : "0",
+          color: Math.random() > 0.3 ? 'rgba(0, 255, 65, 0.9)' : 'rgba(255, 255, 255, 0.9)'
+        });
+      }
+    });
 
-  function drawLoaderMatrix() {
-    lctx.fillStyle = 'rgba(0,0,0,0.06)';
-    lctx.fillRect(0, 0, lc.width, lc.height);
-    lcols = Math.floor(lc.width / lfs);
-    while (ldrops.length < lcols) ldrops.push(0);
-    for (let i = 0; i < lcols; i++) {
-      const ch = lchars[Math.floor(Math.random() * lchars.length)];
-      lctx.fillStyle = ldrops[i] < 2 ? '#ffffff' : '#00ff41';
-      lctx.font = `${lfs}px Share Tech Mono`;
-      lctx.fillText(ch, i * lfs, ldrops[i] * lfs);
-      if (ldrops[i] * lfs > lc.height && Math.random() > 0.975) ldrops[i] = 0;
-      ldrops[i]++;
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const newX = e.clientX - rect.left;
+      const newY = e.clientY - rect.top;
+      
+      // Charge loader on cursor sweeps
+      const dist = Math.sqrt((newX - mouseX) * (newX - mouseX) + (newY - mouseY) * (newY - mouseY));
+      if (dist > 5 && dist < 150 && chargeProgress < 100) {
+        chargeProgress += 0.45;
+        
+        const circularBar = document.getElementById('circular-bar');
+        const pct = document.getElementById('loader-percent');
+        const btn = document.getElementById('enter-btn');
+        const roundedVal = Math.min(100, Math.floor(chargeProgress));
+        
+        // Update SVG circular offset (circumference = 911)
+        const offset = 911 - (911 * roundedVal / 100);
+        circularBar.style.strokeDashoffset = offset;
+        
+        pct.textContent = `${roundedVal}%`;
+        
+        if (roundedVal === 100 && btn) {
+          btn.classList.add('show');
+        }
+      }
+
+      mouseX = newX;
+      mouseY = newY;
+    });
+
+    function resize() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
     }
-  }
 
-  function startRain() {
-    if (!loaderRain) loaderRain = setInterval(drawLoaderMatrix, 50);
-  }
+    const secretMessages = [
+      "MOHAMMED RAZIN H - PORTFOLIO DATABASE ACCESS AUTHORISED",
+      "CORE SPECIALIZATION: DATA ANALYSIS & AI BUILDING",
+      "LEETCODE INDEX: 1750+ SOLVED [TOP 5% IN ACCURACY]",
+      "V-CONNECT SYSTEM: 650K+ RECORDS ETL VALIDATED",
+      "LOGISENSE DASHBOARD: INFERENCE METRICS NOMINAL"
+    ];
 
-  function stopRain() {
-    clearInterval(loaderRain);
-    loaderRain = null;
-  }
-
-  startRain();
-  window._stopLoaderRain  = stopRain;
-  window._startLoaderRain = startRain;
-})();
-
-(function() {
-  const lines       = ['lt1','lt2','lt3','lt4','lt5','lt6','lt7','lt8','lt9','lt10'];
-  const lineProgress= [8, 18, 28, 40, 52, 63, 74, 84, 93, 100];
-  const lineDelays  = [300, 520, 760, 1020, 1260, 1480, 1700, 1940, 2160, 2400];
-  const statusTexts = ['POST CHECK','LOADING KERNEL','MOUNTING VOLUMES','ENV READY','SCANNING DATA','VALIDATING ETL','LINKING POWERBI','LEETCODE ENGINE','VERIFYING ASSETS','SYSTEM READY'];
-
-  const bar    = document.getElementById('loader-bar');
-  const pct    = document.getElementById('loader-percent');
-  const status = document.getElementById('loader-status-text');
-  const btns   = document.getElementById('loader-action-btns');
-
-  let currentPct = 0;
-  function setBar(target) {
-    const step = () => {
-      if (currentPct < target) {
-        currentPct = Math.min(currentPct + 1, target);
-        bar.style.width = currentPct + '%';
-        pct.textContent = currentPct + '%';
-        if (currentPct < target) requestAnimationFrame(step);
+    function drawDecryptor() {
+      ctx.fillStyle = 'rgba(5, 5, 5, 0.15)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      const charW = canvas.width / cols;
+      const charH = canvas.height / rows;
+      
+      ctx.font = '10px Share Tech Mono';
+      
+      for(let r = 0; r < rows; r++) {
+        for(let c = 0; c < cols; c++) {
+          const cellX = c * charW + charW/2;
+          const cellY = r * charH + charH/2;
+          
+          const dx = mouseX - cellX;
+          const dy = mouseY - cellY;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          
+          let character = "";
+          let fillStyle = "";
+          
+          if (dist < 130) {
+            fillStyle = '#00ff41';
+            ctx.shadowBlur = 4;
+            ctx.shadowColor = '#00ff41';
+            
+            const msgIndex = Math.min(secretMessages.length - 1, Math.floor(r / (rows / secretMessages.length)));
+            const msg = secretMessages[msgIndex];
+            const startCol = Math.floor((cols - msg.length) / 2);
+            
+            if (c >= startCol && c < startCol + msg.length) {
+              character = msg[c - startCol];
+              fillStyle = '#ffffff';
+              ctx.shadowColor = '#ffffff';
+            } else {
+              character = Math.random() > 0.5 ? "1" : "0";
+            }
+          } else {
+            fillStyle = 'rgba(0, 163, 18, 0.1)';
+            ctx.shadowBlur = 0;
+            const hexChars = "0123456789ABCDEF";
+            character = hexChars[Math.floor(Math.random() * hexChars.length)];
+          }
+          
+          ctx.fillStyle = fillStyle;
+          ctx.fillText(character, cellX - 4, cellY + 4);
+        }
       }
+      
+      // Draw and animate click particle explosions
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= p.decay;
+        
+        if (p.life <= 0) {
+          particles.splice(i, 1);
+          continue;
+        }
+        
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.life;
+        ctx.shadowBlur = 6;
+        ctx.shadowColor = p.color;
+        ctx.font = '11px Share Tech Mono';
+        ctx.fillText(p.char, p.x - 4, p.y + 4);
+      }
+      ctx.globalAlpha = 1.0;
+      ctx.shadowBlur = 0;
+
+      animId = requestAnimationFrame(drawDecryptor);
+    }
+
+    window.startDecryptor = function() {
+      resize();
+      chargeProgress = 0;
+      if (!animId) drawDecryptor();
     };
-    requestAnimationFrame(step);
+    
+    window.addEventListener('resize', resize);
+    window.startDecryptor();
+  })();
+
+  function enterPortfolio() {
+    const loader = document.getElementById('loader');
+    loader.classList.add('screen-glitch');
+    
+    setTimeout(() => {
+      loader.classList.add('hidden');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }, 400);
   }
 
-  lines.forEach((id, i) => {
-    setTimeout(() => {
-      document.getElementById(id).classList.add('active');
-      setBar(lineProgress[i]);
-      if (status) status.textContent = statusTexts[i];
-      if (i === lines.length - 1) {
-        setTimeout(() => {
-          if (btns) btns.classList.add('show');
-          if (status) status.textContent = 'READY';
-        }, 350);
-      }
-    }, lineDelays[i]);
-  });
-})();
+  document.body.style.overflow = 'hidden';
 
-function enterPortfolio() {
-  window._stopLoaderRain && window._stopLoaderRain();
-  document.getElementById('loader').classList.add('hidden');
-  document.body.style.overflow = '';
-  setTimeout(() => {
-    document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
-  }, 100);
-}
+  // Sniper Crosshair cursor tracking
+  (function() {
+    const cursor = document.getElementById('custom-cursor');
+    const enterBtn = document.getElementById('enter-btn');
+    
+    window.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      cursor.style.opacity = '1';
+    });
 
-// Prevent scroll while loading
-document.body.style.overflow = 'hidden';
+    document.addEventListener('mouseleave', () => {
+      cursor.style.opacity = '0';
+    });
+
+    // Active lock-on target trigger when hovering the action button
+    enterBtn.addEventListener('mouseenter', () => {
+      cursor.classList.add('lock-on');
+    });
+    enterBtn.addEventListener('mouseleave', () => {
+      cursor.classList.remove('lock-on');
+    });
+  })();
 
 // ── VISITOR MODAL ──
 const SUPABASE_URL = 'https://xyzcompanysupabase.supabase.co'; // <-- Replace with your Supabase URL
