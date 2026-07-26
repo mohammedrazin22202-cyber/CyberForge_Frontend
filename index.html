@@ -1146,6 +1146,44 @@
     background: rgba(0, 255, 65, 0.03);
   }
 
+  /* Expandable Skills Styles */
+  .additional-skills {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+    opacity: 0;
+    width: 100%;
+  }
+  .additional-skills.open {
+    max-height: 600px;
+    opacity: 1;
+    margin-top: 14px;
+  }
+  
+  .skill-expand-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--matrix-mid);
+    background: transparent;
+    border: 1px dashed rgba(0, 255, 65, 0.25);
+    padding: 8px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .skill-expand-btn:hover {
+    color: var(--matrix-green);
+    border-color: var(--matrix-green);
+    box-shadow: 0 0 12px rgba(0, 255, 65, 0.15);
+    background: rgba(0, 255, 65, 0.03);
+  }
+
   /* ── PROJECTS ── */
   #projects { border-top: 1px solid var(--border); }
 
@@ -3643,10 +3681,19 @@
     </div>
     <div class="skill-category reveal">
       <div class="skill-cat-title">SQL</div>
-      <div class="skill-item"><span class="skill-name">Joins &amp; Subqueries</span><div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div><span class="skill-pct">90%</span></div>
-      <div class="skill-item"><span class="skill-name">CTEs &amp; Window Functions</span><div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div><span class="skill-pct">88%</span></div>
-      <div class="skill-item"><span class="skill-name">Stored Procedures &amp; Views</span><div class="skill-bar"><div class="skill-fill" data-width="82%"></div></div><span class="skill-pct">82%</span></div>
-      <div class="skill-item"><span class="skill-name">Query Optimization &amp; Indexes</span><div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div><span class="skill-pct">85%</span></div>
+      <div class="skill-item"><span class="skill-name">Joins</span><div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div><span class="skill-pct">90%</span></div>
+      <div class="skill-item"><span class="skill-name">Subqueries</span><div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div><span class="skill-pct">90%</span></div>
+      <div class="skill-item"><span class="skill-name">CTEs</span><div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div><span class="skill-pct">88%</span></div>
+      <div class="skill-item"><span class="skill-name">Window Functions</span><div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div><span class="skill-pct">88%</span></div>
+      
+      <div class="additional-skills">
+        <div class="skill-item"><span class="skill-name">Stored Procedures</span><div class="skill-bar"><div class="skill-fill" data-width="82%"></div></div><span class="skill-pct">82%</span></div>
+        <div class="skill-item"><span class="skill-name">Views</span><div class="skill-bar"><div class="skill-fill" data-width="82%"></div></div><span class="skill-pct">82%</span></div>
+        <div class="skill-item"><span class="skill-name">Query Optimization</span><div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div><span class="skill-pct">85%</span></div>
+        <div class="skill-item"><span class="skill-name">Indexes</span><div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div><span class="skill-pct">85%</span></div>
+      </div>
+      
+      <button class="skill-expand-btn" onclick="toggleSkills(this)">👁 View More</button>
     </div>
     <div class="skill-category reveal">
       <div class="skill-cat-title">Databases</div>
@@ -3671,23 +3718,43 @@
     </div>
     <div class="skill-category reveal">
       <div class="skill-cat-title">Machine Learning &amp; Data Science</div>
-      <div class="skill-item"><span class="skill-name">Regression &amp; Classification Models</span><div class="skill-bar"><div class="skill-fill" data-width="83%"></div></div><span class="skill-pct">83%</span></div>
-      <div class="skill-item"><span class="skill-name">Feature Engineering &amp; Selection</span><div class="skill-bar"><div class="skill-fill" data-width="82%"></div></div><span class="skill-pct">82%</span></div>
-      <div class="skill-item"><span class="skill-name">Supervised &amp; Unsupervised Learning</span><div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div><span class="skill-pct">80%</span></div>
-      <div class="skill-item"><span class="skill-name">Model Evaluation &amp; Tuning</span><div class="skill-bar"><div class="skill-fill" data-width="75%"></div></div><span class="skill-pct">75%</span></div>
-      <div class="skill-item"><span class="skill-name">Clustering &amp; Outlier Detection</span><div class="skill-bar"><div class="skill-fill" data-width="74%"></div></div><span class="skill-pct">74%</span></div>
-      <a class="skill-view-more" href="https://github.com/mohammedrazin22202-cyber" target="_blank" rel="noopener">👁 View Tools</a>
+      <div class="skill-item"><span class="skill-name">Regression Models</span><div class="skill-bar"><div class="skill-fill" data-width="83%"></div></div><span class="skill-pct">83%</span></div>
+      <div class="skill-item"><span class="skill-name">Classification Models</span><div class="skill-bar"><div class="skill-fill" data-width="83%"></div></div><span class="skill-pct">83%</span></div>
+      <div class="skill-item"><span class="skill-name">Feature Engineering</span><div class="skill-bar"><div class="skill-fill" data-width="82%"></div></div><span class="skill-pct">82%</span></div>
+      <div class="skill-item"><span class="skill-name">Feature Selection</span><div class="skill-bar"><div class="skill-fill" data-width="82%"></div></div><span class="skill-pct">82%</span></div>
+      <div class="skill-item"><span class="skill-name">Supervised Learning</span><div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div><span class="skill-pct">80%</span></div>
+      
+      <div class="additional-skills">
+        <div class="skill-item"><span class="skill-name">Unsupervised Learning</span><div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div><span class="skill-pct">80%</span></div>
+        <div class="skill-item"><span class="skill-name">Model Evaluation</span><div class="skill-bar"><div class="skill-fill" data-width="75%"></div></div><span class="skill-pct">75%</span></div>
+        <div class="skill-item"><span class="skill-name">Model Tuning</span><div class="skill-bar"><div class="skill-fill" data-width="75%"></div></div><span class="skill-pct">75%</span></div>
+        <div class="skill-item"><span class="skill-name">Clustering</span><div class="skill-bar"><div class="skill-fill" data-width="74%"></div></div><span class="skill-pct">74%</span></div>
+        <div class="skill-item"><span class="skill-name">Outlier Detection</span><div class="skill-bar"><div class="skill-fill" data-width="74%"></div></div><span class="skill-pct">74%</span></div>
+      </div>
+      
+      <button class="skill-expand-btn" onclick="toggleSkills(this)">👁 View More</button>
     </div>
     <div class="skill-category reveal">
       <div class="skill-cat-title">Data Engineering &amp; Concepts</div>
-      <div class="skill-item"><span class="skill-name">Data Cleaning &amp; Wrangling</span><div class="skill-bar"><div class="skill-fill" data-width="93%"></div></div><span class="skill-pct">93%</span></div>
-      <div class="skill-item"><span class="skill-name">Data Validation &amp; Profiling</span><div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div><span class="skill-pct">85%</span></div>
-      <div class="skill-item"><span class="skill-name">EDA &amp; Statistical Analysis</span><div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div><span class="skill-pct">90%</span></div>
-      <div class="skill-item"><span class="skill-name">ETL &amp; Data Pipelines</span><div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div><span class="skill-pct">88%</span></div>
-      <div class="skill-item"><span class="skill-name">Data Quality &amp; Integration</span><div class="skill-bar"><div class="skill-fill" data-width="84%"></div></div><span class="skill-pct">84%</span></div>
-      <div class="skill-item"><span class="skill-name">KPI Reporting &amp; Dashboarding</span><div class="skill-bar"><div class="skill-fill" data-width="87%"></div></div><span class="skill-pct">87%</span></div>
-      <div class="skill-item"><span class="skill-name">Data Storytelling &amp; Reporting</span><div class="skill-bar"><div class="skill-fill" data-width="83%"></div></div><span class="skill-pct">83%</span></div>
-      <a class="skill-view-more" href="https://github.com/mohammedrazin22202-cyber" target="_blank" rel="noopener">👁 View Tools</a>
+      <div class="skill-item"><span class="skill-name">Data Cleaning</span><div class="skill-bar"><div class="skill-fill" data-width="93%"></div></div><span class="skill-pct">93%</span></div>
+      <div class="skill-item"><span class="skill-name">Data Wrangling</span><div class="skill-bar"><div class="skill-fill" data-width="93%"></div></div><span class="skill-pct">93%</span></div>
+      <div class="skill-item"><span class="skill-name">Data Validation</span><div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div><span class="skill-pct">85%</span></div>
+      <div class="skill-item"><span class="skill-name">Data Profiling</span><div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div><span class="skill-pct">85%</span></div>
+      <div class="skill-item"><span class="skill-name">EDA</span><div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div><span class="skill-pct">90%</span></div>
+      <div class="skill-item"><span class="skill-name">Statistical Analysis</span><div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div><span class="skill-pct">90%</span></div>
+      <div class="skill-item"><span class="skill-name">ETL</span><div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div><span class="skill-pct">88%</span></div>
+      
+      <div class="additional-skills">
+        <div class="skill-item"><span class="skill-name">Data Pipelines</span><div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div><span class="skill-pct">88%</span></div>
+        <div class="skill-item"><span class="skill-name">Data Quality</span><div class="skill-bar"><div class="skill-fill" data-width="84%"></div></div><span class="skill-pct">84%</span></div>
+        <div class="skill-item"><span class="skill-name">Data Integration</span><div class="skill-bar"><div class="skill-fill" data-width="84%"></div></div><span class="skill-pct">84%</span></div>
+        <div class="skill-item"><span class="skill-name">KPI Reporting</span><div class="skill-bar"><div class="skill-fill" data-width="87%"></div></div><span class="skill-pct">87%</span></div>
+        <div class="skill-item"><span class="skill-name">Dashboarding</span><div class="skill-bar"><div class="skill-fill" data-width="87%"></div></div><span class="skill-pct">87%</span></div>
+        <div class="skill-item"><span class="skill-name">Data Storytelling</span><div class="skill-bar"><div class="skill-fill" data-width="83%"></div></div><span class="skill-pct">83%</span></div>
+        <div class="skill-item"><span class="skill-name">Data Reporting</span><div class="skill-bar"><div class="skill-fill" data-width="83%"></div></div><span class="skill-pct">83%</span></div>
+      </div>
+      
+      <button class="skill-expand-btn" onclick="toggleSkills(this)">👁 View More</button>
     </div>
   </div>
 </section>
@@ -4488,6 +4555,24 @@ function closeTechStack(e) {
         document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
       }, 100);
     }, 400);
+  }
+
+  // Toggle skills expandable block
+  function toggleSkills(btn) {
+    const container = btn.previousElementSibling;
+    const fillElements = container.querySelectorAll('.skill-fill');
+    
+    if (container.classList.contains('open')) {
+      container.classList.remove('open');
+      btn.textContent = '👁 View More';
+    } else {
+      container.classList.add('open');
+      btn.textContent = '👁 View Less';
+      // Trigger width animation on hidden elements
+      fillElements.forEach(fill => {
+        fill.style.width = fill.getAttribute('data-width');
+      });
+    }
   }
 
   document.body.style.overflow = 'hidden';
