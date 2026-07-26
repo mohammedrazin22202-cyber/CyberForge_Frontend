@@ -4326,32 +4326,8 @@ function closeTechStack(e) {
 
     canvas.addEventListener('mousemove', (e) => {
       const rect = canvas.getBoundingClientRect();
-      const newX = e.clientX - rect.left;
-      const newY = e.clientY - rect.top;
-      
-      // Charge loader on cursor sweeps
-      const dist = Math.sqrt((newX - mouseX) * (newX - mouseX) + (newY - mouseY) * (newY - mouseY));
-      if (dist > 5 && dist < 150 && chargeProgress < 100) {
-        chargeProgress += 0.45;
-        
-        const circularBar = document.getElementById('circular-bar');
-        const pct = document.getElementById('loader-percent');
-        const btn = document.getElementById('enter-btn');
-        const roundedVal = Math.min(100, Math.floor(chargeProgress));
-        
-        // Update SVG circular offset (circumference = 911)
-        const offset = 911 - (911 * roundedVal / 100);
-        circularBar.style.strokeDashoffset = offset;
-        
-        pct.textContent = `${roundedVal}%`;
-        
-        if (roundedVal === 100 && btn) {
-          btn.classList.add('show');
-        }
-      }
-
-      mouseX = newX;
-      mouseY = newY;
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
     });
 
     function resize() {
@@ -4441,9 +4417,38 @@ function closeTechStack(e) {
       animId = requestAnimationFrame(drawDecryptor);
     }
 
+    let startTime = null;
+    const duration = 12000; // 12 seconds
+
+    function animateProgress(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(100, (elapsed / duration) * 100);
+      const roundedVal = Math.floor(progress);
+
+      const circularBar = document.getElementById('circular-bar');
+      const pct = document.getElementById('loader-percent');
+      const btn = document.getElementById('enter-btn');
+
+      if (circularBar) {
+        const offset = 911 - (911 * roundedVal / 100);
+        circularBar.style.strokeDashoffset = offset;
+      }
+      if (pct) {
+        pct.textContent = `${roundedVal}%`;
+      }
+
+      if (progress < 100) {
+        requestAnimationFrame(animateProgress);
+      } else {
+        if (btn) btn.classList.add('show');
+      }
+    }
+
     window.startDecryptor = function() {
       resize();
-      chargeProgress = 0;
+      startTime = null;
+      requestAnimationFrame(animateProgress);
       if (!animId) drawDecryptor();
     };
     
