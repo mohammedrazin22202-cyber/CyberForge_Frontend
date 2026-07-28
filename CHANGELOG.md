@@ -14,3 +14,7 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 - Created JavaScript coordinate calculator to measure target links relative to the container.
 - Resizes and repositions outline shapes dynamically.
 
+## Phase 4: Scroll-Spy Integration
+- Bound active outline positioning to the scroll-spy observer.
+- Automatically slides the active blue corners as the user scrolls.
+
