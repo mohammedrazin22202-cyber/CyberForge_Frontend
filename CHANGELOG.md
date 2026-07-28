@@ -22,3 +22,6 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 - Restricted scroll-spy sensor region to a narrow top-middle strip (`rootMargin: "-25% 0px -70% 0px"`).
 - Eliminated section overlap collisions on large displays.
 
+## Phase 6: Wording Renamed to Skills
+- Renamed 'Capabilities' menu links to 'Skills' in desktop and mobile viewport panels.
+
