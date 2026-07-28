@@ -10,3 +10,7 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 - Defined separate outline designs: active (cyan/blue glow) and hover (green glow).
 - Added glowing outer corner brackets to the main navigation box boundaries.
 
+## Phase 3: Coordinate Calculation
+- Created JavaScript coordinate calculator to measure target links relative to the container.
+- Resizes and repositions outline shapes dynamically.
+
