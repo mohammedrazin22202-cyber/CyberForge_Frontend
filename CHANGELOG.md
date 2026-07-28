@@ -37,3 +37,7 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 ## Phase 10: Centered Corner Brackets Math
 - Updated active outline dashoffset calculation to `106 - wUnits` to center brackets perfectly on the corners.
 
+## Phase 11: Red Overlap Lock-on
+- Implemented overlap checking: turning both outlines into neon red to form a solid 4-cornered lock-on box when active link is hovered.
+- Set default active class on About link for page load.
+
