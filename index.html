@@ -21,6 +21,8 @@
     --cyan-dim: rgba(0,229,255,0.12);
     --cyan-glow: rgba(0,229,255,0.35);
     --cyan-mid: rgba(0,229,255,0.55);
+    --red: #ff3333;
+    --red-glow: rgba(255, 51, 51, 0.75);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -545,29 +547,81 @@
     font-family: 'Share Tech Mono', monospace;
   }
 
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 18px; right: 18px;
-    height: 1px;
-    background: var(--cyan);
-    box-shadow: 0 0 8px var(--cyan);
-    transform: scaleX(0);
-    transition: transform 0.25s ease;
-  }
-
   .nav-links a:hover {
     color: #ffffff;
   }
-
-  .nav-links a:hover::after { transform: scaleX(1); }
 
   .nav-links a.active {
     color: var(--cyan);
     text-shadow: 0 0 10px var(--cyan-glow);
   }
 
-  .nav-links a.active::after { transform: scaleX(1); }
+  /* ── NAV OUTLINE & LOCK-ON BRACKETS ── */
+  .nav-links-container {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-outline {
+    position: absolute;
+    pointer-events: none;
+    z-index: 10;
+    transition: all 0.38s cubic-bezier(0.25, 1, 0.5, 1);
+    opacity: 0;
+  }
+
+  .nav-rect {
+    fill: transparent;
+    stroke-width: 2px;
+    transition: stroke-dasharray 0.38s ease, stroke-dashoffset 0.38s ease, stroke 0.3s, filter 0.3s;
+    vector-effect: non-scaling-stroke;
+  }
+
+  /* Active outline: cyan lock-on corners */
+  .nav-outline-active .nav-rect {
+    stroke: var(--cyan);
+    filter: drop-shadow(0 0 8px var(--cyan-glow));
+  }
+
+  /* Hover outline: green corner brackets that lock on */
+  .nav-outline-hover .nav-rect {
+    stroke: var(--matrix-green);
+    filter: drop-shadow(0 0 8px var(--matrix-glow));
+    stroke-dasharray: 0 0 12 38 12 38;
+    stroke-dashoffset: 6;
+  }
+
+  /* Overlap state: Red target lock-on (both active and hover overlap) */
+  .nav-outline-active.overlap-red .nav-rect,
+  .nav-outline-hover.overlap-red .nav-rect {
+    stroke: var(--red) !important;
+    filter: drop-shadow(0 0 10px var(--red-glow)) !important;
+  }
+
+  @media (max-width: 768px) {
+    .nav-outline {
+      display: none !important;
+    }
+  }
+
+  /* Main Navbar Outer Corner Brackets */
+  .nav-bracket {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: var(--matrix-green);
+    border-style: solid;
+    transition: border-color 0.3s, filter 0.3s;
+    z-index: 15;
+    pointer-events: none;
+    filter: drop-shadow(0 0 6px var(--matrix-glow));
+  }
+  .nav-bracket.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+  .nav-bracket.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+  .nav-bracket.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+  .nav-bracket.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
 
   /* ── HAMBURGER MENU ── */
   .nav-hamburger {
@@ -3546,17 +3600,29 @@
 
 <!-- NAV -->
 <nav>
+  <span class="nav-bracket tl"></span>
+  <span class="nav-bracket tr"></span>
+  <span class="nav-bracket bl"></span>
+  <span class="nav-bracket br"></span>
   <a href="#hero"><img src="cyberforge_logo.png" alt="CyberForge" class="nav-logo-img" /></a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Capabilities</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#workflow">Workflow</a></li>
-    <li><a href="#learning">Learning</a></li>
-    <li><a href="#achievements">Achieve</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <div class="nav-links-container">
+    <ul class="nav-links">
+      <li><a href="#about" class="active">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#workflow">Workflow</a></li>
+      <li><a href="#learning">Learning</a></li>
+      <li><a href="#achievements">Achieve</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <svg class="nav-outline nav-outline-active" overflow="visible" xmlns="http://www.w3.org/2000/svg">
+      <rect class="nav-rect" pathLength="100" x="0" y="0" fill="transparent" stroke-dasharray="12 38 12 38" stroke-dashoffset="0"></rect>
+    </svg>
+    <svg class="nav-outline nav-outline-hover" overflow="visible" xmlns="http://www.w3.org/2000/svg">
+      <rect class="nav-rect" pathLength="100" x="0" y="0" fill="transparent"></rect>
+    </svg>
+  </div>
   <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleMobileNav()">
     <span></span><span></span><span></span>
   </button>
@@ -3565,7 +3631,7 @@
 <!-- MOBILE NAV PANEL -->
 <div class="nav-mobile-panel" id="nav-mobile-panel">
   <a href="#about"        onclick="closeMobileNav()">About</a>
-  <a href="#skills"       onclick="closeMobileNav()">Capabilities</a>
+  <a href="#skills"       onclick="closeMobileNav()">Skills</a>
   <a href="#experience"   onclick="closeMobileNav()">Experience</a>
   <a href="#projects"     onclick="closeMobileNav()">Projects</a>
   <a href="#workflow"     onclick="closeMobileNav()">Workflow</a>
@@ -4826,20 +4892,172 @@ setInterval(() => {
   }
 }, 3000);
 
-// ── ACTIVE NAV TRACKING ──
+// ── DYNAMIC NAV OUTLINE TRACKING & ACTIVE NAV TRACKING ──
 (function() {
-  const sections = document.querySelectorAll('section[id]');
+  const container = document.querySelector('.nav-links-container');
   const navLinks = document.querySelectorAll('.nav-links a');
+  
+  const outlineActive = document.querySelector('.nav-outline-active');
+  const rectActive = outlineActive ? outlineActive.querySelector('.nav-rect') : null;
+  
+  const outlineHover = document.querySelector('.nav-outline-hover');
+  const rectHover = outlineHover ? outlineHover.querySelector('.nav-rect') : null;
+  
+  if (!container || !outlineActive || !outlineHover || navLinks.length === 0) return;
+
+  function updateActiveOutline() {
+    if (window.innerWidth <= 768) {
+      outlineActive.style.opacity = '0';
+      return;
+    }
+
+    const activeLink = document.querySelector('.nav-links a.active');
+    if (!activeLink) {
+      outlineActive.style.opacity = '0';
+      return;
+    }
+
+    const containerRect = container.getBoundingClientRect();
+    const targetRect = activeLink.getBoundingClientRect();
+
+    const left = targetRect.left - containerRect.left;
+    const top = targetRect.top - containerRect.top;
+    const width = targetRect.width;
+    const height = targetRect.height;
+
+    outlineActive.style.left = `${left}px`;
+    outlineActive.style.top = `${top}px`;
+    outlineActive.style.width = `${width}px`;
+    outlineActive.style.height = `${height}px`;
+    outlineActive.style.opacity = '1';
+
+    if (rectActive) {
+      rectActive.setAttribute('width', width);
+      rectActive.setAttribute('height', height);
+      
+      // Calculate perimeter and width percentage to center corners on Top-Right and Bottom-Left
+      const perimeter = 2 * (width + height);
+      const wUnits = (width / perimeter) * 100;
+      rectActive.style.strokeDasharray = "";
+      rectActive.style.strokeDashoffset = "";
+      rectActive.setAttribute('stroke-dasharray', '12 38 12 38');
+      rectActive.setAttribute('stroke-dashoffset', 106 - wUnits);
+    }
+
+    // If active link is currently hovered, activate red lock-on overlay
+    if (activeLink.matches(':hover')) {
+      outlineActive.classList.add('overlap-red');
+      outlineHover.classList.add('overlap-red');
+    } else {
+      outlineActive.classList.remove('overlap-red');
+      outlineHover.classList.remove('overlap-red');
+    }
+  }
+
+  function updateHoverOutline(link, isHovered = false) {
+    if (window.innerWidth <= 768 || !isHovered || !link) {
+      outlineHover.style.opacity = '0';
+      outlineActive.classList.remove('overlap-red');
+      outlineHover.classList.remove('overlap-red');
+      return;
+    }
+
+    const activeLink = document.querySelector('.nav-links a.active');
+    if (link === activeLink) {
+      outlineActive.classList.add('overlap-red');
+      outlineHover.classList.add('overlap-red');
+    } else {
+      outlineActive.classList.remove('overlap-red');
+      outlineHover.classList.remove('overlap-red');
+    }
+
+    const containerRect = container.getBoundingClientRect();
+    const targetRect = link.getBoundingClientRect();
+
+    const left = targetRect.left - containerRect.left;
+    const top = targetRect.top - containerRect.top;
+    const width = targetRect.width;
+    const height = targetRect.height;
+
+    outlineHover.style.left = `${left}px`;
+    outlineHover.style.top = `${top}px`;
+    outlineHover.style.width = `${width}px`;
+    outlineHover.style.height = `${height}px`;
+    outlineHover.style.opacity = '1';
+
+    if (rectHover) {
+      rectHover.setAttribute('width', width);
+      rectHover.setAttribute('height', height);
+    }
+  }
+
+  navLinks.forEach(link => {
+    link.addEventListener('mouseenter', () => updateHoverOutline(link, true));
+    link.addEventListener('mouseleave', () => updateHoverOutline(null, false));
+    link.addEventListener('click', () => {
+      // Temporarily lock scroll-spy updates during smooth scrolling
+      window.isScrollingFromNavClick = true;
+      
+      navLinks.forEach(a => a.classList.remove('active'));
+      link.classList.add('active');
+      updateActiveOutline();
+
+      clearTimeout(window.navClickTimeout);
+      window.navClickTimeout = setTimeout(() => {
+        window.isScrollingFromNavClick = false;
+      }, 1000);
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    updateActiveOutline();
+    updateHoverOutline(null, false);
+  });
+
+  // Handle bottom of page scroll manually so Contact always lights up at the very bottom
+  window.addEventListener('scroll', () => {
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 20) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const contactLink = document.querySelector('.nav-links a[href="#contact"]');
+      if (contactLink) {
+        contactLink.classList.add('active');
+        updateActiveOutline();
+      }
+    }
+  });
+
+  const sections = document.querySelectorAll('section[id]');
   const observer = new IntersectionObserver((entries) => {
+    // Bypass updates if we are in the middle of a programmatic scroll-by-click
+    if (window.isScrollingFromNavClick) return;
+
     entries.forEach(entry => {
+      // Ignore scroll-spy triggers if we are at the very bottom of the page
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 20) {
+        return;
+      }
       if (entry.isIntersecting) {
         navLinks.forEach(a => a.classList.remove('active'));
         const active = document.querySelector('.nav-links a[href="#' + entry.target.id + '"]');
-        if (active) active.classList.add('active');
+        if (active) {
+          active.classList.add('active');
+          updateActiveOutline();
+        }
       }
     });
-  }, { threshold: 0.4 });
+  }, { rootMargin: "-25% 0px -70% 0px", threshold: 0 });
   sections.forEach(s => observer.observe(s));
+
+  // Run initial draw after a delay
+  setTimeout(() => updateActiveOutline(), 1000);
+  
+  // Also hook into boot screen skip/close events
+  const enterBtn = document.getElementById('enter-btn');
+  if (enterBtn) {
+    enterBtn.addEventListener('click', () => {
+      setTimeout(() => updateActiveOutline(), 500);
+    });
+  }
 })();
 
 // ── MOBILE NAV HAMBURGER ──
