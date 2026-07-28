@@ -25,3 +25,6 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 ## Phase 6: Wording Renamed to Skills
 - Renamed 'Capabilities' menu links to 'Skills' in desktop and mobile viewport panels.
 
+## Phase 7: Programmatic Scroll Lock
+- Added click event listeners that temporarily lock scroll-spy updates during smooth scrolling animations, avoiding intermediate flickering.
+
