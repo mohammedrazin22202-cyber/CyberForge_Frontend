@@ -34,3 +34,6 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 ## Phase 9: CSS Specificity Conflict Fix
 - Switched styling properties (`stroke-dasharray`, `stroke-dashoffset`) to SVG presentation attributes to bypass CSS unit validation issues.
 
+## Phase 10: Centered Corner Brackets Math
+- Updated active outline dashoffset calculation to `106 - wUnits` to center brackets perfectly on the corners.
+
