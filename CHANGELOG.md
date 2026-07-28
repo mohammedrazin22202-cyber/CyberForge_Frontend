@@ -28,3 +28,6 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 ## Phase 7: Programmatic Scroll Lock
 - Added click event listeners that temporarily lock scroll-spy updates during smooth scrolling animations, avoiding intermediate flickering.
 
+## Phase 8: Diagonal Corners
+- Configured active corners (Top-Right/Bottom-Left) to mirror hover corners (Top-Left/Bottom-Right) diagonally.
+
