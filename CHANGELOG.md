@@ -31,3 +31,6 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 ## Phase 8: Diagonal Corners
 - Configured active corners (Top-Right/Bottom-Left) to mirror hover corners (Top-Left/Bottom-Right) diagonally.
 
+## Phase 9: CSS Specificity Conflict Fix
+- Switched styling properties (`stroke-dasharray`, `stroke-dashoffset`) to SVG presentation attributes to bypass CSS unit validation issues.
+
