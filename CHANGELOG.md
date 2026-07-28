@@ -6,3 +6,7 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 - Wrapped desktop nav links in a relative positioned `.nav-links-container`.
 - Added two separate absolute positioned outlines: `svg.nav-outline-active` (active section) and `svg.nav-outline-hover` (hover tracker).
 
+## Phase 2: CSS Styling & Variables
+- Defined separate outline designs: active (cyan/blue glow) and hover (green glow).
+- Added glowing outer corner brackets to the main navigation box boundaries.
+
