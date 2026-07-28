@@ -18,3 +18,7 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 - Bound active outline positioning to the scroll-spy observer.
 - Automatically slides the active blue corners as the user scrolls.
 
+## Phase 5: Scroll-Spy Bounds Optimization
+- Restricted scroll-spy sensor region to a narrow top-middle strip (`rootMargin: "-25% 0px -70% 0px"`).
+- Eliminated section overlap collisions on large displays.
+
