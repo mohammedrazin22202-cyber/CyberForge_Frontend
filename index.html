@@ -5123,6 +5123,25 @@ document.addEventListener('click', function(e) {
     </div>
   </div>
 </div>
+<!-- RESUME PREVIEW MODAL -->
+<div id="resume-modal" onclick="closeResumeModalWrapper(event)">
+  <div class="resume-modal-box">
+    <div class="resume-modal-header">
+      <div class="resume-modal-title">RESUME PREVIEW</div>
+      <div class="resume-modal-btns">
+        <a href="My_Resume.pdf" id="resume-download-btn" download="Mohammed_Razin_Data_Analyst.pdf" class="resume-download-btn-header">⬇ Download Resume (PDF)</a>
+        <button class="resume-modal-close" onclick="closeResumeModalInner()">✕</button>
+      </div>
+    </div>
+    <div class="resume-modal-body">
+      <div class="resume-preview-placeholder" id="resume-frame-loader">
+        <span style="color:var(--matrix-green); font-size:1.5rem; margin-bottom:8px; animation: cursorBlink 1s infinite;">■</span>
+        <span>LOADING PREVIEW TELEMETRY...</span>
+      </div>
+      <iframe src="about:blank" class="resume-preview-frame" id="resume-preview-iframe" onload="hideResumeLoader()"></iframe>
+    </div>
+  </div>
+</div>
 
 <aside id="cf-assistant-panel" aria-label="CyberForge AI drawer">
   <div class="cf-assistant-head">
