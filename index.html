@@ -4517,7 +4517,9 @@ function openResumeModal(e) {
     const iframe = document.getElementById('resume-preview-iframe');
     const loader = document.getElementById('resume-frame-loader');
     if (iframe) {
+      // Trigger retro loading visual telemetry placeholder
       if (loader) loader.style.display = 'flex';
+      // Hydrate preview frame context with local PDF payload
       iframe.src = 'My_Resume.pdf';
     }
   }
