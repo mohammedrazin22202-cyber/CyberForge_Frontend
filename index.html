@@ -4511,12 +4511,36 @@ function closeCertModal(e) {
 // ── RESUME DOWNLOAD ──
 function openResumeModal(e) {
   if (e) e.preventDefault();
-  const link = document.createElement('a');
-  link.href = 'My_Resume.pdf';
-  link.download = 'Mohammed_Razin_Data_Analyst.pdf';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  const modal = document.getElementById('resume-modal');
+  if (modal) {
+    modal.classList.add('active');
+    const iframe = document.getElementById('resume-preview-iframe');
+    const loader = document.getElementById('resume-frame-loader');
+    if (iframe) {
+      if (loader) loader.style.display = 'flex';
+      iframe.src = 'My_Resume.pdf';
+    }
+  }
+}
+
+function closeResumeModalInner() {
+  const modal = document.getElementById('resume-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    const iframe = document.getElementById('resume-preview-iframe');
+    if (iframe) iframe.src = 'about:blank';
+  }
+}
+
+function closeResumeModalWrapper(e) {
+  if (e && e.target === document.getElementById('resume-modal')) {
+    closeResumeModalInner();
+  }
+}
+
+function hideResumeLoader() {
+  const loader = document.getElementById('resume-frame-loader');
+  if (loader) loader.style.display = 'none';
 }
 
 // ── TECH STACK MODAL ──
