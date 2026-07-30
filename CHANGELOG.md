@@ -65,3 +65,4 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 - Configured 4 unique colors: theme green (outer), blue/cyan (active), white (hover), and red (overlap).
 - Configured 4 unique colors: theme cyan (outer), blue/cyan (active), white (hover), and red (overlap) in Cyan Hacker.
 - Configured 4 unique colors: theme red (outer), blue/cyan (active), white (hover), and red (overlap) in Red Alert.
+- Configured 4 unique colors: theme off-white (outer), blue/cyan (active), white (hover), and red (overlap) in Minimal Pro.
