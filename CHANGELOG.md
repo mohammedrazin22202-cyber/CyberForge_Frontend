@@ -52,3 +52,4 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 - Added theme-specific CSS overrides for active and hover inner outline rect strokes.
 - Synced inner outline highlight colors to white in the Red Alert theme.
 - Synced inner outline highlight colors to green in the Cyan Hacker theme.
+- Synced inner outline highlight colors to green in the Minimal Pro theme.
