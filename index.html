@@ -579,16 +579,16 @@
     vector-effect: non-scaling-stroke;
   }
 
-  /* Active outline: cyan lock-on corners */
+  /* Active outline: blue/cyan lock-on corners */
   .nav-outline-active .nav-rect {
-    stroke: var(--cyan);
-    filter: drop-shadow(0 0 8px var(--cyan-glow));
+    stroke: #00e5ff;
+    filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.45));
   }
 
-  /* Hover outline: green corner brackets that lock on */
+  /* Hover outline: white corner brackets that lock on */
   .nav-outline-hover .nav-rect {
-    stroke: var(--matrix-green);
-    filter: drop-shadow(0 0 8px var(--matrix-glow));
+    stroke: #ffffff;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.65));
     stroke-dasharray: 0 0 12 38 12 38;
     stroke-dashoffset: 6;
   }
@@ -596,8 +596,8 @@
   /* Overlap state: Red target lock-on (both active and hover overlap) */
   .nav-outline-active.overlap-red .nav-rect,
   .nav-outline-hover.overlap-red .nav-rect {
-    stroke: var(--red) !important;
-    filter: drop-shadow(0 0 10px var(--red-glow)) !important;
+    stroke: #ff3333 !important;
+    filter: drop-shadow(0 0 10px rgba(255, 51, 51, 0.65)) !important;
   }
 
   @media (max-width: 768px) {
@@ -622,6 +622,8 @@
   .nav-bracket.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
   .nav-bracket.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
   .nav-bracket.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+
 
   /* ── HAMBURGER MENU ── */
   .nav-hamburger {
