@@ -50,3 +50,4 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 
 ## Phase 13: Theme-Adaptive Inner Corners
 - Added theme-specific CSS overrides for active and hover inner outline rect strokes.
+- Synced inner outline highlight colors to white in the Red Alert theme.
