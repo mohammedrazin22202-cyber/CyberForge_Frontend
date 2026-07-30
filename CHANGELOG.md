@@ -46,3 +46,4 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 - Configured custom theme overrides for the main navigation box corners (`.nav-bracket`).
 - Styled outer corners white in the Red Alert theme for high contrast.
 - Styled outer corners green in the Cyan Hacker theme.
+- Styled outer corners green in the Minimal Pro theme.
