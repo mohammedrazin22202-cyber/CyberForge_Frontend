@@ -56,3 +56,6 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 
 ## Phase 14: Reverting Outer Border Colors
 - Reverted outer corner brackets (`.nav-bracket`) to default theme variables to keep their original colors synchronized with body themes.
+
+## Phase 15: Green Colliding Corners
+- Configured hover outline to statically green and updated the overlap check to overlap-green.
