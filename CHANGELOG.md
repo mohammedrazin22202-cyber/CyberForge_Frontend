@@ -59,3 +59,6 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 
 ## Phase 15: Green Colliding Corners
 - Configured hover outline to statically green and updated the overlap check to overlap-green.
+
+## Phase 16: Non-Repeating Color Palette
+- Changed the hover corners to static white and active corners to blue/cyan to prevent green color repeats in Matrix Green theme.
