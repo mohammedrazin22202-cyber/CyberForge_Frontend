@@ -47,3 +47,6 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 - Styled outer corners white in the Red Alert theme for high contrast.
 - Styled outer corners green in the Cyan Hacker theme.
 - Styled outer corners green in the Minimal Pro theme.
+
+## Phase 13: Theme-Adaptive Inner Corners
+- Added theme-specific CSS overrides for active and hover inner outline rect strokes.
