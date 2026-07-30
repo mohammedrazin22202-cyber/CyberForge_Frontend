@@ -63,3 +63,4 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 ## Phase 16: Non-Repeating Color Palette
 - Changed the hover corners to static white and active corners to blue/cyan to prevent green color repeats in Matrix Green theme.
 - Configured 4 unique colors: theme green (outer), blue/cyan (active), white (hover), and red (overlap).
+- Configured 4 unique colors: theme cyan (outer), blue/cyan (active), white (hover), and red (overlap) in Cyan Hacker.
