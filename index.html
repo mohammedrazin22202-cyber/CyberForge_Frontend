@@ -579,10 +579,10 @@
     vector-effect: non-scaling-stroke;
   }
 
-  /* Active outline: green lock-on corners */
+  /* Active outline: blue/cyan lock-on corners */
   .nav-outline-active .nav-rect {
-    stroke: #00ff41;
-    filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.45));
+    stroke: #00e5ff;
+    filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.45));
   }
 
   /* Hover outline: green corner brackets that lock on */
@@ -593,9 +593,24 @@
     stroke-dashoffset: 6;
   }
 
-  /* Overlap state: Green target lock-on (both active and hover overlap) */
-  .nav-outline-active.overlap-green .nav-rect,
-  .nav-outline-hover.overlap-green .nav-rect {
+  /* Overlap state: Theme-specific colliding highlights */
+  body.theme-matrix .nav-outline-active.overlap-active .nav-rect,
+  body.theme-matrix .nav-outline-hover.overlap-active .nav-rect {
+    stroke: #ff3333 !important;
+    filter: drop-shadow(0 0 10px rgba(255, 51, 51, 0.65)) !important;
+  }
+  body.theme-cyan .nav-outline-active.overlap-active .nav-rect,
+  body.theme-cyan .nav-outline-hover.overlap-active .nav-rect {
+    stroke: #00ff41 !important;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.55)) !important;
+  }
+  body.theme-red .nav-outline-active.overlap-active .nav-rect,
+  body.theme-red .nav-outline-hover.overlap-active .nav-rect {
+    stroke: #ffffff !important;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.65)) !important;
+  }
+  body.theme-minimal .nav-outline-active.overlap-active .nav-rect,
+  body.theme-minimal .nav-outline-hover.overlap-active .nav-rect {
     stroke: #00ff41 !important;
     filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.55)) !important;
   }
@@ -5084,31 +5099,31 @@ setInterval(() => {
       rectActive.setAttribute('stroke-dashoffset', 106 - wUnits);
     }
 
-    // If active link is currently hovered, activate green lock-on overlay
+    // If active link is currently hovered, activate target lock-on overlay
     if (activeLink.matches(':hover')) {
-      outlineActive.classList.add('overlap-green');
-      outlineHover.classList.add('overlap-green');
+      outlineActive.classList.add('overlap-active');
+      outlineHover.classList.add('overlap-active');
     } else {
-      outlineActive.classList.remove('overlap-green');
-      outlineHover.classList.remove('overlap-green');
+      outlineActive.classList.remove('overlap-active');
+      outlineHover.classList.remove('overlap-active');
     }
   }
 
   function updateHoverOutline(link, isHovered = false) {
     if (window.innerWidth <= 768 || !isHovered || !link) {
       outlineHover.style.opacity = '0';
-      outlineActive.classList.remove('overlap-green');
-      outlineHover.classList.remove('overlap-green');
+      outlineActive.classList.remove('overlap-active');
+      outlineHover.classList.remove('overlap-active');
       return;
     }
 
     const activeLink = document.querySelector('.nav-links a.active');
     if (link === activeLink) {
-      outlineActive.classList.add('overlap-green');
-      outlineHover.classList.add('overlap-green');
+      outlineActive.classList.add('overlap-active');
+      outlineHover.classList.add('overlap-active');
     } else {
-      outlineActive.classList.remove('overlap-green');
-      outlineHover.classList.remove('overlap-green');
+      outlineActive.classList.remove('overlap-active');
+      outlineHover.classList.remove('overlap-active');
     }
 
     const containerRect = container.getBoundingClientRect();
