@@ -44,3 +44,4 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 
 ## Phase 12: Custom Outer Corners
 - Configured custom theme overrides for the main navigation box corners (`.nav-bracket`).
+- Styled outer corners white in the Red Alert theme for high contrast.
