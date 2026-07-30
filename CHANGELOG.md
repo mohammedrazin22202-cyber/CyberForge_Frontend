@@ -53,3 +53,6 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 - Synced inner outline highlight colors to white in the Red Alert theme.
 - Synced inner outline highlight colors to green in the Cyan Hacker theme.
 - Synced inner outline highlight colors to green in the Minimal Pro theme.
+
+## Phase 14: Reverting Outer Border Colors
+- Reverted outer corner brackets (`.nav-bracket`) to default theme variables to keep their original colors synchronized with body themes.
