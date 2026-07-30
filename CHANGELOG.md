@@ -41,3 +41,6 @@ Detailed breakdown of design decisions, implementation steps, and bug fixes for 
 - Implemented overlap checking: turning both outlines into neon red to form a solid 4-cornered lock-on box when active link is hovered.
 - Set default active class on About link for page load.
 
+
+## Phase 12: Custom Outer Corners
+- Configured custom theme overrides for the main navigation box corners (`.nav-bracket`).
