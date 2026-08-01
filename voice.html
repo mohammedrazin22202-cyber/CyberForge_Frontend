@@ -1380,6 +1380,7 @@ body.cyber-mode #matrix-rain {
 // If left empty, it will automatically default to 'http://localhost:6161' when running locally.
 const PROD_BACKEND_URL = 'https://mohammed-razin-h-portfolio.onrender.com'; 
 
+// Resolved API URL. Handles localhost port forwarding and direct local file:// executions
 const API_BASE_URL = (
   window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:'
     ? (window.location.port === '6161' ? '' : 'http://localhost:6161')
