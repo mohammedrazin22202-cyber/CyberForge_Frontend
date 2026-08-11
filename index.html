@@ -4596,6 +4596,18 @@ function confirmDisconnect() {
   window.location.href = 'thanks.html';
 }
 
+function closeDisconnectModalWrapper(e) {
+  if (e && e.target === document.getElementById('disconnect-modal')) {
+    closeDisconnectModal();
+  }
+}
+
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeDisconnectModal();
+  }
+});
+
 
 function openCommandLauncher() {
   document.getElementById('cf-launcher')?.classList.add('open');
@@ -5469,7 +5481,7 @@ document.addEventListener('click', function(e) {
 </div>
 
 <!-- DISCONNECT CONFIRMATION MODAL -->
-<div id="disconnect-modal" class="cf-modal-overlay">
+<div id="disconnect-modal" class="cf-modal-overlay" onclick="closeDisconnectModalWrapper(event)">
   <div class="cf-modal-box">
     <div class="cf-modal-header">
       <div class="cf-modal-title">WARNING :: SECURE DISCONNECT</div>
