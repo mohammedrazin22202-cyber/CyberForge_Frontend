@@ -105,6 +105,19 @@
     background: rgba(255, 255, 255, 0.1);
   }
   
+  .btn.danger {
+    background: rgba(255, 51, 102, 0.03);
+    border-color: rgba(255, 51, 102, 0.25);
+    color: var(--red);
+  }
+
+  .btn.danger:hover {
+    background: rgba(255, 51, 102, 0.08);
+    border-color: var(--red);
+    box-shadow: 0 0 20px rgba(255, 51, 102, 0.12);
+    color: #ffffff;
+  }
+  
   @media (max-width: 480px) {
     .title { font-size: 1.8rem; }
     .desc { font-size: 1rem; }
@@ -115,14 +128,13 @@
 </style>
 </head>
 <body>
-  <div class="thanks-card">
+  <div class="error-card thanks-card">
     <h1 class="title">TRANSMISSION COMPLETE</h1>
     <p class="desc">
       Thank you for visiting CyberForge. Your session log has been securely saved.
     </p>
     <div class="button-group">
-      <!-- FIXED: Changed link from /home to / and added key hints -->
-      <a href="/" class="btn">
+      <a href="/" class="btn primary">
         <span>Return to Home</span>
         <span class="key-hint">H</span>
       </a>
@@ -130,17 +142,50 @@
         <span>Query Chatbot</span>
         <span class="key-hint">C</span>
       </a>
+      <div class="btn danger" id="btn-exit">
+        <span>Exit System</span>
+        <span class="key-hint">ESC</span>
+      </div>
     </div>
   </div>
 
   <script>
-    // FIXED: Added keyboard listener logic for fast navigation
+    // Strict check to prevent direct access to 404.html without an actual error
+    if (window.location.pathname.endsWith('/404.html') || window.location.pathname.endsWith('/404')) {
+      window.location.replace('/');
+    }
+
+    const exitFn = () => {
+      window.close();
+      // Fallback if browser blocks window.close()
+      setTimeout(() => {
+        const card = document.querySelector('.error-card');
+        card.innerHTML = `
+          <div class="error-code" style="background: linear-gradient(135deg, #ffffff 30%, var(--red) 70%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">OFFLINE</div>
+          <div class="error-title" style="color: var(--red); margin-top: 10px; margin-bottom: 20px;">Session Terminated</div>
+          <div class="error-desc" style="font-family: 'Share Tech Mono', monospace; font-size: 1.05rem; line-height: 1.8; text-align: left; background: rgba(1, 6, 3, 0.9); border: 1px solid rgba(255, 51, 102, 0.15); border-radius: 6px; padding: 20px; color: var(--text-muted);">
+            >> CONNECTION SEVERED.<br>
+            >> CORE SHUTDOWN SEQUENCE COMPLETED.<br>
+            >> SAFE TO CLOSE THIS BROWSER TAB.
+          </div>
+          <div style="margin-top: 30px;">
+            <a href="/" class="btn primary" style="justify-content: center; width: 100%;">Reconnect to System</a>
+          </div>
+        `;
+      }, 100);
+    };
+
+    document.getElementById('btn-exit').addEventListener('click', exitFn);
+
+    // Keyboard navigation
     window.addEventListener('keydown', (e) => {
       const key = e.key.toLowerCase();
       if (key === 'h') {
         window.location.href = '/';
       } else if (key === 'c') {
         window.location.href = '/chatbot';
+      } else if (e.key === 'Escape') {
+        exitFn();
       }
     });
   </script>
