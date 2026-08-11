@@ -3051,6 +3051,108 @@
     border-color: var(--red);
     box-shadow: 0 0 15px rgba(255, 51, 102, 0.5);
   }
+
+  /* Disconnect Modal Styling */
+  .cf-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 20px;
+  }
+  .cf-modal-overlay.active {
+    display: flex;
+  }
+  .cf-modal-box {
+    border: 1px solid var(--matrix-green);
+    background: #080808;
+    width: min(480px, 92vw);
+    border-radius: 6px;
+    box-shadow: 0 0 45px rgba(0, 255, 65, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .cf-modal-header {
+    border-bottom: 1px solid rgba(0, 255, 65, 0.25);
+    background: rgba(0, 255, 65, 0.03);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cf-modal-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--cyan);
+  }
+  .cf-modal-close {
+    background: none;
+    border: none;
+    color: var(--matrix-mid);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .cf-modal-close:hover {
+    color: var(--red);
+  }
+  .cf-modal-body {
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .cf-modal-message {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    text-align: left;
+  }
+  .cf-modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+  .cf-btn-confirm,
+  .cf-btn-cancel {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+  }
+  .cf-btn-confirm {
+    background: rgba(255, 51, 102, 0.08);
+    border: 1px solid var(--red);
+    color: var(--red);
+  }
+  .cf-btn-confirm:hover {
+    background: var(--red);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255, 51, 102, 0.4);
+  }
+  .cf-btn-cancel {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-muted);
+  }
+  .cf-btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+  }
+
   nav {
     top: 74px;
   }
