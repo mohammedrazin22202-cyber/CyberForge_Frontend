@@ -265,6 +265,11 @@
 </div>
 
 <script>
+  // Strict check to prevent direct access to 404.html without an actual error
+  if (window.location.pathname.endsWith('/404.html') || window.location.pathname.endsWith('/404')) {
+    window.location.replace('/');
+  }
+
   // Set failed path dynamically
   document.getElementById('failed-uri').innerText = window.location.pathname;
 
