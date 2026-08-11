@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#000a00">
+<title>CYBERFORGE :: SYSTEM ERROR 404</title>
+<link rel="icon" type="image/png" href="cyberforge_logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00ff88;
+    --green-bright: #00ffaa;
+    --green-dim: #008844;
+    --green-dark: #00220d;
+    --red: #ff003c;
+    --red-glow: rgba(255, 0, 60, 0.4);
+    --bg: #000500;
+    --panel: #000e00;
+    --border: rgba(0, 255, 136, 0.2);
+    --border-bright: rgba(0, 255, 136, 0.4);
+    --cyan: #00eeff;
+    --glow-soft: rgba(0, 255, 136, 0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--bg);
+    background: 
+      radial-gradient(ellipse at 50% 30%, rgba(0, 255, 136, 0.08) 0%, transparent 60%),
+      linear-gradient(to bottom, #000300, #000a00 70%, #000500);
+    color: var(--green);
+    font-family: 'Share Tech Mono', monospace;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: crosshair;
+  }
+
+  /* Scanlines & CRT Effects */
+  .scanlines {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.25) 2px, rgba(0, 0, 0, 0.25) 4px);
+    z-index: 999;
+    pointer-events: none;
+  }
+
+  .vignette {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.8) 100%);
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+  /* Terminal Container */
+  .terminal {
+    width: min(720px, 92vw);
+    background: rgba(0, 10, 3, 0.85);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    box-shadow: 0 0 40px rgba(0, 255, 136, 0.15), inset 0 0 20px rgba(0, 255, 136, 0.05);
+    backdrop-filter: blur(8px);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .terminal::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--green-dim), var(--green-bright), var(--green-dim));
+    border-radius: 6px 6px 0 0;
+  }
+
+  /* Glitch Error Code */
+  .error-code-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .error-code {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(4rem, 12vw, 7rem);
+    font-weight: 900;
+    color: var(--red);
+    text-shadow: 0 0 20px var(--red-glow);
+    position: relative;
+    animation: textFlicker 3s infinite;
+  }
+
+  .error-code::before,
+  .error-code::after {
+    content: '404';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: transparent;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .error-code::before {
+    left: 3px;
+    text-shadow: -2px 0 var(--cyan);
+    animation: glitch-1 2s infinite linear alternate-reverse;
+  }
+
+  .error-code::after {
+    left: -3px;
+    text-shadow: -2px 0 var(--green);
+    animation: glitch-2 2s infinite linear alternate-reverse;
+  }
+
+  @keyframes glitch-1 {
+    0% { clip: rect(20px, 9999px, 40px, 0); }
+    100% { clip: rect(70px, 9999px, 80px, 0); }
+  }
+
+  @keyframes glitch-2 {
+    0% { clip: rect(40px, 9999px, 60px, 0); }
+    100% { clip: rect(10px, 9999px, 30px, 0); }
+  }
+
+  @keyframes textFlicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.96; }
+    55% { opacity: 0.9; }
+    60% { opacity: 0.98; }
+    61% { opacity: 0.85; }
+    64% { opacity: 0.95; }
+  }
+
+  .error-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--green);
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+    text-align: center;
+    margin-top: -10px;
+  }
+
+  /* Console Output */
+  .console-box {
+    background: rgba(0, 5, 2, 0.95);
+    border: 1px solid rgba(0, 255, 136, 0.1);
+    border-radius: 4px;
+    padding: 20px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    height: 180px;
+    overflow-y: auto;
+    font-family: 'Share Tech Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+  }
+
+  .console-box::-webkit-scrollbar {
+    width: 6px;
+  }
+  .console-box::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .console-box::-webkit-scrollbar-thumb {
+    background: var(--green-dim);
+    border-radius: 3px;
+  }
+
+  .line {
+    opacity: 0;
+    transform: translateY(2px);
+    animation: lineFadeIn 0.15s ease forwards;
+  }
+
+  .line.info { color: var(--green-bright); }
+  .line.warning { color: #ffaa00; }
+  .line.error { color: var(--red); }
+  .line.cyan { color: var(--cyan); }
+
+  @keyframes lineFadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Navigation options */
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 255, 136, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 20px;
+    color: var(--green);
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+  }
+
+  .action-btn:hover {
+    background: rgba(0, 255, 136, 0.08);
+    border-color: var(--green-bright);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.15);
+    color: #fff;
+    transform: translateX(4px);
+  }
+
+  .action-btn .key-hint {
+    background: var(--green-dark);
+    border: 1px solid var(--border-bright);
+    color: var(--green-bright);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    padding: 2px 8px;
+    border-radius: 3px;
+    box-shadow: 0 0 4px rgba(0, 255, 136, 0.2);
+  }
+
+  .action-btn:hover .key-hint {
+    background: var(--green-bright);
+    color: var(--bg);
+    border-color: #fff;
+    box-shadow: 0 0 8px rgba(0, 255, 136, 0.5);
+  }
+
+  /* Interactive Footer */
+  .footer-prompt {
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--green-dim);
+    letter-spacing: 1px;
+  }
+
+  .footer-prompt span {
+    animation: cursorBlink 1s step-end infinite;
+  }
+
+  @keyframes cursorBlink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Background Grid Line details */
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-size: 50px 50px;
+    background-image: 
+      linear-gradient(to right, rgba(0, 255, 136, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 255, 136, 0.02) 1px, transparent 1px);
+    z-index: 1;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+<div class="vignette"></div>
+<div class="grid-bg"></div>
+
+<div class="terminal">
+  <div class="error-code-container">
+    <div class="error-code">404</div>
+    <div class="error-title">System Malfunction</div>
+  </div>
+
+  <div class="console-box" id="console">
+    <!-- Lines will be populated dynamically -->
+  </div>
+
+  <div class="actions">
+    <a href="/" class="action-btn" id="btn-home">
+      <span>>> REBOOT SYSTEM (RETURN HOME)</span>
+      <span class="key-hint">[H]</span>
+    </a>
+    <a href="/chatbot" class="action-btn" id="btn-chat">
+      <span>>> QUERY CYBERFORGE AI TERMINAL</span>
+      <span class="key-hint">[C]</span>
+    </a>
+    <div class="action-btn" id="btn-back">
+      <span>>> DISENGAGE & WARP BACK</span>
+      <span class="key-hint">[B]</span>
+    </div>
+  </div>
+
+  <div class="footer-prompt">
+    SYSTEM STATS: SECURE // OPERATOR KEY REQUIRED <span>_</span>
+  </div>
+</div>
+
+<script>
+  // Get failed path dynamically
+  const failedPath = window.location.pathname;
+  const consoleEl = document.getElementById('console');
+
+  // Logs sequence to output
+  const logs = [
+    { text: ">> INITIATING DIAGNOSTIC SCAN...", class: "info", delay: 100 },
+    { text: ">> LOADING CRYPTO CORE COMPONENT... SUCCESS.", class: "info", delay: 300 },
+    { text: `>> RESOURCE REQUESTED: ${failedPath}`, class: "cyan", delay: 400 },
+    { text: ">> EVALUATING ROUTING PATHWAY...", class: "info", delay: 200 },
+    { text: ">> ERROR Code 0x404: PAGE_NOT_FOUND", class: "error", delay: 400 },
+    { text: ">> Tracing target directory... ZERO MATCHES FOUND.", class: "warning", delay: 300 },
+    { text: ">> Warning: Accessing unmapped memory register.", class: "warning", delay: 200 },
+    { text: ">> SECURITY PROTOCOLS ENGAGED. DUMP ROUTE ABORTED.", class: "error", delay: 350 },
+    { text: ">> ACTION REQUIRED: Select backup warp sequence or query AI assistant.", class: "info", delay: 250 }
+  ];
+
+  let currentLogIdx = 0;
+
+  function appendLog() {
+    if (currentLogIdx >= logs.length) return;
+    
+    const item = logs[currentLogIdx];
+    const lineEl = document.createElement('div');
+    lineEl.className = `line ${item.class || ''}`;
+    lineEl.innerText = item.text;
+    
+    consoleEl.appendChild(lineEl);
+    consoleEl.scrollTop = consoleEl.scrollHeight;
+
+    currentLogIdx++;
+    
+    // Schedule next log
+    if (currentLogIdx < logs.length) {
+      setTimeout(appendLog, logs[currentLogIdx].delay);
+    }
+  }
+
+  // Trigger typewriter logs on load
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(appendLog, 300);
+  });
+
+  // Action: Warp Back
+  document.getElementById('btn-back').addEventListener('click', () => {
+    if (window.history && window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = '/';
+    }
+  });
+
+  // Keyboard navigation
+  window.addEventListener('keydown', (e) => {
+    const key = e.key.toLowerCase();
+    if (key === 'h') {
+      window.location.href = '/';
+    } else if (key === 'c') {
+      window.location.href = '/chatbot';
+    } else if (key === 'b') {
+      if (window.history && window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = '/';
+      }
+    }
+  });
+</script>
+</body>
+</html>
