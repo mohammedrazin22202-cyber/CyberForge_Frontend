@@ -27,15 +27,17 @@
     justify-content: center;
     padding: 20px;
   }
-  /* BUG 1: The flex container doesn't scale properly on mobile because width is hardcoded to 580px */
+  /* FIXED: Use max-width and percentage width for mobile responsiveness */
   .thanks-card {
-    width: 580px; 
+    width: 100%;
+    max-width: 580px;
     background: var(--bg-card);
     border: 1px solid var(--green-border);
     border-radius: 12px;
     padding: 40px;
     text-align: center;
     position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
   }
   .thanks-card::before {
     content: '';
@@ -57,11 +59,12 @@
     line-height: 1.6;
     margin-bottom: 24px;
   }
-  /* BUG 2: Buttons will wrap uglily on small screens because of absolute column padding */
+  /* FIXED: Buttons wrap on small devices */
   .button-group {
     display: flex;
     gap: 16px;
     justify-content: center;
+    flex-wrap: wrap;
   }
   .btn {
     background: rgba(0, 255, 136, 0.03);
@@ -74,12 +77,19 @@
     font-weight: 600;
     letter-spacing: 1px;
     transition: all 0.25s ease;
-    /* BUG 3: Redirect link in html goes to /home instead of / */
+  }
+  
+  @media (max-width: 480px) {
+    .title { font-size: 1.8rem; }
+    .desc { font-size: 1rem; }
+    .thanks-card { padding: 30px 20px; }
+    .button-group { flex-direction: column; width: 100%; }
+    .btn { text-align: center; width: 100%; }
   }
 </style>
 </head>
 <body>
-  <!-- BUG 4: Div wrapper is unclosed, which breaks layout alignment for nested elements in some browsers -->
+  <!-- FIXED: Closing card div tag added below -->
   <div class="thanks-card">
     <h1 class="title">TRANSMISSION COMPLETE</h1>
     <p class="desc">
@@ -89,6 +99,6 @@
       <a href="/home" class="btn">Return to Home</a>
       <a href="/chatbot" class="btn">Query Chatbot</a>
     </div>
-  <!-- Missing closing div here for thanks-card -->
+  </div>
 </body>
 </html>
