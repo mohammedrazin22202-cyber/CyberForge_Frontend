@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THANK YOU // TRANSMISSION COMPLETE</title>
+<link rel="icon" type="image/png" href="cyberforge_logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00ff88;
+    --green-border: rgba(0, 255, 136, 0.25);
+    --bg-dark: #020704;
+    --bg-card: rgba(4, 15, 8, 0.7);
+    --text-main: #e0f2e9;
+    --text-muted: #88a395;
+    --cyan: #00e5ff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Rajdhani', sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  /* BUG 1: The flex container doesn't scale properly on mobile because width is hardcoded to 580px */
+  .thanks-card {
+    width: 580px; 
+    background: var(--bg-card);
+    border: 1px solid var(--green-border);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+  }
+  .thanks-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 10%; right: 10%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--green), var(--cyan), transparent);
+  }
+  .title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    margin-bottom: 12px;
+  }
+  .desc {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  /* BUG 2: Buttons will wrap uglily on small screens because of absolute column padding */
+  .button-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+  .btn {
+    background: rgba(0, 255, 136, 0.03);
+    border: 1px solid var(--green-border);
+    color: var(--green);
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.25s ease;
+    /* BUG 3: Redirect link in html goes to /home instead of / */
+  }
+</style>
+</head>
+<body>
+  <!-- BUG 4: Div wrapper is unclosed, which breaks layout alignment for nested elements in some browsers -->
+  <div class="thanks-card">
+    <h1 class="title">TRANSMISSION COMPLETE</h1>
+    <p class="desc">
+      Thank you for visiting CyberForge. Your session log has been securely saved.
+    </p>
+    <div class="button-group">
+      <a href="/home" class="btn">Return to Home</a>
+      <a href="/chatbot" class="btn">Query Chatbot</a>
+    </div>
+  <!-- Missing closing div here for thanks-card -->
+</body>
+</html>
