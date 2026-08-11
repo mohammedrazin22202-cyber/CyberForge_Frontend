@@ -5355,5 +5355,26 @@ document.addEventListener('click', function(e) {
   <a href="#contact">Contact</a>
 </div>
 
+<!-- DISCONNECT CONFIRMATION MODAL -->
+<div id="disconnect-modal" class="cf-modal-overlay">
+  <div class="cf-modal-box">
+    <div class="cf-modal-header">
+      <div class="cf-modal-title">WARNING :: SECURE DISCONNECT</div>
+      <button class="cf-modal-close" onclick="closeDisconnectModal()">✕</button>
+    </div>
+    <div class="cf-modal-body">
+      <p class="cf-modal-message">
+        >> Proceeding will sever the link to CyberForge OS.<br>
+        >> Active session telemetry will be archived.<br>
+        >> Are you sure you want to terminate connection?
+      </p>
+      <div class="cf-modal-buttons">
+        <button class="cf-btn-confirm" onclick="confirmDisconnect()">PROCEED</button>
+        <button class="cf-btn-cancel" onclick="closeDisconnectModal()">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
