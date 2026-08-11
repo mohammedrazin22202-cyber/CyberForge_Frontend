@@ -3840,7 +3840,7 @@
       <option value="red">Red Alert</option>
       <option value="minimal">Minimal Pro</option>
     </select>
-    <a class="cf-os-btn disconnect-btn" href="thanks.html">Disconnect</a>
+    <a class="cf-os-btn disconnect-btn" href="#" onclick="openDisconnectModal(event)">Disconnect</a>
   </div>
 </header>
 
@@ -3884,7 +3884,7 @@
   <a href="#learning"     onclick="closeMobileNav()">Learning</a>
   <a href="#achievements" onclick="closeMobileNav()">Achievements</a>
   <a href="#contact"      onclick="closeMobileNav()">Contact</a>
-  <a href="thanks.html"   onclick="closeMobileNav()" style="color: var(--red); font-weight: bold; border-top: 1px solid rgba(255, 51, 51, 0.25); margin-top: 12px; padding-top: 15px;">Disconnect</a>
+  <a href="#" onclick="closeMobileNav(); openDisconnectModal(event)" style="color: var(--red); font-weight: bold; border-top: 1px solid rgba(255, 51, 51, 0.25); margin-top: 12px; padding-top: 15px;">Disconnect</a>
 </div>
 
 <!-- HERO -->
@@ -4583,7 +4583,18 @@ function showWelcomeBack(message) {
   clearTimeout(window.__cfWelcomeTimer);
   window.__cfWelcomeTimer = setTimeout(() => toast.classList.remove('show'), 3600);
 }
+function openDisconnectModal(e) {
+  if (e) e.preventDefault();
+  document.getElementById('disconnect-modal')?.classList.add('active');
+}
 
+function closeDisconnectModal() {
+  document.getElementById('disconnect-modal')?.classList.remove('active');
+}
+
+function confirmDisconnect() {
+  window.location.href = 'thanks.html';
+}
 
 
 function openCommandLauncher() {
