@@ -515,6 +515,9 @@
     height: 58px;
     box-shadow: 0 4px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,255,65,0.06) inset;
   }
+  .nav-mobile-section-title {
+    display: none;
+  }
 
   /* active nav indicator line */
   nav::after {
@@ -3532,6 +3535,18 @@
     nav {
       top: 62px;
     }
+    .nav-mobile-section-title {
+      display: block;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--matrix-green);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: bold;
+      text-shadow: 0 0 10px var(--matrix-glow);
+      text-align: center;
+      flex-grow: 1;
+    }
     .project-preview {
       grid-template-columns: 1fr;
       padding: 14px;
@@ -4014,6 +4029,7 @@
   <span class="nav-bracket bl"></span>
   <span class="nav-bracket br"></span>
   <a href="#hero"><img src="cyberforge_logo.png" alt="CyberForge" class="nav-logo-img" /></a>
+  <div class="nav-mobile-section-title" id="nav-mobile-section-title">[ HERO ]</div>
   <div class="nav-links-container">
     <ul class="nav-links">
       <li><a href="#about" class="active">About</a></li>
@@ -5560,6 +5576,15 @@ setInterval(() => {
   function updateBreadcrumbs(sectionId) {
     const sectionSep = document.querySelector('.cf-breadcrumb-sep.cf-breadcrumb-sub-sep');
     const sectionText = document.getElementById('cf-breadcrumb-section');
+    const mobileTitle = document.getElementById('nav-mobile-section-title');
+    let displayId = sectionId || 'hero';
+    if (displayId === 'hero') {
+      displayId = 'welcome';
+    }
+    if (mobileTitle) {
+      mobileTitle.textContent = '[ ' + displayId.toUpperCase() + ' ]';
+    }
+
     if (!sectionId || sectionId === 'hero') {
       if (sectionSep) sectionSep.style.display = 'none';
       if (sectionText) sectionText.style.display = 'none';
