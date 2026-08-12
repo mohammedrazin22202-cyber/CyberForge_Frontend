@@ -128,6 +128,45 @@ body {
 }
 
 .brand { display: flex; align-items: center; gap: 14px; }
+/* Breadcrumbs Styling */
+.cf-breadcrumbs {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--green);
+  letter-spacing: 0.1em;
+}
+.cf-breadcrumb-root {
+  color: var(--green);
+  text-decoration: none;
+  transition: opacity 0.2s, color 0.2s;
+}
+.cf-breadcrumb-root:hover {
+  color: #fff;
+  text-shadow: 0 0 8px #fff;
+  opacity: 0.85;
+}
+.cf-breadcrumb-sep {
+  color: var(--muted);
+  user-select: none;
+  opacity: 0.6;
+}
+.cf-breadcrumb-item,
+.cf-breadcrumb-sub-item {
+  font-weight: bold;
+}
+.cf-breadcrumb-sub-item {
+  color: var(--cyan);
+  text-shadow: 0 0 6px rgba(111,255,227,0.3);
+}
+@media (max-width: 600px) {
+  .cf-breadcrumb-root,
+  .cf-breadcrumb-sep:first-of-type {
+    display: none !important;
+  }
+}
 
 .brand-logo {
   width: 36px; height: 36px;
@@ -1210,7 +1249,13 @@ body.cyber-mode #matrix-rain {
       </div>
       <div class="brand-text">
         <div class="brand-title">CYBERFORGE</div>
-        <div class="brand-sub">VOICE AGENT :: DIRECT NEURAL CHANNEL</div>
+        <div class="cf-breadcrumbs">
+          <a href="index.html" class="cf-breadcrumb-root">CYBERFORGE_OS</a>
+          <span class="cf-breadcrumb-sep">:\</span>
+          <span class="cf-breadcrumb-item">PORTFOLIO</span>
+          <span class="cf-breadcrumb-sep">\</span>
+          <span class="cf-breadcrumb-sub-item">VOICE_AGENT</span>
+        </div>
       </div>
     </div>
     <div class="nav-actions">
