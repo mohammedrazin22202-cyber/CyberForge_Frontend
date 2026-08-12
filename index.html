@@ -5024,6 +5024,17 @@ function closeTechStack(e) {
     }, 400);
   }
 
+  // Keyboard navigation to access the portfolio
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const loader = document.getElementById('loader');
+      const btn = document.getElementById('enter-btn');
+      if (loader && !loader.classList.contains('hidden') && btn && btn.classList.contains('show')) {
+        enterPortfolio();
+      }
+    }
+  });
+
   // Toggle skills expandable block
   function toggleSkills(btn) {
     const container = btn.previousElementSibling;
