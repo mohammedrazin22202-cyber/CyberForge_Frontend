@@ -2131,7 +2131,8 @@
   .certmodal-box {
     border: 1px solid var(--matrix-green);
     background: #080808;
-    width: min(900px, 95vw);
+    width: 100%;
+    max-width: 900px;
     max-height: 90vh;
     display: flex;
     flex-direction: column;
@@ -2166,7 +2167,7 @@
   .certmodal-close {
     background: transparent;
     border: 1px solid var(--border);
-    color: var(--matrix-mid);
+    color: var(--matrix-green);
     font-size: 0.9rem;
     width: 30px; height: 30px;
     cursor: pointer;
@@ -2302,34 +2303,7 @@
     animation: loaderFadeIn 0.4s ease forwards;
     opacity: 0;
   }
-  #site-back-btn {
-    position: fixed;
-    top: 94px;
-    left: 20px;
-    background: rgba(0,0,0,0.75);
-    border: 1px solid var(--border);
-    color: var(--matrix-mid);
-    font-size: 0.6rem;
-    padding: 0 12px;
-    height: 30px;
-    cursor: pointer;
-    z-index: 9000;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Share Tech Mono', monospace;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    backdrop-filter: blur(4px);
-    white-space: nowrap;
-  }
-  #site-back-btn:hover {
-    border-color: var(--matrix-green);
-    color: var(--matrix-green);
-    box-shadow: 0 0 14px var(--matrix-glow);
-    background: rgba(0,0,0,0.9);
-  }
+
 
 
 
@@ -3038,6 +3012,8 @@
     .cf-breadcrumb-sep:first-of-type {
       display: none !important;
     }
+  .cf-mobile-disconnect-btn {
+    display: none;
   }
   .cf-os-dot {
     width: 36px;
@@ -3126,7 +3102,8 @@
   .cf-modal-box {
     border: 1px solid var(--matrix-green);
     background: #080808;
-    width: min(480px, 92vw);
+    width: 100%;
+    max-width: 480px;
     border-radius: 6px;
     box-shadow: 0 0 45px rgba(0, 255, 65, 0.15);
     display: flex;
@@ -3151,7 +3128,7 @@
   .cf-modal-close {
     background: none;
     border: none;
-    color: var(--matrix-mid);
+    color: var(--matrix-green);
     font-size: 1.1rem;
     cursor: pointer;
     transition: color 0.2s;
@@ -3481,7 +3458,7 @@
   .cf-assistant-actions button {
     border: 1px solid rgba(0,255,65,0.2);
     background: rgba(0,0,0,0.48);
-    color: var(--matrix-mid);
+    color: var(--matrix-green);
     font-family: 'Share Tech Mono', monospace;
     font-size: 0.62rem;
     padding: 7px 9px;
@@ -3516,6 +3493,13 @@
       font-size: 0.6rem;
       letter-spacing: 0.12em;
     }
+    .cf-os-dot {
+      display: none !important;
+    }
+    .cf-breadcrumb-sep,
+    .cf-breadcrumb-sub-item {
+      display: none !important;
+    }
     .cf-os-select,
     .cf-os-btn {
       max-width: 92px;
@@ -3524,6 +3508,25 @@
     }
     .cf-os-btn.disconnect-btn {
       display: none;
+    }
+    .cf-mobile-disconnect-btn {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid rgba(255, 51, 51, 0.4);
+      color: var(--red);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.55rem;
+      padding: 3px 6px;
+      margin-right: 10px;
+      cursor: pointer;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+    }
+    .cf-mobile-disconnect-btn:active {
+      background: var(--red);
+      color: #000;
     }
     nav {
       top: 62px;
@@ -3544,6 +3547,14 @@
     #cf-assistant-panel {
       inset: 64px 10px 72px;
       width: auto;
+    }
+    .cf-assistant-head span {
+      font-size: 0.6rem;
+    }
+    .cf-assistant-actions a,
+    .cf-assistant-actions button {
+      font-size: 0.55rem;
+      padding: 5px 7px;
     }
     #cf-mobile-actions {
       position: fixed;
@@ -3681,7 +3692,8 @@
   .resume-modal-box {
     border: 1px solid var(--matrix-green);
     background: #080808;
-    width: min(900px, 95vw);
+    width: 100%;
+    max-width: 900px;
     height: 85vh;
     max-height: 90vh;
     display: flex;
@@ -3717,7 +3729,7 @@
   .resume-modal-close {
     background: transparent;
     border: 1px solid var(--border);
-    color: var(--matrix-mid);
+    color: var(--matrix-green);
     font-size: 0.9rem;
     width: 30px; height: 30px;
     cursor: pointer;
@@ -3775,6 +3787,90 @@
     border-color: var(--matrix-green);
     color: var(--matrix-green);
     box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+  }
+
+  /* Sticky Mobile CTA Dock */
+  .mobile-cta-dock {
+    display: none;
+  }
+
+  @media (max-width: 900px) {
+    #cf-mobile-actions {
+      display: none !important;
+    }
+
+    .mobile-cta-dock {
+      display: flex;
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      height: 58px;
+      background: rgba(0, 10, 0, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--matrix-mid);
+      border-radius: 6px;
+      padding: 8px 12px;
+      gap: 10px;
+      z-index: 99991;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.72);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform: translateY(100px);
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .mobile-cta-dock.visible {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mcta-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 4px;
+      height: 100%;
+      transition: all 0.2s ease;
+    }
+
+    .mcta-btn.cta-chatbot {
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid var(--matrix-green);
+      color: var(--matrix-green);
+      box-shadow: 0 0 10px rgba(0, 255, 65, 0.05);
+    }
+    .mcta-btn.cta-chatbot:active {
+      background: var(--matrix-green);
+      color: #000;
+      box-shadow: 0 0 15px var(--matrix-green);
+    }
+
+    .mcta-btn.cta-voice {
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      box-shadow: 0 0 10px rgba(0, 229, 255, 0.05);
+    }
+    .mcta-btn.cta-voice:active {
+      background: var(--cyan);
+      color: #000;
+      box-shadow: 0 0 15px var(--cyan);
+    }
+    
+    body {
+      padding-bottom: 78px !important;
+    }
   }
 </style>
 </head>
@@ -3871,7 +3967,6 @@
 </div>
 
 
-<button id="site-back-btn" onclick="showVisitorModalFromSite()" title="Leave a note">Close</button>
 
 <canvas id="matrix-canvas"></canvas>
 
@@ -3883,6 +3978,7 @@
     <div class="cf-breadcrumbs" id="cf-breadcrumbs">
       <a href="index.html" class="cf-breadcrumb-root">CYBERFORGE_OS</a>
       <span class="cf-breadcrumb-sep">:\</span>
+      <button class="cf-mobile-disconnect-btn" onclick="openDisconnectModal(event)">Disconnect</button>
       <span class="cf-breadcrumb-item active">PORTFOLIO</span>
       <span class="cf-breadcrumb-sep cf-breadcrumb-sub-sep" style="display:none;">\</span>
       <span class="cf-breadcrumb-sub-item active" id="cf-breadcrumb-section" style="display:none;">ABOUT</span>
@@ -4597,6 +4693,18 @@
   </div>
 </section>
 
+<!-- STICKY MOBILE CTA DOCK -->
+<div class="mobile-cta-dock" id="mobile-cta-dock">
+  <a href="chatbot.html" target="_blank" rel="noopener" class="mcta-btn cta-chatbot">
+    <span class="mcta-icon">💬</span>
+    <span>AI Chatbot</span>
+  </a>
+  <a href="voice.html" target="_blank" rel="noopener" class="mcta-btn cta-voice">
+    <span class="mcta-icon">🎤</span>
+    <span>Voice Agent</span>
+  </a>
+</div>
+
 <footer>
   &copy; 2026 Mohammed Razin — Built with passion, powered by data
 </footer>
@@ -4617,6 +4725,15 @@ function applyStoredCyberState() {
   document.body.classList.toggle('cyber-mode', mode !== 'recruiter');
 }
 applyStoredCyberState();
+
+// Initialize mobile CTA dock visibility state
+document.addEventListener('DOMContentLoaded', () => {
+  const loader = document.getElementById('loader');
+  if (loader && loader.classList.contains('hidden')) {
+    const mcta = document.getElementById('mobile-cta-dock');
+    if (mcta) mcta.classList.add('visible');
+  }
+});
 
 function setCyberTheme(theme) {
   localStorage.setItem(CF_THEME_KEY, theme);
@@ -5041,6 +5158,10 @@ function closeTechStack(e) {
     setTimeout(() => {
       loader.classList.add('hidden');
       document.body.style.overflow = '';
+      
+      const mcta = document.getElementById('mobile-cta-dock');
+      if (mcta) mcta.classList.add('visible');
+
       setTimeout(() => {
         document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
       }, 100);
@@ -5586,7 +5707,7 @@ document.addEventListener('click', function(e) {
     <span>CYBERFORGE AI TERMINAL</span>
     <div class="cf-assistant-actions">
       <a href="chatbot.html" target="_blank" rel="noopener">Full</a>
-      <button type="button" onclick="toggleAssistantDrawer(false)">Close</button>
+      <button type="button" onclick="toggleAssistantDrawer(false)">Disconnect</button>
     </div>
   </div>
   <iframe id="cf-assistant-frame" title="CyberForge AI Chatbot" src="about:blank"></iframe>
