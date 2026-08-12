@@ -380,6 +380,46 @@
     animation: glowPulse 4s ease-in-out infinite;
     flex-shrink: 0;
   }
+  /* Breadcrumbs Styling */
+  .cf-breadcrumbs {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--green);
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 8px var(--green-glow);
+    margin-left: clamp(8px, 2vw, 20px);
+  }
+  .cf-breadcrumb-root {
+    color: var(--green);
+    text-decoration: none;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .cf-breadcrumb-root:hover {
+    color: #fff;
+    text-shadow: 0 0 8px #fff;
+    opacity: 0.85;
+  }
+  .cf-breadcrumb-sep {
+    color: rgba(0, 255, 136, 0.45);
+    user-select: none;
+  }
+  .cf-breadcrumb-item,
+  .cf-breadcrumb-sub-item {
+    font-weight: bold;
+  }
+  .cf-breadcrumb-sub-item {
+    color: var(--accent-ai);
+    text-shadow: 0 0 8px rgba(0,238,255,0.30);
+  }
+  @media (max-width: 768px) {
+    .cf-breadcrumb-root,
+    .cf-breadcrumb-sep:first-of-type {
+      display: none !important;
+    }
+  }
 
   /* TYPOGRAPHY — Main title (36-40px) */
   .logo {
@@ -2901,7 +2941,14 @@
     <span style="display:inline-block;">MENU</span>
   </button>
   <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
-    <div class="logo">CYBER<span>FORGE</span><span class="logo-version">v3.7</span></div>
+    <div class="logo">CYBER<span>FORGE</span></div>
+    <div class="cf-breadcrumbs">
+      <a href="index.html" class="cf-breadcrumb-root">CYBERFORGE_OS</a>
+      <span class="cf-breadcrumb-sep">:\</span>
+      <span class="cf-breadcrumb-item">PORTFOLIO</span>
+      <span class="cf-breadcrumb-sep">\</span>
+      <span class="cf-breadcrumb-sub-item">CHATBOT</span>
+    </div>
     <button id="clr-btn" aria-label="Clear chat" title="Clear conversation">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
