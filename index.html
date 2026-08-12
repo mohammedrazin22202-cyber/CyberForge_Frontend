@@ -5003,11 +5003,22 @@ function closeTechStack(e) {
         const hint = document.querySelector('.enter-hint');
         if (hint && !hint.classList.contains('show')) {
           hint.classList.add('show');
-          // Precise 0.25s visible / 0.25s invisible snapping blink
+          // Asymmetric blinking: 1.25s visible / 0.5s invisible
           hint.style.visibility = 'visible';
-          setInterval(() => {
-            hint.style.visibility = hint.style.visibility === 'hidden' ? 'visible' : 'hidden';
-          }, 250);
+          function runBlinkLoop() {
+            if (hint.style.visibility === 'visible') {
+              setTimeout(() => {
+                hint.style.visibility = 'hidden';
+                runBlinkLoop();
+              }, 1250);
+            } else {
+              setTimeout(() => {
+                hint.style.visibility = 'visible';
+                runBlinkLoop();
+              }, 500);
+            }
+          }
+          runBlinkLoop();
         }
       }
     }
