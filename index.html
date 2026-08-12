@@ -5003,14 +5003,14 @@ function closeTechStack(e) {
         const hint = document.querySelector('.enter-hint');
         if (hint && !hint.classList.contains('show')) {
           hint.classList.add('show');
-          // Asymmetric blinking: 1.25s visible / 0.5s invisible
+          // Asymmetric blinking: 1.0s visible / 0.5s invisible
           hint.style.visibility = 'visible';
           function runBlinkLoop() {
             if (hint.style.visibility === 'visible') {
               setTimeout(() => {
                 hint.style.visibility = 'hidden';
                 runBlinkLoop();
-              }, 1250);
+              }, 1000);
             } else {
               setTimeout(() => {
                 hint.style.visibility = 'visible';
