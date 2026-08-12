@@ -37,6 +37,52 @@
     justify-content: center;
     padding: 20px;
   }
+  /* Breadcrumbs Styling */
+  .cf-breadcrumbs-wrapper {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+  }
+  .cf-breadcrumbs {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--green);
+    letter-spacing: 0.12em;
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.25);
+  }
+  .cf-breadcrumb-root {
+    color: var(--green);
+    text-decoration: none;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .cf-breadcrumb-root:hover {
+    color: #fff;
+    text-shadow: 0 0 8px #fff;
+    opacity: 0.85;
+  }
+  .cf-breadcrumb-sep {
+    color: var(--text-muted);
+    user-select: none;
+    opacity: 0.6;
+  }
+  .cf-breadcrumb-item,
+  .cf-breadcrumb-sub-item {
+    font-weight: bold;
+  }
+  .cf-breadcrumb-sub-item {
+    color: var(--cyan);
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.35);
+  }
+  @media (max-width: 600px) {
+    .cf-breadcrumb-root,
+    .cf-breadcrumb-sep:first-of-type {
+      display: none !important;
+    }
+  }
 
   /* Grid Background Overlay */
   .grid-overlay {
@@ -219,6 +265,15 @@
 </style>
 </head>
 <body>
+  <div class="cf-breadcrumbs-wrapper">
+    <div class="cf-breadcrumbs">
+      <a href="index.html" class="cf-breadcrumb-root">CYBERFORGE_OS</a>
+      <span class="cf-breadcrumb-sep">:\</span>
+      <span class="cf-breadcrumb-item">PORTFOLIO</span>
+      <span class="cf-breadcrumb-sep">\</span>
+      <span class="cf-breadcrumb-sub-item">404_NOT_FOUND</span>
+    </div>
+  </div>
 
 <div class="grid-overlay"></div>
 
