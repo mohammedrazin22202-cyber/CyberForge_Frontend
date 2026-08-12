@@ -346,6 +346,9 @@
     text-shadow: 0 0 12px var(--matrix-green), 0 0 8px #fff;
     transition: opacity 0.3s ease;
   }
+  .enter-hint.show {
+    opacity: 1;
+  }
 
   /* Rolling scanlines inside the button */
   .enter-btn::after {
@@ -4997,6 +5000,8 @@ function closeTechStack(e) {
         requestAnimationFrame(animateProgress);
       } else {
         if (btn) btn.classList.add('show');
+        const hint = document.querySelector('.enter-hint');
+        if (hint) hint.classList.add('show');
       }
     }
 
