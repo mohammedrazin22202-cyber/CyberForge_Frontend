@@ -333,6 +333,20 @@
     animation: btn-pulse 2s infinite ease-in-out;
   }
 
+  .enter-hint {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.125rem;
+    color: var(--matrix-green);
+    opacity: 0;
+    margin-top: 18px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    pointer-events: none;
+    text-align: center;
+    text-shadow: 0 0 12px var(--matrix-green), 0 0 8px #fff;
+    transition: opacity 0.3s ease;
+  }
+
   /* Rolling scanlines inside the button */
   .enter-btn::after {
     content: '';
@@ -3802,6 +3816,7 @@
       <span class="btn-status-sub">SYS_BOOT: READY</span>
       ACCESS PORTFOLIO
     </button>
+    <div class="enter-hint">PRESS THIS BUTTON OR ENTER KEY TO ENTER PORTFOLIO</div>
   </div>
 </div>
 
