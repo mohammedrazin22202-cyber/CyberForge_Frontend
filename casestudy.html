@@ -603,7 +603,7 @@
         <div class="op-card-name">M. RAZIN</div>
         <div class="op-card-role">// SYSTEM ARCHITECT</div>
         <div class="sys-row"><span>STATUS</span><span class="val" style="color:var(--green)">ONLINE</span></div>
-        <div class="sys-row"><span>DOCS</span><span class="val">4 FILES</span></div>
+        <div class="sys-row"><span>DOCS</span><span class="val">5 FILES</span></div>
       </div>
 
       <div class="r-module" style="flex:1;">
@@ -613,6 +613,7 @@
           <div class="file-link" onclick="openFile(event, 'doc-visual')">visual_tokens.cfg</div>
           <div class="file-link" onclick="openFile(event, 'doc-flow')">cognitive_flow.json</div>
           <div class="file-link" onclick="openFile(event, 'doc-metrics')">UX_performance.db</div>
+          <div class="file-link" onclick="openFile(event, 'doc-faq')">faq_database.json</div>
         </div>
       </div>
     </aside>
@@ -711,6 +712,37 @@
             <div class="doc-callout">
               <h4>// DESIGN TAKEAWAY</h4>
               <p class="doc-p">Interactive micro-interactions (pulses, glowing borders, CRT vignette) paired with customized recruiter-focused viewing presets ensure maximum data scannability without breaking the high-tech atmosphere.</p>
+            </div>
+          </article>
+
+          <!-- faq_database.json -->
+          <article id="doc-faq" class="file-doc">
+            <h2 class="doc-section-title">> FREQUENTLY ASKED QUESTIONS (FAQs)</h2>
+            <p class="doc-p">System response mapping for common queries regarding portal architecture and design decisions:</p>
+
+            <div class="doc-callout">
+              <h4>Q1: Why build a custom console layout instead of using a standard portfolio template?</h4>
+              <p class="doc-p"><strong>A:</strong> Standard templates fail to stand out. A console interface creates a highly memorable, immersive brand identity, acts as interactive proof of front-end capabilities, and challenges typical UX paradigms in a constructive way.</p>
+            </div>
+
+            <div class="doc-callout">
+              <h4>Q2: How does the AI chatbot process queries without server overhead?</h4>
+              <p class="doc-p"><strong>A:</strong> The terminal utilizes client-side keyword extraction, heuristic intent matching, and structured routing maps to simulate zero-latency response pipelines without any cloud compute runtime costs.</p>
+            </div>
+
+            <div class="doc-callout">
+              <h4>Q3: Why does the Voice Agent feature a custom canvas waveform visualizer?</h4>
+              <p class="doc-p"><strong>A:</strong> Audio synthesis API endpoints can experience transient cold-start latency. Providing an active visual canvas waveform confirms to users that the browser is computing, preventing recruiter drop-off.</p>
+            </div>
+
+            <div class="doc-callout">
+              <h4>Q4: Are the color theme selections persistent across different pages?</h4>
+              <p class="doc-p"><strong>A:</strong> Yes. Color configurations (Matrix green, Cyan, Red, Minimal) are saved to local storage (<code>cfTheme</code>) and dynamically loaded by headers across independent window frames to preserve cohesive branding.</p>
+            </div>
+
+            <div class="doc-callout">
+              <h4>Q5: Is this retro hacker theme accessible and mobile-responsive?</h4>
+              <p class="doc-p"><strong>A:</strong> Absolutely. While secondary layout elements (like analytics sidebars) collapse gracefully on mobile devices, the main terminal consoles automatically adapt to fit active screen boundaries using CSS grids and flexbox rules.</p>
             </div>
           </article>
 
