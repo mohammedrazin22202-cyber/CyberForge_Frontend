@@ -2984,6 +2984,44 @@
     text-shadow: 0 0 12px var(--matrix-glow);
     white-space: nowrap;
   }
+  .cf-breadcrumbs {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--matrix-green);
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 8px var(--matrix-glow);
+  }
+  .cf-breadcrumb-root {
+    color: var(--matrix-green);
+    text-decoration: none;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .cf-breadcrumb-root:hover {
+    color: #fff;
+    text-shadow: 0 0 8px #fff;
+    opacity: 0.85;
+  }
+  .cf-breadcrumb-sep {
+    color: rgba(0, 255, 65, 0.45);
+    user-select: none;
+  }
+  .cf-breadcrumb-item,
+  .cf-breadcrumb-sub-item {
+    font-weight: bold;
+  }
+  .cf-breadcrumb-sub-item {
+    color: var(--cyan);
+    text-shadow: 0 0 8px var(--cyan-glow);
+  }
+  @media (max-width: 600px) {
+    .cf-breadcrumb-root,
+    .cf-breadcrumb-sep:first-of-type {
+      display: none !important;
+    }
+  }
   .cf-os-dot {
     width: 36px;
     height: 36px;
@@ -3822,7 +3860,16 @@
 <div id="cf-welcome" class="cf-welcome" role="status" aria-live="polite"></div>
 
 <header id="cf-osbar" aria-label="CyberForge OS navigation">
-  <div class="cf-os-brand"><span class="cf-os-dot"><img src="cyberforge_logo.png" alt="" aria-hidden="true" /></span><span>CYBERFORGE OS</span></div>
+  <div class="cf-os-brand">
+    <span class="cf-os-dot"><img src="cyberforge_logo.png" alt="" aria-hidden="true" /></span>
+    <div class="cf-breadcrumbs" id="cf-breadcrumbs">
+      <a href="index.html" class="cf-breadcrumb-root">CYBERFORGE_OS</a>
+      <span class="cf-breadcrumb-sep">:\</span>
+      <span class="cf-breadcrumb-item active">PORTFOLIO</span>
+      <span class="cf-breadcrumb-sep cf-breadcrumb-sub-sep" style="display:none;">\</span>
+      <span class="cf-breadcrumb-sub-item active" id="cf-breadcrumb-section" style="display:none;">ABOUT</span>
+    </div>
+  </div>
   <div class="cf-os-links">
     <a class="cf-os-link" href="index.html">Portfolio</a>
     <a class="cf-os-link" href="chatbot.html" target="_blank" rel="noopener">Chatbot</a>
@@ -5333,6 +5380,22 @@ setInterval(() => {
     updateHoverOutline(null, false);
   });
 
+  // Dynamic Breadcrumbs updater
+  function updateBreadcrumbs(sectionId) {
+    const sectionSep = document.querySelector('.cf-breadcrumb-sep.cf-breadcrumb-sub-sep');
+    const sectionText = document.getElementById('cf-breadcrumb-section');
+    if (!sectionId || sectionId === 'hero') {
+      if (sectionSep) sectionSep.style.display = 'none';
+      if (sectionText) sectionText.style.display = 'none';
+    } else {
+      if (sectionSep) sectionSep.style.display = 'inline';
+      if (sectionText) {
+        sectionText.style.display = 'inline';
+        sectionText.textContent = sectionId.toUpperCase();
+      }
+    }
+  }
+
   // Handle bottom of page scroll manually so Contact always lights up at the very bottom
   window.addEventListener('scroll', () => {
     if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 20) {
@@ -5341,6 +5404,7 @@ setInterval(() => {
       if (contactLink) {
         contactLink.classList.add('active');
         updateActiveOutline();
+        updateBreadcrumbs('contact');
       }
     }
   });
@@ -5361,6 +5425,7 @@ setInterval(() => {
         if (active) {
           active.classList.add('active');
           updateActiveOutline();
+          updateBreadcrumbs(entry.target.id);
         }
       }
     });
