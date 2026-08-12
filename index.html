@@ -348,12 +348,6 @@
   }
   .enter-hint.show {
     opacity: 1;
-    animation: hint-blink 0.5s infinite;
-  }
-
-  @keyframes hint-blink {
-    0%, 49.9% { opacity: 1; text-shadow: 0 0 12px var(--matrix-green), 0 0 8px #fff; }
-    50%, 100% { opacity: 0; text-shadow: none; }
   }
 
   /* Rolling scanlines inside the button */
@@ -5007,7 +5001,14 @@ function closeTechStack(e) {
       } else {
         if (btn) btn.classList.add('show');
         const hint = document.querySelector('.enter-hint');
-        if (hint) hint.classList.add('show');
+        if (hint && !hint.classList.contains('show')) {
+          hint.classList.add('show');
+          // Precise 0.25s visible / 0.25s invisible snapping blink
+          hint.style.visibility = 'visible';
+          setInterval(() => {
+            hint.style.visibility = hint.style.visibility === 'hidden' ? 'visible' : 'hidden';
+          }, 250);
+        }
       }
     }
 
