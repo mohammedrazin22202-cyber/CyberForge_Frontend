@@ -3913,6 +3913,182 @@
     box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
   }
 
+  /* ── SECURE PHOTO MODAL ── */
+  .photo-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 5, 2, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .photo-modal-box {
+    width: 100%;
+    max-width: 480px;
+    background: #080808;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+    position: relative;
+    animation: loaderFadeIn 0.3s ease forwards;
+  }
+  .photo-modal-box::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 10%; right: 10%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--matrix-green), var(--cyan), transparent);
+  }
+  .photo-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+  .photo-modal-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--cyan);
+  }
+  .photo-modal-close {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .photo-modal-close:hover {
+    color: var(--red);
+  }
+  @keyframes secureScan {
+    0% { top: 0%; }
+    50% { top: 100%; }
+    100% { top: 0%; }
+  }
+
+  /* ── RESUME PREVIEW MODAL ── */
+  #resume-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.93);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    padding: 20px;
+  }
+  #resume-modal.active { display: flex; }
+
+  .resume-modal-box {
+    border: 1px solid var(--matrix-green);
+    background: #080808;
+    width: 100%;
+    max-width: 900px;
+    height: 85vh;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 60px rgba(0,255,65,0.2);
+    animation: loaderFadeIn 0.3s ease forwards;
+    overflow: hidden;
+  }
+
+  .resume-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .resume-modal-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    color: var(--matrix-green);
+    text-transform: uppercase;
+  }
+
+  .resume-modal-btns {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .resume-modal-close {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--matrix-green);
+    font-size: 0.9rem;
+    width: 30px; height: 30px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .resume-modal-close:hover { border-color: var(--matrix-green); color: var(--matrix-green); }
+
+  .resume-modal-body {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    background: #050505;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .resume-preview-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #0d0d0d;
+  }
+
+  .resume-preview-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.85rem;
+    pointer-events: none;
+  }
+
+  .resume-download-btn-header {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 10px 22px;
+    border: 1px solid var(--matrix-mid);
+    background: transparent;
+    color: var(--matrix-mid);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  .resume-download-btn-header:hover {
+    border-color: var(--matrix-green);
+    color: var(--matrix-green);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+  }
+
   /* Sticky Mobile CTA Dock */
   .mobile-cta-dock {
     display: none;
@@ -5836,6 +6012,30 @@ document.addEventListener('click', function(e) {
   </div>
 </div>
 
+<!-- SECURE PHOTO VIEWER MODAL -->
+<div id="photo-modal" class="photo-modal-overlay" onclick="closePhotoModalWrapper(event)">
+  <div class="photo-modal-box" oncontextmenu="return false;">
+    <div class="photo-modal-header">
+      <div class="photo-modal-title">SECURE_IMAGE_DECRYPTION.SYS</div>
+      <button class="photo-modal-close" onclick="closePhotoModal()">✕</button>
+    </div>
+    <div class="photo-modal-body">
+      <div class="secure-canvas-container" style="position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #000; border: 1px solid var(--border); border-radius: 6px;">
+        <canvas id="secure-photo-canvas" style="display: block; max-width: 100%; height: auto; user-select: none; -webkit-user-drag: none; pointer-events: none;"></canvas>
+        <div class="secure-watermark-overlay" style="position: absolute; inset: 0; pointer-events: none; z-index: 10; display: flex; flex-direction: column; justify-content: space-around; align-items: center; opacity: 0.15; color: var(--matrix-green); font-family: 'Share Tech Mono', monospace; font-size: 1.1rem; transform: rotate(-30deg); user-select: none;">
+          <div style="white-space: nowrap;">SECURE PREVIEW // MOHAMMED RAZIN</div>
+          <div style="white-space: nowrap;">DO NOT COPY // PROPRIETARY DATA</div>
+          <div style="white-space: nowrap;">SECURE PREVIEW // MOHAMMED RAZIN</div>
+        </div>
+        <div class="secure-scanner-line" style="position: absolute; left: 0; width: 100%; height: 2px; background: rgba(0, 255, 65, 0.4); box-shadow: 0 0 10px rgba(0, 255, 65, 0.8); z-index: 12; top: 0; animation: secureScan 3s linear infinite; pointer-events: none;"></div>
+      </div>
+      <p class="secure-warning-text" style="font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--red); text-align: center; margin-top: 14px; letter-spacing: 1px; text-transform: uppercase;">
+        WARNING: SECURE TELEMETRY BUFFER. DOWNLOAD & RIGHT-CLICK INHIBITED.
+      </p>
+    </div>
+  </div>
+</div>
+
 <aside id="cf-assistant-panel" aria-label="CyberForge AI drawer">
   <div class="cf-assistant-head">
     <span>CYBERFORGE AI TERMINAL</span>
@@ -5877,5 +6077,3 @@ document.addEventListener('click', function(e) {
 
 </body>
 </html>
-<!-- Privacy link transitions smoothed v1.1.1 -->
-<!-- Footer alignment check v1.1.2 -->
