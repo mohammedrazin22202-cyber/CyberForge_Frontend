@@ -3913,182 +3913,6 @@
     box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
   }
 
-  /* ── SECURE PHOTO MODAL ── */
-  .photo-modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 5, 2, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: 99999;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-  .photo-modal-box {
-    width: 100%;
-    max-width: 480px;
-    background: #080808;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
-    position: relative;
-    animation: loaderFadeIn 0.3s ease forwards;
-  }
-  .photo-modal-box::before {
-    content: '';
-    position: absolute;
-    top: -1px; left: 10%; right: 10%; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--matrix-green), var(--cyan), transparent);
-  }
-  .photo-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 12px;
-    margin-bottom: 16px;
-  }
-  .photo-modal-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--cyan);
-  }
-  .photo-modal-close {
-    background: transparent;
-    border: none;
-    color: var(--text);
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: color 0.2s;
-  }
-  .photo-modal-close:hover {
-    color: var(--red);
-  }
-  @keyframes secureScan {
-    0% { top: 0%; }
-    50% { top: 100%; }
-    100% { top: 0%; }
-  }
-
-  /* ── RESUME PREVIEW MODAL ── */
-  #resume-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.93);
-    z-index: 99999;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(8px);
-    padding: 20px;
-  }
-  #resume-modal.active { display: flex; }
-
-  .resume-modal-box {
-    border: 1px solid var(--matrix-green);
-    background: #080808;
-    width: 100%;
-    max-width: 900px;
-    height: 85vh;
-    max-height: 90vh;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 0 60px rgba(0,255,65,0.2);
-    animation: loaderFadeIn 0.3s ease forwards;
-    overflow: hidden;
-  }
-
-  .resume-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--border);
-    flex-shrink: 0;
-  }
-
-  .resume-modal-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    color: var(--matrix-green);
-    text-transform: uppercase;
-  }
-
-  .resume-modal-btns {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-
-  .resume-modal-close {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--matrix-green);
-    font-size: 0.9rem;
-    width: 30px; height: 30px;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .resume-modal-close:hover { border-color: var(--matrix-green); color: var(--matrix-green); }
-
-  .resume-modal-body {
-    flex: 1;
-    overflow: hidden;
-    position: relative;
-    background: #050505;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .resume-preview-frame {
-    width: 100%;
-    height: 100%;
-    border: none;
-    background: #0d0d0d;
-  }
-
-  .resume-preview-placeholder {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-    padding: 20px;
-    text-align: center;
-    font-size: 0.85rem;
-    pointer-events: none;
-  }
-
-  .resume-download-btn-header {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 10px 22px;
-    border: 1px solid var(--matrix-mid);
-    background: transparent;
-    color: var(--matrix-mid);
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s;
-    border-radius: 4px;
-    display: inline-block;
-  }
-  .resume-download-btn-header:hover {
-    border-color: var(--matrix-green);
-    color: var(--matrix-green);
-    box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
-  }
-
   /* Sticky Mobile CTA Dock */
   .mobile-cta-dock {
     display: none;
@@ -4275,14 +4099,7 @@
 <header id="cf-osbar" aria-label="CyberForge OS navigation">
   <div class="cf-os-brand">
     <span class="cf-os-dot"><img src="cyberforge_logo.png" alt="" aria-hidden="true" /></span>
-    <div class="cf-breadcrumbs" id="cf-breadcrumbs">
-      <a href="index.html" class="cf-breadcrumb-root">CYBERFORGE_OS</a>
-      <span class="cf-breadcrumb-sep">:\</span>
-      <button class="cf-mobile-disconnect-btn" onclick="openDisconnectModal(event)">Disconnect</button>
-      <span class="cf-breadcrumb-item active">PORTFOLIO</span>
-      <span class="cf-breadcrumb-sep cf-breadcrumb-sub-sep" style="display:none;">\</span>
-      <span class="cf-breadcrumb-sub-item active" id="cf-breadcrumb-section" style="display:none;">ABOUT</span>
-    </div>
+    <a href="index.html" class="cf-breadcrumb-root">CYBERFORGE_OS</a>
   </div>
   <div class="cf-os-links">
     <a class="cf-os-link" href="index.html">Portfolio</a>
@@ -4312,7 +4129,13 @@
   <span class="nav-bracket tr"></span>
   <span class="nav-bracket bl"></span>
   <span class="nav-bracket br"></span>
-  <a href="#hero"><img src="cyberforge_logo.png" alt="CyberForge" class="nav-logo-img" /></a>
+  <div class="cf-breadcrumbs" id="cf-breadcrumbs">
+    <span class="cf-breadcrumb-sep">:\</span>
+    <button class="cf-mobile-disconnect-btn" onclick="openDisconnectModal(event)">Disconnect</button>
+    <span class="cf-breadcrumb-item active">PORTFOLIO</span>
+    <span class="cf-breadcrumb-sep cf-breadcrumb-sub-sep" style="display:none;">\</span>
+    <span class="cf-breadcrumb-sub-item active" id="cf-breadcrumb-section" style="display:none;">ABOUT</span>
+  </div>
   <div class="nav-mobile-section-title" id="nav-mobile-section-title">[ WELCOME ]</div>
   <div class="nav-links-container">
     <ul class="nav-links">
@@ -4420,6 +4243,13 @@
       <div class="about-block">
         <div class="about-block-label">EDUCATION:</div>
         <div class="about-block-val">MCA @ Measi Institute of Information Technology (2024–2026)<br>B.Com @ The New College (2021–2024)</div>
+      </div>
+      <div class="about-block" style="border: 1px dashed var(--border); padding: 12px; margin-top: 15px; display: flex; align-items: center; justify-content: space-between; border-radius: 4px;">
+        <div style="flex: 1;">
+          <div class="about-block-label" style="color: var(--cyan); margin-bottom: 2px;">SECURE PROFILE:</div>
+          <div class="about-block-val" style="font-size: 0.85rem; opacity: 0.85;">Photo available under secure OS decrypt system.</div>
+        </div>
+        <button class="cert-btn" onclick="openPhotoModal(event)" style="font-size: 0.75rem; padding: 6px 12px; border-radius: 4px; cursor: pointer; white-space: nowrap;">👁 See Me</button>
       </div>
     </div>
     <div class="about-stats reveal">
@@ -5007,7 +4837,7 @@
 </div>
 
 <footer>
-  &copy; 2026 Mohammed Razin — Built with passion, powered by data
+  &copy; 2026 Mohammed Razin - Built with passion, powered by data // <a href="privacy.html" target="_blank" style="color: var(--cyan); text-decoration: none; border-bottom: 1px dashed var(--cyan); transition: all 0.2s;" onmouseover="this.style.color='#fff'; this.style.borderBottomColor='#fff'; this.style.textShadow='0 0 8px rgba(0, 229, 255, 0.5)';" onmouseout="this.style.color='var(--cyan)'; this.style.borderBottomColor='var(--cyan)'; this.style.textShadow='none';">Privacy Policy</a>
 </footer>
 
 <script>
@@ -5842,6 +5672,7 @@ setInterval(() => {
       
       navLinks.forEach(a => a.classList.remove('active'));
       link.classList.add('active');
+      link.classList.add('visited');
       updateActiveOutline();
 
       clearTimeout(window.navClickTimeout);
@@ -5888,6 +5719,7 @@ setInterval(() => {
       const contactLink = document.querySelector('.nav-links a[href="#contact"]');
       if (contactLink) {
         contactLink.classList.add('active');
+        contactLink.classList.add('visited');
         updateActiveOutline();
         updateBreadcrumbs('contact');
       }
@@ -5909,6 +5741,7 @@ setInterval(() => {
         const active = document.querySelector('.nav-links a[href="#' + entry.target.id + '"]');
         if (active) {
           active.classList.add('active');
+          active.classList.add('visited');
           updateActiveOutline();
           updateBreadcrumbs(entry.target.id);
         }
@@ -5927,6 +5760,111 @@ setInterval(() => {
       setTimeout(() => updateActiveOutline(), 500);
     });
   }
+
+  // ── SECURE PHOTO DECRYPTION LOGIC ──
+  const secureImg = new Image();
+  secureImg.src = 'profile.jpg';
+
+  window.openPhotoModal = function(e) {
+    if(e) e.preventDefault();
+    const modal = document.getElementById('photo-modal');
+    if (modal) {
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      drawSecureCanvas();
+    }
+  };
+
+  window.closePhotoModal = function() {
+    const modal = document.getElementById('photo-modal');
+    if (modal) {
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+      clearSecureCanvas();
+    }
+  };
+
+  window.closePhotoModalWrapper = function(e) {
+    if (e.target.id === 'photo-modal') {
+      window.closePhotoModal();
+    }
+  };
+
+  function drawSecureCanvas() {
+    const canvas = document.getElementById('secure-photo-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const render = () => {
+      // Scale coordinates to fit max 440px width
+      const targetWidth = 440;
+      const scale = targetWidth / secureImg.naturalWidth;
+      const targetHeight = secureImg.naturalHeight * scale;
+
+      canvas.width = targetWidth;
+      canvas.height = targetHeight;
+
+      // Draw image to canvas
+      ctx.drawImage(secureImg, 0, 0, targetWidth, targetHeight);
+    };
+
+    if (secureImg.complete) {
+      render();
+    } else {
+      secureImg.onload = render;
+    }
+  }
+
+  function clearSecureCanvas() {
+    const canvas = document.getElementById('secure-photo-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      canvas.width = 0;
+      canvas.height = 0;
+    }
+  }
+
+  // Clear when switching windows/tabs (focus lost)
+  window.addEventListener('blur', () => {
+    clearSecureCanvas();
+  });
+  window.addEventListener('focus', () => {
+    const modal = document.getElementById('photo-modal');
+    if (modal && modal.style.display === 'flex') {
+      drawSecureCanvas();
+    }
+  });
+
+  // Block typical screenshot / print / printscreen keys
+  window.addEventListener('keydown', (e) => {
+    const modal = document.getElementById('photo-modal');
+    if (modal && modal.style.display === 'flex') {
+      if (e.key === 'PrintScreen' || e.key === 'Snapshot') {
+        clearSecureCanvas();
+        navigator.clipboard.writeText('SECURE DATA PROTECTED');
+        alert('SECURE SHIELD: Screenshot block activated.');
+      }
+      if (e.ctrlKey && (e.key === 's' || e.key === 'S' || e.key === 'p' || e.key === 'P' || e.key === 'u' || e.key === 'U')) {
+        e.preventDefault();
+        clearSecureCanvas();
+      }
+      if (e.key === 'Escape') {
+        window.closePhotoModal();
+      }
+    }
+  });
+
+  // Prevent drag copy
+  document.addEventListener('copy', (e) => {
+    const modal = document.getElementById('photo-modal');
+    if (modal && modal.style.display === 'flex') {
+      e.clipboardData.setData('text/plain', 'SECURE DATA PROTECTED');
+      e.preventDefault();
+    }
+  });
 })();
 
 // ── MOBILE NAV HAMBURGER ──
@@ -6077,5 +6015,3 @@ document.addEventListener('click', function(e) {
 
 </body>
 </html>
-<!-- Scanline animation keyframe speed tuned v1.2.1 -->
-<!-- Watermark contrast and layout refined v1.2.2 -->
