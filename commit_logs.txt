@@ -2,3 +2,4 @@
 # Update photo metadata - v1.0.1
 # Finish photo optimization - v1.0.2
 # Review social banner colors - v1.1.1
+# Metadata dimension checked - v1.1.2
