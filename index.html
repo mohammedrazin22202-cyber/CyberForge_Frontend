@@ -3,7 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohammed Razin | Data Scientist &amp; Analyst</title>
+<title>CYBERFORGE//MOHAMMED RAZIN H PORTFOLIO</title>
+<meta name="description" content="Explore the data science and analytics portfolio of Mohammed Razin. Specializing in advanced analytics, machine learning, and interactive data visualization.">
+<meta name="keywords" content="Mohammed Razin, Data Scientist, Data Analyst, Portfolio, Machine Learning, CyberForge">
+<meta name="author" content="Mohammed Razin">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="CYBERFORGE//MOHAMMED RAZIN H PORTFOLIO">
+<meta property="og:description" content="Explore the data science and analytics portfolio of Mohammed Razin. Specializing in advanced analytics, machine learning, and interactive data visualization.">
+<meta property="og:image" content="social_preview.jpg">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CYBERFORGE//MOHAMMED RAZIN H PORTFOLIO">
+<meta name="twitter:description" content="Explore the data science and analytics portfolio of Mohammed Razin. Specializing in advanced analytics, machine learning, and interactive data visualization.">
+<meta name="twitter:image" content="social_preview.jpg">
+
+<!-- Structured Data / JSON-LD Person Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mohammed Razin H",
+  "jobTitle": "Data Scientist & Analyst",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Chennai",
+    "addressRegion": "Tamil Nadu",
+    "addressCountry": "India"
+  },
+  "email": "mohammedrazin22202@gmail.com",
+  "telephone": "+91 93422 34674",
+  "sameAs": [
+    "https://www.linkedin.com/in/razin88307"
+  ]
+}
+</script>
+
 <link rel="icon" type="image/png" href="cyberforge_logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
@@ -553,7 +590,8 @@
   }
 
   .nav-links a {
-    color: rgba(0,163,18,0.6);
+    color: var(--matrix-green);
+    opacity: 1;
     text-decoration: none;
     font-size: 0.6rem;
     letter-spacing: 4px;
@@ -567,13 +605,21 @@
     font-family: 'Share Tech Mono', monospace;
   }
 
-  .nav-links a:hover {
-    color: #ffffff;
+  .nav-links a.visited {
+    color: var(--matrix-mid);
+    opacity: 0.6;
   }
 
-  .nav-links a.active {
+  .nav-links a:hover {
+    color: #ffffff;
+    opacity: 1;
+  }
+
+  .nav-links a.active,
+  .nav-links a.active.visited {
     color: var(--cyan);
     text-shadow: 0 0 10px var(--cyan-glow);
+    opacity: 1;
   }
 
   /* ── NAV OUTLINE & LOCK-ON BRACKETS ── */
@@ -3690,6 +3736,68 @@
     box-shadow: 0 0 20px rgba(0,255,65,0.15);
   }
 /* ===== END PATCH ===== */
+
+  /* ── SECURE PHOTO MODAL ── */
+  .photo-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 5, 2, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .photo-modal-box {
+    width: 100%;
+    max-width: 480px;
+    background: #080808;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+    position: relative;
+    animation: loaderFadeIn 0.3s ease forwards;
+  }
+  .photo-modal-box::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 10%; right: 10%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--matrix-green), var(--cyan), transparent);
+  }
+  .photo-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+  .photo-modal-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--cyan);
+  }
+  .photo-modal-close {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .photo-modal-close:hover {
+    color: var(--red);
+  }
+  @keyframes secureScan {
+    0% { top: 0%; }
+    50% { top: 100%; }
+    100% { top: 0%; }
+  }
 
   /* ── RESUME PREVIEW MODAL ── */
   #resume-modal {
