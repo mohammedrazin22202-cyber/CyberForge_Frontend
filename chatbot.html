@@ -379,7 +379,7 @@
   .header {
     position: relative; z-index: 10;
     border-bottom: 1px solid var(--border);
-    padding: 12px 24px;
+    padding: 8px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -394,18 +394,20 @@
       inset 0 -1px 0 rgba(0,255,136,0.10);
     animation: glowPulse 4s ease-in-out infinite;
     flex-shrink: 0;
+    gap: 10px;
   }
   /* Breadcrumbs Styling */
   .cf-breadcrumbs {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     color: var(--green);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-shadow: 0 0 8px var(--green-glow);
-    margin-left: clamp(8px, 2vw, 20px);
+    margin-left: 8px;
+    white-space: nowrap;
   }
   .cf-breadcrumb-root {
     color: var(--green);
@@ -429,9 +431,8 @@
     color: var(--accent-ai);
     text-shadow: 0 0 8px rgba(0,238,255,0.30);
   }
-  @media (max-width: 768px) {
-    .cf-breadcrumb-root,
-    .cf-breadcrumb-sep:first-of-type {
+  @media (max-width: 900px) {
+    .cf-breadcrumbs {
       display: none !important;
     }
   }
@@ -439,14 +440,15 @@
   /* TYPOGRAPHY — Main title (36-40px) */
   .logo {
     font-family: 'Orbitron', sans-serif;
-    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    font-size: clamp(1.2rem, 2vw, 1.7rem);
     font-weight: 900;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.15em;
     text-shadow:
       0 0 4px  var(--green),
       0 0 14px rgba(0,255,136,0.55),
       0 0 32px rgba(0,255,136,0.20);
     animation: logoFlicker 7s steps(1) infinite;
+    white-space: nowrap;
   }
 
   /* ACCENT: FORGE in cyan for contrast */
@@ -455,11 +457,12 @@
   .header-status {
     display: flex;
     align-items: center;
-    gap: 20px;
-    font-size: 0.68rem;  /* meta text ~10-11px */
-    font-weight: 300;
+    gap: 8px;
+    font-size: 0.65rem;  /* meta text ~10-11px */
+    font-weight: 400;
     color: var(--green-dim);
     letter-spacing: 0.05em;
+    flex-shrink: 0;
   }
 
   .status-dot {
@@ -983,26 +986,29 @@
   /* ── CLR button — desktop text, mobile icon ── */
   #clr-btn {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.70rem;
-    letter-spacing: 0.16em;
-    padding: 6px 18px;
-    border: 1px solid rgba(255,80,80,0.50);
+    font-size: 0.65rem;
+    letter-spacing: 0.10em;
+    padding: 0 10px;
+    height: 28px;
+    border: 1px solid rgba(255,80,80,0.38);
     border-radius: 2px;
-    background: rgba(255,40,40,0.07);
-    color: rgba(255,100,100,0.80);
+    background: rgba(255,40,40,0.06);
+    color: rgba(255,120,120,0.85);
     cursor: pointer;
-    transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    transition: all 0.2s ease;
     flex-shrink: 0;
     z-index: 2;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
   }
   #clr-btn::before { content: "CLEAR"; }  /* desktop label */
   #clr-btn svg     { display: none; }   /* desktop: hide icon */
   #clr-btn:hover {
     border-color: rgba(255,80,80,0.80);
-    color: rgba(255,120,120,0.95);
+    color: #ff8888;
+    background: rgba(255,60,60,0.14);
     box-shadow: 0 0 10px rgba(255,60,60,0.25);
   }
   #clr-btn:active { transform: scale(0.95); }
@@ -1255,8 +1261,8 @@
 
   #user-input:empty::before {
     content: attr(data-placeholder);
-    color: #005510;
-    font-weight: 300;
+    color: rgba(0, 255, 136, 0.45);
+    font-weight: 400;
     pointer-events: none;
   }
 
@@ -1447,35 +1453,55 @@
   }
 
   .input-bar .mic-btn {
-    display: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba(0, 255, 136, 0.06);
+    border: 1px solid rgba(0, 204, 102, 0.45);
+    border-radius: 2px;
+    color: var(--green-dim);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+  .input-bar .mic-btn:hover {
+    color: var(--green-bright);
+    border-color: var(--green-bright);
+    background: rgba(0, 255, 136, 0.14);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.35);
   }
 
   .voice-mode-link {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    min-height: 30px;
-    padding: 0 10px;
-    border: 1px solid rgba(0,255,136,0.28);
+    gap: 5px;
+    height: 28px;
+    padding: 0 9px;
+    border: 1px solid rgba(0,255,136,0.22);
     border-radius: 2px;
     color: var(--green-dim);
-    background: rgba(0,255,136,0.04);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.56rem;
-    letter-spacing: 0.12em;
+    background: rgba(0,20,8,0.6);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
     text-decoration: none;
     transition: all 0.2s ease;
+    box-sizing: border-box;
+    white-space: nowrap;
   }
 
   .voice-mode-link:hover {
-    color: var(--accent-active);
-    border-color: rgba(0,255,136,0.68);
-    box-shadow: 0 0 12px rgba(0,255,136,0.22);
+    color: var(--green-bright);
+    background: rgba(0,255,136,0.12);
+    border-color: rgba(0,255,136,0.55);
+    box-shadow: 0 0 10px rgba(0,255,136,0.25);
   }
 
   .voice-mode-link svg {
-    width: 15px;
-    height: 15px;
+    width: 13px;
+    height: 13px;
   }
 
   /* ── Score badge ── */
@@ -1619,20 +1645,26 @@
      RIGHT PANEL — System Modules
      ════════════════════════════════════════════════════ */
   .right-panel {
-    width: 220px;
+    width: 230px;
     flex-shrink: 0;
     border-left: 1px solid var(--border);
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 14px 11px;
-    overflow: hidden;
+    gap: 8px;
+    padding: 10px 10px 24px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--green-dim) transparent;
     /* GLASS layer */
     background: rgba(0, 20, 6, 0.45);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     box-shadow: inset 1px 0 14px rgba(0,255,136,0.04);
   }
+  .right-panel::-webkit-scrollbar { width: 4px; }
+  .right-panel::-webkit-scrollbar-track { background: transparent; }
+  .right-panel::-webkit-scrollbar-thumb { background: rgba(0,255,136,0.3); border-radius: 2px; }
 
   /* Shared module card */
   .r-module {
@@ -2333,15 +2365,38 @@
       linear-gradient(180deg, #001200 0%, #000900 100%) !important;
   }
 
-  /* Waveform visualizer bar */
+  /* Audio monitor card & waveform visualizer */
+  .audio-monitor-card {
+    border: 1px solid rgba(0,255,136,0.18);
+    border-radius: 3px;
+    padding: 6px 8px 4px;
+    margin: 6px 0 12px;
+    background: rgba(0,20,8,0.5);
+  }
+  .audio-monitor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.54rem;
+    color: var(--green-muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
+  }
+  .audio-monitor-status {
+    color: var(--green-bright);
+    font-size: 0.50rem;
+    font-weight: 700;
+  }
+
   .waveform-wrap {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 3px;
-    height: 28px;
-    margin: 8px 0 12px;
-    padding: 0 4px;
+    height: 24px;
+    margin: 4px 0 4px;
+    padding: 0 2px;
   }
 
   .waveform-bar {
@@ -2425,6 +2480,8 @@
   .right-panel {
     width: 230px !important;
     gap: 8px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
   }
 
   /* Social links module */
@@ -2438,36 +2495,39 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 7px 10px;
-    border: 1px solid rgba(0,255,136,0.15);
+    padding: 6px 10px;
+    border: 1px solid rgba(0,255,136,0.18);
     border-radius: 2px;
     text-decoration: none;
     color: var(--green-dim);
     font-family: 'Share Tech Mono', monospace;
     font-size: 0.65rem;
     letter-spacing: 0.06em;
-    background: rgba(0,255,136,0.02);
+    background: rgba(0,255,136,0.03);
     transition: all 0.2s ease;
     cursor: pointer;
   }
 
   .social-link:hover {
-    border-color: rgba(0,255,136,0.40);
+    border-color: rgba(0,255,136,0.50);
     color: var(--green);
-    background: rgba(0,255,136,0.07);
+    background: rgba(0,255,136,0.10);
     transform: translateX(2px);
-    box-shadow: 0 0 8px rgba(0,255,136,0.12);
+    box-shadow: 0 0 8px rgba(0,255,136,0.18);
   }
 
-  .social-link .sl-icon {
-    width: 16px;
-    height: 16px;
+  .social-link .sl-svg {
+    width: 14px;
+    height: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    font-size: 0.70rem;
     color: var(--green-dim);
+    transition: color 0.2s ease;
+  }
+  .social-link:hover .sl-svg {
+    color: var(--green-bright);
   }
 
   /* Tech stack badges */
@@ -2851,24 +2911,38 @@
   .os-select,
   .os-mode-btn {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 0.12em;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
     color: var(--green-dim);
-    border: 1px solid rgba(0,255,136,0.2);
-    background: rgba(0,0,0,0.34);
-    padding: 7px 8px;
+    border: 1px solid rgba(0,255,136,0.22);
+    background: rgba(0,20,8,0.6);
+    height: 28px;
+    padding: 0 9px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
     cursor: pointer;
     border-radius: 2px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    transition: all 0.2s ease;
   }
   .os-link:hover,
+  .os-select:hover,
   .os-select:focus,
-  .os-mode-btn:hover,
+  .os-mode-btn:hover {
+    color: var(--green-bright);
+    background: rgba(0,255,136,0.12);
+    border-color: rgba(0,255,136,0.55);
+    box-shadow: 0 0 10px rgba(0,255,136,0.25);
+  }
   .os-mode-btn.active {
     color: #000;
     background: var(--green);
     border-color: var(--green);
-    box-shadow: 0 0 16px rgba(0,255,136,0.3);
+    box-shadow: 0 0 12px rgba(0,255,136,0.4);
+    font-weight: bold;
   }
   @media (max-width: 720px) {
     .os-link,
@@ -2900,9 +2974,18 @@
 
 .r-module,
 .bubble,
-.side-panel > *,
-.right-panel > *{
+.op-card,
+.audio-monitor-card,
+.activity-log {
     background:rgba(0,10,0,0.92) !important;
+}
+
+.side-panel .bar-wrap {
+    background: rgba(0, 30, 10, 0.7) !important;
+    height: 4px !important;
+    border: none !important;
+    border-radius: 2px;
+    margin-bottom: 10px;
 }
 /* ===== END MATRIX LAYER FIX ===== */
 
@@ -2959,7 +3042,7 @@
     <div class="logo">CYBER<span>FORGE</span></div>
     <div class="cf-breadcrumbs">
       <a href="index.html" class="cf-breadcrumb-root">CYBERFORGE_OS</a>
-      <span class="cf-breadcrumb-sep">:\</span>
+      <span class="cf-breadcrumb-sep">\</span>
       <span class="cf-breadcrumb-item">PORTFOLIO</span>
       <span class="cf-breadcrumb-sep">\</span>
       <span class="cf-breadcrumb-sub-item">CHATBOT</span>
@@ -3017,7 +3100,7 @@
     <span><span class="status-dot" id="conn-dot"></span><span id="conn-label">CONNECTING...</span></span>
     <div class="operator-badge"><span class="op-dot"></span>M.RAZIN</div>
     <span id="clock">00:00:00</span>
-    <span>NODE-01</span>
+    <span id="header-node-id">NODE-01</span>
   </div>
 </div>
 
@@ -3048,7 +3131,12 @@
         <span class="op-tag">OPEN TO WORK</span>
       </div>
     </div>
-    <div class="waveform-wrap" id="waveform-wrap">
+    <div class="audio-monitor-card">
+      <div class="audio-monitor-header">
+        <span class="audio-monitor-title">// AUDIO MONITOR</span>
+        <span class="audio-monitor-status">LIVE</span>
+      </div>
+      <div class="waveform-wrap" id="waveform-wrap"></div>
     </div>
     <div class="panel-title">:: SYSTEM STATUS ::</div>
 
@@ -3088,7 +3176,9 @@
       <span class="panel-chevron">&#9660;</span>
     </div>
     <div class="panel-collapsible" id="act-body">
-      <div class="activity-log" id="activity-log"></div>
+      <div class="activity-log" id="activity-log">
+        <div>SYSTEM READY. Awaiting queries...</div>
+      </div>
     </div>
   </div>
 
@@ -3243,13 +3333,13 @@
       <div class="r-module-title">:: CONNECT ::</div>
       <div class="social-links">
         <a class="social-link" href="https://github.com/mohammedrazin22202-cyber" target="_blank" rel="noopener">
-          <span class="sl-icon">&#123;&#125;</span>GITHUB
+          <svg class="sl-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>GITHUB
         </a>
         <a class="social-link" href="https://www.linkedin.com/in/razinn88307" target="_blank" rel="noopener">
-          <span class="sl-icon">in</span>LINKEDIN
+          <svg class="sl-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v7.6h2.79v-7.6H6.46M7.86 6.88a1.45 1.45 0 1 0 0 2.9 1.45 1.45 0 0 0 0-2.9z"/></svg>LINKEDIN
         </a>
         <a class="social-link" href="index.html" target="_blank" rel="noopener">
-          <span class="sl-icon">&#9671;</span>PORTFOLIO
+          <svg class="sl-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>PORTFOLIO
         </a>
       </div>
     </div>
@@ -3568,9 +3658,9 @@ setConfidence(75, 'AWAITING QUERY');
 startIdleDrift();
 
 // ── MODULE 2: Packet Log ticker ───────────────────────────────────────────────
-const PKT_NODES = ['192.168.0.1','10.0.0.2','NODE-07','RELAY-C','AI-CORE','SYN-01'];
-const PKT_PROTO = ['TCP','UDP','WS ','RPC','HTTP'];
-const PKT_MSG   = ['SYN sent','ACK recv','HANDSHAKE OK','DATA 2KB','TIMEOUT','RETRY x1','ENCRYPT OK'];
+const PKT_NODES = ['192.168.1','10.0.2','NODE-07','RELAY','AI-CORE','SYN-01'];
+const PKT_PROTO = ['TCP','UDP','WS','RPC','HTTP'];
+const PKT_MSG   = ['SYN sent','ACK recv','HS-OK','DATA 2K','TIMEOUT','RETRY x1','SECURE-OK'];
 function randPkt() {
   const src  = PKT_NODES[Math.floor(Math.random()*PKT_NODES.length)];
   const dst  = PKT_NODES[Math.floor(Math.random()*PKT_NODES.length)];
@@ -5000,22 +5090,37 @@ window.addEventListener('resize', () => {});  // no-op, contenteditable handles 
 
 // ── Init chat after boot ──────────────────────────────────────────────────────
 async function initChat() {
-  await loadSuggestions();
+  loadSuggestions();
 
-  // Fetch system status
-  try {
-    const s = await fetch(API_BASE_URL + '/status');
-    const d = await s.json();
-    document.getElementById('entries-val').textContent = d.total_entries;
-    document.getElementById('loaded-val').textContent  = d.responses_loaded;
-    document.getElementById('conn-dot').classList.remove('red');
-    document.getElementById('conn-label').textContent = 'ONLINE';
-    addActivity('System status: ONLINE');
-    // responses loaded line removed
-  } catch {
-    document.getElementById('conn-dot').classList.add('red');
-    document.getElementById('conn-label').textContent = 'OFFLINE';
-  }
+  // Fetch system status in background (non-blocking)
+  (async function checkStatus() {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2500);
+      const s = await fetch(API_BASE_URL + '/status', { signal: controller.signal });
+      clearTimeout(timeoutId);
+      const d = await s.json();
+      const ev = document.getElementById('entries-val');
+      const lv = document.getElementById('loaded-val');
+      if (ev) ev.textContent = d.total_entries || '50+';
+      if (lv) lv.textContent = d.responses_loaded || 'ALL';
+      const cDot = document.getElementById('conn-dot');
+      const cLbl = document.getElementById('conn-label');
+      if (cDot) cDot.classList.remove('red');
+      if (cLbl) cLbl.textContent = 'ONLINE';
+      addActivity('System status: ONLINE');
+    } catch {
+      const cDot = document.getElementById('conn-dot');
+      const cLbl = document.getElementById('conn-label');
+      if (cDot) cDot.classList.remove('red');
+      if (cLbl) cLbl.textContent = 'STANDBY';
+      const ev = document.getElementById('entries-val');
+      const lv = document.getElementById('loaded-val');
+      if (ev && (ev.textContent === '—' || !ev.textContent)) ev.textContent = '50+';
+      if (lv && (lv.textContent === '—' || !lv.textContent)) lv.textContent = 'LOCAL';
+      addActivity('Terminal mode: STANDBY');
+    }
+  })();
 
   // ── Chat sync: replay stored history if available ──
   const _storedHistory = _getChatHistory();
