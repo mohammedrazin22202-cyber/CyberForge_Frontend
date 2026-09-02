@@ -968,6 +968,10 @@
     transition: all 0.25s;
     position: relative;
     overflow: hidden;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .btn::before {
@@ -3569,7 +3573,7 @@
     }
   }
 
-/* ===== MATRIX READABILITY PATCH ===== */
+/* ===== MATRIX READABILITY & CONTRAST (REFINED) ===== */
 .project-card,
 .workflow-card,
 .skill-category,
@@ -3584,31 +3588,11 @@
 .certmodal-box,
 .tsmodal-box,
 .vmodal-box,
-.exp-item{
-    position:relative;
-    overflow:hidden;
-}
-
-.project-card::after,
-.workflow-card::after,
-.skill-category::after,
-.learning-card::after,
-.achieve-card::after,
-.cert-card::after,
-.contact-box::after,
-.stat-box::after,
-.terminal-card::after,
-.about-block::after,
-.workflow-help::after,
-.certmodal-box::after,
-.tsmodal-box::after,
-.vmodal-box::after,
-.exp-item::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,0.88);
-    z-index:-1;
+.exp-item {
+  position: relative;
+  background: rgba(8, 12, 8, 0.92) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
   /* ── RESUME MODAL ── */
   #resume-modal {
@@ -4707,8 +4691,7 @@
 <section id="contact" data-sys="SYS.10">
   <div class="os-badge">[ CONNECT ]</div>
   <h2 class="section-title reveal"><span style="color:var(--cyan-mid);font-size:0.5em;letter-spacing:4px;vertical-align:middle;margin-right:12px;">SYS.10</span>Connect</h2>
-  <br><br>
-  <div class="contact-box reveal">
+  <div class="contact-box reveal" style="margin-top: 36px;">
     <div class="section-label" style="margin-bottom:10px; font-size:0.95rem;">I'd love to hear from you</div>
     <p style="font-family:'Rajdhani',sans-serif; color:var(--text); font-size:1.35rem; line-height:1.8; margin-bottom:10px;">
       Ready to turn data into decisions? Let's connect.
@@ -4716,9 +4699,8 @@
     <a href="mailto:mohammedrazin22202@gmail.com?subject=Reaching%20out%20from%20your%20Portfolio" class="contact-email">mohammedrazin22202@gmail.com</a>
     <a href="tel:+919342234674" class="contact-phone">+91 93422 34674</a>
     <a href="https://www.linkedin.com/in/razin88307" target="_blank" class="contact-linkedin">LinkedIn — Mohammed Razin</a>
-    <div style="font-size:0.95rem; letter-spacing:2px; color:var(--matrix-mid);">Chennai, Tamil Nadu, India</div>
-    <br>
-    <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+    <div style="font-size:0.95rem; letter-spacing:2px; color:var(--matrix-mid); margin-bottom: 24px;">Chennai, Tamil Nadu, India</div>
+    <div class="contact-actions-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:14px; max-width:640px; margin:0 auto;">
       <a href="mailto:mohammedrazin22202@gmail.com?subject=Reaching%20out%20from%20your%20Portfolio" class="btn">Send an Email</a>
       <a href="tel:+919342234674" class="btn">Call Me</a>
       <a href="chatbot.html" target="_blank" rel="noopener" class="btn">Chatbot</a>
