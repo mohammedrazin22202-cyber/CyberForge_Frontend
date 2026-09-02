@@ -47,7 +47,7 @@
   :root {
     --matrix-green: #00ff41;
     --matrix-dim: #003b00;
-    --matrix-mid: #00a312;
+    --matrix-mid: #00cc22;
     --matrix-glow: rgba(0,255,65,0.4);
     --black: #0a0a0a;
     --dark: #0d0d0d;
@@ -221,8 +221,8 @@
   /* Round Loading Container around Name */
   .name-ring-container {
     position: relative;
-    width: 320px;
-    height: 320px;
+    width: min(320px, 85vw);
+    height: min(320px, 85vw);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -234,8 +234,8 @@
 
   .name-progress-svg {
     position: absolute;
-    width: 320px;
-    height: 320px;
+    width: 100%;
+    height: 100%;
     transform: rotate(-90deg);
   }
 
@@ -435,7 +435,7 @@
     position: absolute;
     top: 3px;
     left: 8px;
-    font-size: 0.45rem;
+    font-size: 0.7rem;
     color: rgba(0, 255, 65, 0.45);
     letter-spacing: 1px;
     pointer-events: none;
@@ -1189,7 +1189,7 @@
   }
 
   .stat-label {
-    font-size: 0.58rem;
+    font-size: 0.72rem;
     letter-spacing: 2.5px;
     color: rgba(0,163,18,0.8);
     margin-top: 8px;
@@ -1298,7 +1298,7 @@
     width: 100%;
   }
   .additional-skills.open {
-    max-height: 600px;
+    max-height: 1800px;
     opacity: 1;
     margin-top: 14px;
   }
@@ -2853,7 +2853,7 @@
   /* CyberForge OS UI additions */
   body.theme-matrix {
     --matrix-green: #00ff41;
-    --matrix-mid: #00a312;
+    --matrix-mid: #00cc22;
     --matrix-dim: #003b00;
     --cyan: #00e5ff;
   }
@@ -3176,7 +3176,7 @@
     right: 126px;
     z-index: 20;
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.72rem;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--matrix-mid);
@@ -3216,7 +3216,7 @@
     content: attr(data-title);
     display: block;
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.58rem;
+    font-size: 0.72rem;
     letter-spacing: 0.2em;
     color: var(--matrix-mid);
     margin-bottom: 14px;
@@ -3474,7 +3474,7 @@
       border: 1px solid rgba(255, 51, 51, 0.4);
       color: var(--red);
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.55rem;
+      font-size: 0.72rem;
       padding: 3px 6px;
       margin-right: 10px;
       cursor: pointer;
@@ -3524,7 +3524,7 @@
     }
     .cf-assistant-actions a,
     .cf-assistant-actions button {
-      font-size: 0.55rem;
+      font-size: 0.72rem;
       padding: 5px 7px;
     }
     #cf-mobile-actions {
@@ -3550,7 +3550,7 @@
       color: var(--matrix-green);
       min-height: 42px;
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.58rem;
+      font-size: 0.72rem;
       letter-spacing: 0.08em;
       text-decoration: none;
       display: flex;
@@ -3568,7 +3568,7 @@
       right: auto;
       left: 12px;
       top: 10px;
-      font-size: 0.48rem;
+      font-size: 0.7rem;
       padding: 5px 10px;
     }
   }
@@ -3889,17 +3889,18 @@
 </head>
 <body>
 
+<!-- Sniper Crosshair Custom Cursor (Global) -->
+<div id="custom-cursor">
+  <div class="crosshair-dot"></div>
+  <div class="crosshair-ring"></div>
+  <div class="crosshair-tick t"></div>
+  <div class="crosshair-tick b"></div>
+  <div class="crosshair-tick l"></div>
+  <div class="crosshair-tick r"></div>
+</div>
+
 <!-- CINEMATIC BOOT SCREEN -->
 <div id="loader">
-  <!-- Sniper Crosshair Custom Cursor -->
-  <div id="custom-cursor">
-    <div class="crosshair-dot"></div>
-    <div class="crosshair-ring"></div>
-    <div class="crosshair-tick t"></div>
-    <div class="crosshair-tick b"></div>
-    <div class="crosshair-tick l"></div>
-    <div class="crosshair-tick r"></div>
-  </div>
 
   <canvas id="decrypt-canvas"></canvas>
   <div class="loader-vignette"></div>
@@ -4720,6 +4721,127 @@
     <span class="mcta-icon">🎤</span>
     <span>Voice Agent</span>
   </a>
+</div>
+
+
+<!-- FLOATING CHATBOT TOGGLE -->
+<a id="cf-chat-toggle" href="chatbot.html" target="_blank" rel="noopener" title="CyberForge AI — Open chatbot">⬡</a>
+
+<div id="cf-launcher" role="dialog" aria-modal="true" aria-label="Try asking CyberForge">
+  <div class="cf-launcher-box">
+    <div class="cf-launcher-head">
+      <div class="cf-launcher-title">TRY ASKING ME</div>
+      <button class="cf-os-btn" type="button" onclick="closeCommandLauncher()">Close</button>
+    </div>
+    <div class="cf-prompt-groups">
+      <div class="cf-prompt-group">
+        <h3>PROJECTS</h3>
+        <button class="cf-prompt-chip" onclick="askAssistant('Tell me about VConnect')">VConnect</button>
+        <button class="cf-prompt-chip" onclick="askAssistant('Tell me about LogiSense')">LogiSense</button>
+        <button class="cf-prompt-chip" onclick="askAssistant('What is your best project')">Best project</button>
+      </div>
+      <div class="cf-prompt-group">
+        <h3>SKILLS</h3>
+        <button class="cf-prompt-chip" onclick="askAssistant('What are your skills')">Skills</button>
+        <button class="cf-prompt-chip" onclick="askAssistant('What technologies do you know')">Tech stack</button>
+        <button class="cf-prompt-chip" onclick="askAssistant('Do you know Power BI')">Power BI</button>
+      </div>
+      <div class="cf-prompt-group">
+        <h3>HIRING</h3>
+        <button class="cf-prompt-chip" onclick="askAssistant('Why should we hire you')">Why hire you</button>
+        <button class="cf-prompt-chip" onclick="askAssistant('Are you open to internships')">Internships</button>
+        <button class="cf-prompt-chip" onclick="askAssistant('What roles are you interested in')">Target roles</button>
+      </div>
+      <div class="cf-prompt-group">
+        <h3>TECHNICAL</h3>
+        <button class="cf-prompt-chip" onclick="askAssistant('How do you protect your chatbot against Prompt Injection attacks')">Security</button>
+        <button class="cf-prompt-chip" onclick="askAssistant('How would your village dashboard handle a sudden spike of 100k concurrent users')">Scale</button>
+        <button class="cf-prompt-chip" onclick="askAssistant('Explain the Bias-Variance Trade-off in the context of your weather forecasting model')">ML depth</button>
+      </div>
+      <div class="cf-prompt-group">
+        <h3>FUN</h3>
+        <button class="cf-prompt-chip" onclick="askAssistant('Initialize CyberForge')">Initialize</button>
+        <button class="cf-prompt-chip" onclick="askAssistant('Enter hacker mode')">Hacker mode</button>
+        <button class="cf-prompt-chip" onclick="askAssistant('Wake up CyberForge AI')">Wake up AI</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RESUME PREVIEW MODAL -->
+<div id="resume-modal" onclick="closeResumeModalWrapper(event)">
+  <div class="resume-modal-box">
+    <div class="resume-modal-header">
+      <div class="resume-modal-title">RESUME PREVIEW</div>
+      <div class="resume-modal-btns">
+        <a href="My_Resume.pdf" id="resume-download-btn" download="Mohammed_Razin_Data_Analyst.pdf" class="resume-download-btn-header">⬇ Download Resume (PDF)</a>
+        <button class="resume-modal-close" onclick="closeResumeModalInner()">✕</button>
+      </div>
+    </div>
+    <div class="resume-modal-body">
+      <div class="resume-preview-placeholder" id="resume-frame-loader">
+        <span style="color:var(--matrix-green); font-size:1.5rem; margin-bottom:8px; animation: cursorBlink 1s infinite;">■</span>
+        <span>LOADING PREVIEW TELEMETRY...</span>
+      </div>
+      <iframe src="about:blank" class="resume-preview-frame" id="resume-preview-iframe" onload="hideResumeLoader()"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- SECURE PHOTO VIEWER MODAL -->
+<div id="photo-modal" class="photo-modal-overlay" onclick="closePhotoModalWrapper(event)">
+  <div class="photo-modal-box" oncontextmenu="return false;">
+    <div class="photo-modal-header">
+      <div class="photo-modal-title">SECURE_IMAGE_DECRYPTION.SYS</div>
+      <button class="photo-modal-close" onclick="closePhotoModal()">✕</button>
+    </div>
+    <div class="photo-modal-body">
+      <div class="secure-canvas-container" style="position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #000; border: 1px solid var(--border); border-radius: 6px;">
+        <canvas id="secure-photo-canvas" style="display: block; max-width: 100%; height: auto; user-select: none; -webkit-user-drag: none; pointer-events: none;"></canvas>
+        <div class="secure-watermark-overlay" style="position: absolute; inset: 0; pointer-events: none; z-index: 10; display: flex; flex-direction: column; justify-content: space-around; align-items: center; opacity: 0.15; color: var(--matrix-green); font-family: 'Share Tech Mono', monospace; font-size: 1.1rem; transform: rotate(-30deg); user-select: none;">
+          <div style="white-space: nowrap;">SECURE PREVIEW // MOHAMMED RAZIN</div>
+          <div style="white-space: nowrap;">DO NOT COPY // PROPRIETARY DATA</div>
+          <div style="white-space: nowrap;">SECURE PREVIEW // MOHAMMED RAZIN</div>
+        </div>
+        <div class="secure-scanner-line" style="position: absolute; left: 0; width: 100%; height: 2px; background: rgba(0, 255, 65, 0.4); box-shadow: 0 0 10px rgba(0, 255, 65, 0.8); z-index: 12; top: 0; animation: secureScan 3s linear infinite; pointer-events: none;"></div>
+      </div>
+      <p class="secure-warning-text" style="font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--red); text-align: center; margin-top: 14px; letter-spacing: 1px; text-transform: uppercase;">
+        WARNING: SECURE TELEMETRY BUFFER. DOWNLOAD & RIGHT-CLICK INHIBITED.
+      </p>
+    </div>
+  </div>
+</div>
+
+<aside id="cf-assistant-panel" aria-label="CyberForge AI drawer">
+  <div class="cf-assistant-head">
+    <span>CYBERFORGE AI TERMINAL</span>
+    <div class="cf-assistant-actions">
+      <a href="chatbot.html" target="_blank" rel="noopener">Full</a>
+      <button type="button" onclick="toggleAssistantDrawer(false)">Disconnect</button>
+    </div>
+  </div>
+  <iframe id="cf-assistant-frame" title="CyberForge AI Chatbot" src="about:blank"></iframe>
+</aside>
+
+<!-- DISCONNECT CONFIRMATION MODAL -->
+<div id="disconnect-modal" class="cf-modal-overlay" onclick="closeDisconnectModalWrapper(event)">
+  <div class="cf-modal-box">
+    <div class="cf-modal-header">
+      <div class="cf-modal-title">WARNING :: SECURE DISCONNECT</div>
+      <button class="cf-modal-close" onclick="closeDisconnectModal()">✕</button>
+    </div>
+    <div class="cf-modal-body">
+      <p class="cf-modal-message">
+        >> Proceeding will sever the link to CyberForge OS.<br>
+        >> Active session telemetry will be archived.<br>
+        >> Are you sure you want to terminate connection?
+      </p>
+      <div class="cf-modal-buttons">
+        <button class="cf-btn-confirm" onclick="confirmDisconnect()">PROCEED</button>
+        <button class="cf-btn-cancel" onclick="closeDisconnectModal()">CANCEL</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <footer>
@@ -5774,130 +5896,7 @@ document.addEventListener('click', function(e) {
     closeMobileNav();
   }
 });
-</script><a id="cf-chat-toggle" href="chatbot.html" target="_blank" rel="noopener" title="CyberForge AI — Open chatbot">⬡</a>
-
-<div id="cf-launcher" role="dialog" aria-modal="true" aria-label="Try asking CyberForge">
-  <div class="cf-launcher-box">
-    <div class="cf-launcher-head">
-      <div class="cf-launcher-title">TRY ASKING ME</div>
-      <button class="cf-os-btn" type="button" onclick="closeCommandLauncher()">Close</button>
-    </div>
-    <div class="cf-prompt-groups">
-      <div class="cf-prompt-group">
-        <h3>PROJECTS</h3>
-        <button class="cf-prompt-chip" onclick="askAssistant('Tell me about VConnect')">VConnect</button>
-        <button class="cf-prompt-chip" onclick="askAssistant('Tell me about LogiSense')">LogiSense</button>
-        <button class="cf-prompt-chip" onclick="askAssistant('What is your best project')">Best project</button>
-      </div>
-      <div class="cf-prompt-group">
-        <h3>SKILLS</h3>
-        <button class="cf-prompt-chip" onclick="askAssistant('What are your skills')">Skills</button>
-        <button class="cf-prompt-chip" onclick="askAssistant('What technologies do you know')">Tech stack</button>
-        <button class="cf-prompt-chip" onclick="askAssistant('Do you know Power BI')">Power BI</button>
-      </div>
-      <div class="cf-prompt-group">
-        <h3>HIRING</h3>
-        <button class="cf-prompt-chip" onclick="askAssistant('Why should we hire you')">Why hire you</button>
-        <button class="cf-prompt-chip" onclick="askAssistant('Are you open to internships')">Internships</button>
-        <button class="cf-prompt-chip" onclick="askAssistant('What roles are you interested in')">Target roles</button>
-      </div>
-      <div class="cf-prompt-group">
-        <h3>TECHNICAL</h3>
-        <button class="cf-prompt-chip" onclick="askAssistant('How do you protect your chatbot against Prompt Injection attacks')">Security</button>
-        <button class="cf-prompt-chip" onclick="askAssistant('How would your village dashboard handle a sudden spike of 100k concurrent users')">Scale</button>
-        <button class="cf-prompt-chip" onclick="askAssistant('Explain the Bias-Variance Trade-off in the context of your weather forecasting model')">ML depth</button>
-      </div>
-      <div class="cf-prompt-group">
-        <h3>FUN</h3>
-        <button class="cf-prompt-chip" onclick="askAssistant('Initialize CyberForge')">Initialize</button>
-        <button class="cf-prompt-chip" onclick="askAssistant('Enter hacker mode')">Hacker mode</button>
-        <button class="cf-prompt-chip" onclick="askAssistant('Wake up CyberForge AI')">Wake up AI</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- RESUME PREVIEW MODAL -->
-<div id="resume-modal" onclick="closeResumeModalWrapper(event)">
-  <div class="resume-modal-box">
-    <div class="resume-modal-header">
-      <div class="resume-modal-title">RESUME PREVIEW</div>
-      <div class="resume-modal-btns">
-        <a href="My_Resume.pdf" id="resume-download-btn" download="Mohammed_Razin_Data_Analyst.pdf" class="resume-download-btn-header">⬇ Download Resume (PDF)</a>
-        <button class="resume-modal-close" onclick="closeResumeModalInner()">✕</button>
-      </div>
-    </div>
-    <div class="resume-modal-body">
-      <div class="resume-preview-placeholder" id="resume-frame-loader">
-        <span style="color:var(--matrix-green); font-size:1.5rem; margin-bottom:8px; animation: cursorBlink 1s infinite;">■</span>
-        <span>LOADING PREVIEW TELEMETRY...</span>
-      </div>
-      <iframe src="about:blank" class="resume-preview-frame" id="resume-preview-iframe" onload="hideResumeLoader()"></iframe>
-    </div>
-  </div>
-</div>
-
-<!-- SECURE PHOTO VIEWER MODAL -->
-<div id="photo-modal" class="photo-modal-overlay" onclick="closePhotoModalWrapper(event)">
-  <div class="photo-modal-box" oncontextmenu="return false;">
-    <div class="photo-modal-header">
-      <div class="photo-modal-title">SECURE_IMAGE_DECRYPTION.SYS</div>
-      <button class="photo-modal-close" onclick="closePhotoModal()">✕</button>
-    </div>
-    <div class="photo-modal-body">
-      <div class="secure-canvas-container" style="position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #000; border: 1px solid var(--border); border-radius: 6px;">
-        <canvas id="secure-photo-canvas" style="display: block; max-width: 100%; height: auto; user-select: none; -webkit-user-drag: none; pointer-events: none;"></canvas>
-        <div class="secure-watermark-overlay" style="position: absolute; inset: 0; pointer-events: none; z-index: 10; display: flex; flex-direction: column; justify-content: space-around; align-items: center; opacity: 0.15; color: var(--matrix-green); font-family: 'Share Tech Mono', monospace; font-size: 1.1rem; transform: rotate(-30deg); user-select: none;">
-          <div style="white-space: nowrap;">SECURE PREVIEW // MOHAMMED RAZIN</div>
-          <div style="white-space: nowrap;">DO NOT COPY // PROPRIETARY DATA</div>
-          <div style="white-space: nowrap;">SECURE PREVIEW // MOHAMMED RAZIN</div>
-        </div>
-        <div class="secure-scanner-line" style="position: absolute; left: 0; width: 100%; height: 2px; background: rgba(0, 255, 65, 0.4); box-shadow: 0 0 10px rgba(0, 255, 65, 0.8); z-index: 12; top: 0; animation: secureScan 3s linear infinite; pointer-events: none;"></div>
-      </div>
-      <p class="secure-warning-text" style="font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--red); text-align: center; margin-top: 14px; letter-spacing: 1px; text-transform: uppercase;">
-        WARNING: SECURE TELEMETRY BUFFER. DOWNLOAD & RIGHT-CLICK INHIBITED.
-      </p>
-    </div>
-  </div>
-</div>
-
-<aside id="cf-assistant-panel" aria-label="CyberForge AI drawer">
-  <div class="cf-assistant-head">
-    <span>CYBERFORGE AI TERMINAL</span>
-    <div class="cf-assistant-actions">
-      <a href="chatbot.html" target="_blank" rel="noopener">Full</a>
-      <button type="button" onclick="toggleAssistantDrawer(false)">Disconnect</button>
-    </div>
-  </div>
-  <iframe id="cf-assistant-frame" title="CyberForge AI Chatbot" src="about:blank"></iframe>
-</aside>
-
-<div id="cf-mobile-actions" aria-label="Quick actions">
-  <button type="button" onclick="toggleAssistantDrawer(true)">Chat</button>
-  <a href="voice.html" target="_blank" rel="noopener">Voice</a>
-  <a href="#" onclick="openResumeModal(event)">Resume</a>
-  <a href="#contact">Contact</a>
-</div>
-
-<!-- DISCONNECT CONFIRMATION MODAL -->
-<div id="disconnect-modal" class="cf-modal-overlay" onclick="closeDisconnectModalWrapper(event)">
-  <div class="cf-modal-box">
-    <div class="cf-modal-header">
-      <div class="cf-modal-title">WARNING :: SECURE DISCONNECT</div>
-      <button class="cf-modal-close" onclick="closeDisconnectModal()">✕</button>
-    </div>
-    <div class="cf-modal-body">
-      <p class="cf-modal-message">
-        >> Proceeding will sever the link to CyberForge OS.<br>
-        >> Active session telemetry will be archived.<br>
-        >> Are you sure you want to terminate connection?
-      </p>
-      <div class="cf-modal-buttons">
-        <button class="cf-btn-confirm" onclick="confirmDisconnect()">PROCEED</button>
-        <button class="cf-btn-cancel" onclick="closeDisconnectModal()">CANCEL</button>
-      </div>
-    </div>
-  </div>
-</div>
+</script>
 
 </body>
 </html>
