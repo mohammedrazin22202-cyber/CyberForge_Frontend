@@ -776,7 +776,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 100px 60px 40px;
+    padding: 160px 60px 60px;
     gap: 60px;
   }
 
@@ -1355,8 +1355,11 @@
     font-weight: 900;
     color: var(--matrix-dim);
     position: absolute;
-    top: 20px; right: 30px;
+    top: 20px;
+    right: 30px;
     line-height: 1;
+    pointer-events: none;
+    opacity: 0.35;
   }
 
   .project-tag {
@@ -1373,6 +1376,7 @@
     font-weight: 700;
     letter-spacing: 2px;
     margin-bottom: 20px;
+    padding-right: 60px;
   }
 
   .project-title-link {
@@ -1660,6 +1664,7 @@
     text-shadow: 0 0 10px var(--matrix-green);
   }
 
+  @media (max-width: 650px) { .workflow-help-list { grid-template-columns: 1fr !important; } }
   .workflow-help-list {
     list-style: none;
     padding: 0;
@@ -1770,6 +1775,9 @@
     border-color: var(--matrix-green);
     box-shadow: 0 0 30px rgba(0,255,65,0.12);
     transform: translateX(4px);
+  }
+  .exp-item:hover::before {
+    transform: translateX(-4px) rotate(45deg);
   }
 
   .exp-item::before {
