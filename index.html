@@ -736,15 +736,17 @@
   .nav-mobile-panel {
     display: none;
     position: fixed;
-    top: 0; left: 0; right: 0;
+    top: 54px; left: 0; right: 0;
     background: rgba(0,4,0,0.97);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(0,255,65,0.2);
-    z-index: 9998;
-    padding: 70px 0 24px;
+    z-index: 99999;
+    padding: 16px 0 24px;
     flex-direction: column;
     box-shadow: 0 8px 40px rgba(0,0,0,0.8);
+    max-height: calc(100dvh - 54px);
+    overflow-y: auto;
   }
   .nav-mobile-panel.open { display: flex; }
   .nav-mobile-panel a {
@@ -2661,114 +2663,8 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-    nav { padding: 12px 20px; }
-    .nav-links { gap: 16px; }
-    .nav-links a { font-size: 0.65rem; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    section { padding: 60px 20px; }
-    /* project-card padding now handled in the mobile block above */
-
-    /* ── PROJECT CARDS — mobile fix ── */
-    #projects {
-      padding: 60px 16px;
-    }
-    .project-card {
-      padding: 28px 20px 28px 24px;
-    }
-    .project-number {
-      font-size: 2rem;
-      top: 16px;
-      right: 16px;
-      color: rgba(0,255,65,0.25);
-      opacity: 1;
-    }
-    .project-title {
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      line-height: 1.5;
-      padding-right: 40px; /* stop text running under the 01/02 number */
-    }
-    .project-desc {
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-    .project-metrics {
-      gap: 16px;
-      margin-top: 20px;
-    }
-    .metric-value {
-      font-size: 1.1rem;
-    }
-    .metric-label {
-      font-size: 0.55rem;
-      letter-spacing: 1px;
-    }
-    .par-block {
-      margin-top: 18px;
-      padding-top: 16px;
-      gap: 12px;
-    }
-    .par-row {
-      flex-direction: column;
-      gap: 4px;
-    }
-    .par-label {
-      font-size: 0.55rem;
-      letter-spacing: 2px;
-      min-width: unset;
-    }
-    .par-text {
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-
-
-    /* ── SECTION TITLES — scale down on mobile ── */
-    .section-title {
-      font-size: clamp(1.2rem, 6vw, 1.8rem);
-      letter-spacing: 1px;
-      margin-bottom: 32px;
-      white-space: normal;
-      word-break: break-word;
-    }
-
-    /* ── AI MODULES GRID — single column on mobile ── */
-    .learning-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-    .learning-card {
-      padding: 18px 14px;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0;
-    }
-    .learning-icon {
-      font-size: 1.4rem;
-      margin-bottom: 8px;
-    }
-    .learning-card-body {
-      flex: 1;
-      min-width: 0;
-    }
-    .learning-title {
-      font-size: 0.6rem;
-      letter-spacing: 1px;
-      margin-bottom: 6px;
-    }
-    .learning-desc {
-      font-size: 0.82rem;
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
-    .learning-bar-wrap {
-      margin-top: 6px;
-    }
-
-    /* ── NAV — hamburger on mobile ── */
     nav {
-      top: 8px;
+      top: 60px;
       width: calc(100vw - 16px);
       padding: 0 14px;
       height: 48px;
@@ -3536,7 +3432,8 @@
       gap: 10px;
       padding: 8px 10px;
     }
-    .cf-os-links {
+    @media (max-width: 1100px) { .cf-os-links { display: none; } }
+  .cf-os-links {
       display: none;
     }
     .cf-os-brand {
@@ -4131,7 +4028,6 @@
   <span class="nav-bracket br"></span>
   <div class="cf-breadcrumbs" id="cf-breadcrumbs">
     <span class="cf-breadcrumb-sep">:\</span>
-    <button class="cf-mobile-disconnect-btn" onclick="openDisconnectModal(event)">Disconnect</button>
     <span class="cf-breadcrumb-item active">PORTFOLIO</span>
     <span class="cf-breadcrumb-sep cf-breadcrumb-sub-sep" style="display:none;">\</span>
     <span class="cf-breadcrumb-sub-item active" id="cf-breadcrumb-section" style="display:none;">ABOUT</span>
