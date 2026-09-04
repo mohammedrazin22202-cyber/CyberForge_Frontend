@@ -507,6 +507,7 @@ h1::before, h1::after {
   position: absolute; top: 0; left: 0;
   width: 100%; height: 100%;
   opacity: 0;
+  white-space: pre-line;
 }
 
 h1::before { color: var(--red); animation: glitch1 7s infinite; }
@@ -552,12 +553,17 @@ h1::after  { color: var(--cyan); animation: glitch2 7s infinite; }
 }
 
 .status-dot {
-  width: 7px; height: 7px;
+  width: 8px; height: 8px;
   border-radius: 50%;
   background: var(--green);
   box-shadow: 0 0 8px var(--green);
   animation: pulse 2.4s ease-in-out infinite;
+  transition: background 0.3s, box-shadow 0.3s;
 }
+
+.listening .status-dot { background: var(--red); box-shadow: 0 0 10px var(--red); }
+.speaking  .status-dot { background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+.thinking  .status-dot { background: var(--amber); box-shadow: 0 0 10px var(--amber); }
 
 .listening .status-row .status-pill:first-child {
   border-color: rgba(255,36,79,0.4);
@@ -742,18 +748,24 @@ h1::after  { color: var(--cyan); animation: glitch2 7s infinite; }
 .response-panel {
   min-height: 120px;
   padding: 14px 16px;
-  border: 1px solid rgba(0,255,106,0.16);
+  border: 1px solid var(--line);
   border-radius: 6px;
-  background: rgba(0,0,0,0.52);
+  background: rgba(0,0,0,0.56);
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   line-height: 1.6;
-  color: rgba(228,255,234,0.92);
-  overflow: auto;
+  color: rgba(228,255,234,0.94);
+  overflow-y: auto;
   max-height: 240px;
   transition: border-color 0.4s, box-shadow 0.4s;
   position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,255,106,0.25) transparent;
 }
+
+.response-panel::-webkit-scrollbar { width: 4px; }
+.response-panel::-webkit-scrollbar-thumb { background: rgba(0,255,106,0.25); border-radius: 2px; }
+.response-panel::-webkit-scrollbar-track { background: transparent; }
 
 /* Typing cursor for active response */
 .response-panel.active::after {
@@ -1047,40 +1059,60 @@ body.theme-matrix {
   --green: #00ff6a;
   --green-dim: #00c852;
   --green-soft: #00b84d;
+  --green-dark: #063915;
   --cyan: #6fffe3;
   --cyan-dim: #2dd4bf;
+  --line: rgba(0, 255, 106, 0.22);
+  --glow-green: 0 0 28px rgba(0,255,106,0.45);
+  --glow-cyan: 0 0 28px rgba(111,255,227,0.38);
 }
 body.theme-cyan {
   --green: #55f7ff;
   --green-dim: #20c7de;
   --green-soft: #18a6bf;
+  --green-dark: #062b33;
   --cyan: #8ffff7;
   --cyan-dim: #55f7ff;
+  --line: rgba(85, 247, 255, 0.25);
+  --glow-green: 0 0 28px rgba(85,247,255,0.45);
+  --glow-cyan: 0 0 28px rgba(143,255,247,0.38);
 }
 body.theme-red {
   --green: #ff315a;
   --green-dim: #c91d3f;
   --green-soft: #a81533;
+  --green-dark: #380812;
   --cyan: #ffd166;
   --cyan-dim: #ffb703;
+  --line: rgba(255, 49, 90, 0.25);
+  --glow-green: 0 0 28px rgba(255,49,90,0.45);
+  --glow-cyan: 0 0 28px rgba(255,209,102,0.38);
 }
 body.theme-minimal {
   --green: #e7fff1;
   --green-dim: #abc8b7;
   --green-soft: #91b8a1;
+  --green-dark: #122119;
   --cyan: #ffffff;
   --cyan-dim: #d7e3dc;
+  --line: rgba(231, 255, 241, 0.25);
+  --glow-green: 0 0 28px rgba(231,255,241,0.35);
+  --glow-cyan: 0 0 28px rgba(255,255,255,0.3);
 }
 body.recruiter-mode #matrix-rain,
 body.recruiter-mode .scanlines,
 body.recruiter-mode .grain {
-  opacity: 0.06 !important;
+  opacity: 0.04 !important;
 }
-body.recruiter-mode *,
-body.recruiter-mode *::before,
-body.recruiter-mode *::after {
-  animation-duration: 0.01ms !important;
-  animation-iteration-count: 1 !important;
+body.recruiter-mode .orbit-ring,
+body.recruiter-mode .agent-aura {
+  animation-duration: 9999s !important;
+}
+body.recruiter-mode .robot-image {
+  animation: none !important;
+}
+body.recruiter-mode .agent-shadow {
+  animation: none !important;
 }
 body.cyber-mode #matrix-rain {
   opacity: 0.46;
@@ -1291,7 +1323,7 @@ body.cyber-mode #matrix-rain {
     <div class="console" id="voice-shell">
       <div class="identity">
         <div class="kicker" id="agent-state">SYSTEM WAITING</div>
-        <h1 data-text="Voice Agent">Voice<br>Agent</h1>
+        <h1 data-text="Voice&#10;Agent">Voice<br>Agent</h1>
         <div class="status-row">
           <span class="status-pill"><span class="status-dot"></span><span id="voice-status">ONLINE</span></span>
           <span class="status-pill" id="browser-status">VOICE CHECK</span>
@@ -1503,6 +1535,11 @@ for (let i = 0; i < 40; i++) {
   meter.appendChild(bar);
 }
 
+// ── THEME HELPER ──
+function getThemeColor() {
+  return getComputedStyle(document.body).getPropertyValue('--green').trim() || '#00ff6a';
+}
+
 // ── MATRIX RAIN ──
 function resizeCanvas() {
   canvas.width = window.innerWidth;
@@ -1521,10 +1558,11 @@ function drawRain() {
   ctx.fillStyle = 'rgba(0,0,0,0.07)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.font = fontSize + 'px JetBrains Mono, Share Tech Mono';
+  const themeColor = getThemeColor();
   for (let i = 0; i < cols; i++) {
     const ch = chars[Math.floor(Math.random() * chars.length)];
     const head = Math.random() > 0.94;
-    ctx.fillStyle = head ? '#e8fff0' : (Math.random() > 0.78 ? '#00ff6a' : '#035c1e');
+    ctx.fillStyle = head ? '#e8fff0' : (Math.random() > 0.78 ? themeColor : 'rgba(0,180,80,0.4)');
     ctx.fillText(ch, i * fontSize, drops[i] * fontSize);
     if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
     drops[i]++;
