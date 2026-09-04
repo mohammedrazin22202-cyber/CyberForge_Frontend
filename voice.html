@@ -463,9 +463,10 @@ body {
 /* ── CONSOLE (right side) ── */
 .console {
   min-height: min(780px, calc(100dvh - 128px));
-  display: grid;
-  align-content: center;
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
 }
 
 .identity { border-left: 2px solid var(--green); padding-left: 20px; }
@@ -879,12 +880,15 @@ h1::after  { color: var(--cyan); animation: glitch2 7s infinite; }
 
 /* Input char counter */
 .char-counter {
-  position: absolute;
-  right: 60px; bottom: -18px;
+  display: block;
+  text-align: right;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
-  color: rgba(0,255,106,0.3);
+  font-size: 0.68rem;
+  color: rgba(0,255,106,0.4);
   letter-spacing: 0.06em;
+  margin-top: 5px;
+  margin-bottom: 2px;
+  pointer-events: none;
 }
 
 /* ── COMMAND CHIPS ── */
@@ -1011,12 +1015,32 @@ h1::after  { color: var(--cyan); animation: glitch2 7s infinite; }
 
   h1 { font-size: clamp(2rem, 15vw, 4rem); }
 
-  .voice-controls { grid-template-columns: 1fr; }
-  .voice-btn { width: 82px; justify-self: center; order: 2; }
-  .response-panel { order: 1; min-height: 120px; }
-  .control-stack { order: 3; flex-direction: row; justify-content: center; }
+  .voice-controls {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .voice-btn {
+    width: 84px;
+    justify-self: center;
+    order: 1;
+  }
+  .response-panel {
+    order: 2;
+    min-height: 100px;
+  }
+  .control-stack {
+    order: 3;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 
-  .meter { grid-template-columns: repeat(24, 1fr); }
+  .meter {
+    grid-template-columns: repeat(24, 1fr);
+  }
+  .meter i:nth-child(n+25) {
+    display: none !important;
+  }
 }
 /* CyberForge OS shared controls */
 body.theme-matrix {
