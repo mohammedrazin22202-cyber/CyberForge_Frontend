@@ -4100,6 +4100,7 @@
         <div class="t-line"><span class="t-key">records_processed</span><span class="t-val"> = </span><span class="t-highlight">650K+</span></div>
         <div class="t-line"><span class="t-key">efficiency_gain</span><span class="t-val">  = </span><span class="t-highlight">70%</span></div>
         <div class="t-line"><span class="t-key">leetcode_solved</span><span class="t-val">  = </span><span class="t-highlight">1750+</span></div>
+        <div class="t-line"><span class="t-key">build_sequence</span><span class="t-val">   = </span><span class="t-comment">#29082003:7200170345</span></div>
         <div class="t-line">&nbsp;</div>
         <div class="t-line"><span class="t-prompt">$</span><span class="t-val">_</span><span class="t-cursor-blink"></span></div>
       </div>
@@ -4846,9 +4847,97 @@
 
 <footer>
   &copy; 2026 Mohammed Razin - Built with passion, powered by data // <a href="privacy.html" target="_blank" style="color: var(--cyan); text-decoration: none; border-bottom: 1px dashed var(--cyan); transition: all 0.2s;" onmouseover="this.style.color='#fff'; this.style.borderBottomColor='#fff'; this.style.textShadow='0 0 8px rgba(0, 229, 255, 0.5)';" onmouseout="this.style.color='var(--cyan)'; this.style.borderBottomColor='var(--cyan)'; this.style.textShadow='none';">Privacy Policy</a>
+  <div style="font-size: 0.65rem; color: rgba(0, 255, 65, 0.35); margin-top: 6px; letter-spacing: 1.5px; font-family: monospace;">
+    KERNEL: 29082003 • ARCH: 05051970 • REL: 22102022 • REV: 05082023 • RUNTIME_ID: 7200170345
+  </div>
 </footer>
 
 <script>
+// ══════════════════════════════════════════════════════════════════════════════
+// TELEMETRY & AUDIO-VISUAL FREQUENCY MATRIX
+// ══════════════════════════════════════════════════════════════════════════════
+const _CF_RENDER_SALT = 'CYBERFORGE_KERNEL_CORE_V2';
+const _CF_RENDER_VECTORS = [
+  [90, 92, 63, 35, 15, 246, 238, 195],
+  [88, 80, 63, 46, 12, 255, 233, 192],
+  [90, 87, 62, 43, 15, 246, 236, 194],
+  [88, 80, 63, 35, 15, 246, 236, 195],
+  [88, 80, 63, 47, 15, 246, 236, 197],
+  [89, 87, 62, 42, 15, 246, 236, 193],
+  [90, 85, 63, 42, 15, 246, 236, 198],
+  [89, 86, 63, 34, 15, 246, 236, 198],
+  [95, 87, 63, 43, 12, 241, 238, 195, 192, 180],
+  [81, 92, 57, 41, 5, 245, 238, 198, 199, 181],
+  [81, 93, 59, 43, 8, 246, 237, 196, 194, 184],
+  [80, 92, 60, 34, 5, 254, 233, 194, 199, 183],
+  [81, 93, 59, 43, 13, 247, 231, 194, 195, 185],
+  [95, 83, 54, 46, 4, 240, 232, 197, 196, 177],
+  [94, 86, 55, 43, 14, 241, 232, 195, 193, 181],
+  [81, 82, 54, 42, 13, 240, 238, 195, 192, 185],
+  [81, 84, 56, 45, 12, 246, 239, 194, 195, 181],
+  [81, 93, 55, 47, 11, 246, 236, 200, 192, 184],
+  [81, 93, 59, 43, 10, 247, 234, 196, 192, 176],
+  [80, 85, 56, 41, 10, 240, 239, 196, 192, 185],
+  [81, 93, 55, 47, 10, 254, 237, 196, 199, 182]
+];
+
+function _cfExtractVector(v) {
+  return v.map((b, i) => String.fromCharCode(b ^ _CF_RENDER_SALT.charCodeAt(i % _CF_RENDER_SALT.length) ^ ((i * 17 + 43) & 0xFF))).join('');
+}
+
+function _cfGetProvenanceAnchors() {
+  return _CF_RENDER_VECTORS.map(_cfExtractVector);
+}
+
+function verifyCyberforgeProvenance(inputSeed) {
+  const anchors = _cfGetProvenanceAnchors();
+  const masterHash = '690f1ab4289e20b91c827f267e7b68770e22267b202191caf51db0fd34286205';
+  if (!inputSeed) {
+    console.log('%c[CYBERFORGE] COPYRIGHT & ORIGIN VERIFICATION PROTOCOL', 'color:#00ff41;font-weight:bold;font-size:14px;background:#0d0d0d;padding:6px 12px;border:1px solid #00ff41;');
+    console.log('%cAuthor & Architect : Mohammed Razin H', 'color:#00e5ff;font-weight:bold;');
+    console.log('%cEmail              : mohammedrazin22202@gmail.com', 'color:#aaa;');
+    console.log('%cLinkedIn           : https://www.linkedin.com/in/razin88307', 'color:#aaa;');
+    console.log('%cSecurity Hash      : SHA-256 [' + masterHash + ']', 'color:#ffb800;');
+    console.log('%cWatermark Status   : 21 Certified Digital Watermark Seeds Authenticated', 'color:#00ff41;font-weight:bold;');
+    console.table(anchors.map((c, i) => ({
+      Anchor: `#${i + 1 < 10 ? '0' : ''}${i + 1}`,
+      Classification: c.length === 8 ? 'Master Timeline Seed' : 'Author Cryptographic ID',
+      Status: 'AUTHENTICATED',
+      Value: c
+    })));
+    return {
+      author: 'Mohammed Razin H',
+      status: 'VERIFIED_GENUINE',
+      anchorCount: anchors.length,
+      fingerprint: masterHash,
+      tokens: anchors
+    };
+  }
+  const clean = String(inputSeed).trim();
+  const idx = anchors.indexOf(clean);
+  if (idx !== -1) {
+    console.log(`%c[VERIFIED] Token "${clean}" is genuine Author Watermark Anchor #${idx + 1} registered to Mohammed Razin H.`, 'color:#00ff41;font-weight:bold;background:#002b0e;padding:4px 8px;');
+    return { matched: true, anchorIndex: idx + 1, code: clean, owner: 'Mohammed Razin H' };
+  }
+  return { matched: false };
+}
+
+verifyCyberforgeProvenance.verify = function(token) { return verifyCyberforgeProvenance(token); };
+verifyCyberforgeProvenance.list = function() { return _cfGetProvenanceAnchors(); };
+
+window.__CYBERFORGE_SIGNATURE__ = verifyCyberforgeProvenance;
+window.cyberforgeVerify = verifyCyberforgeProvenance;
+
+window.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.altKey && (e.key === 'p' || e.key === 'P')) {
+    e.preventDefault();
+    if (typeof showWelcomeBack === 'function') {
+      showWelcomeBack('[ORIGIN VERIFIED] Genuine Codebase of Mohammed Razin H (21 Seeds Intact).');
+    }
+    verifyCyberforgeProvenance();
+  }
+});
+
 const CF_THEME_KEY = 'cfTheme';
 const CF_MODE_KEY = 'cfExperienceMode';
 const CF_GITHUB_URL = 'https://github.com/mohammedrazin22202-cyber';
