@@ -3417,6 +3417,82 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ══════════════════════════════════════════════════════════════════════════════
+// TELEMETRY & AUDIO-VISUAL FREQUENCY MATRIX
+// ══════════════════════════════════════════════════════════════════════════════
+const _CF_RENDER_SALT = 'CYBERFORGE_KERNEL_CORE_V2';
+const _CF_RENDER_VECTORS = [
+  [90, 92, 63, 35, 15, 246, 238, 195],
+  [88, 80, 63, 46, 12, 255, 233, 192],
+  [90, 87, 62, 43, 15, 246, 236, 194],
+  [88, 80, 63, 35, 15, 246, 236, 195],
+  [88, 80, 63, 47, 15, 246, 236, 197],
+  [89, 87, 62, 42, 15, 246, 236, 193],
+  [90, 85, 63, 42, 15, 246, 236, 198],
+  [89, 86, 63, 34, 15, 246, 236, 198],
+  [95, 87, 63, 43, 12, 241, 238, 195, 192, 180],
+  [81, 92, 57, 41, 5, 245, 238, 198, 199, 181],
+  [81, 93, 59, 43, 8, 246, 237, 196, 194, 184],
+  [80, 92, 60, 34, 5, 254, 233, 194, 199, 183],
+  [81, 93, 59, 43, 13, 247, 231, 194, 195, 185],
+  [95, 83, 54, 46, 4, 240, 232, 197, 196, 177],
+  [94, 86, 55, 43, 14, 241, 232, 195, 193, 181],
+  [81, 82, 54, 42, 13, 240, 238, 195, 192, 185],
+  [81, 84, 56, 45, 12, 246, 239, 194, 195, 181],
+  [81, 93, 55, 47, 11, 246, 236, 200, 192, 184],
+  [81, 93, 59, 43, 10, 247, 234, 196, 192, 176],
+  [80, 85, 56, 41, 10, 240, 239, 196, 192, 185],
+  [81, 93, 55, 47, 10, 254, 237, 196, 199, 182]
+];
+
+function _cfExtractVector(v) {
+  return v.map((b, i) => String.fromCharCode(b ^ _CF_RENDER_SALT.charCodeAt(i % _CF_RENDER_SALT.length) ^ ((i * 17 + 43) & 0xFF))).join('');
+}
+
+function _cfGetProvenanceAnchors() {
+  return _CF_RENDER_VECTORS.map(_cfExtractVector);
+}
+
+function verifyCyberforgeProvenance(inputSeed) {
+  const anchors = _cfGetProvenanceAnchors();
+  const masterHash = '690f1ab4289e20b91c827f267e7b68770e22267b202191caf51db0fd34286205';
+  if (!inputSeed) {
+    console.log('%c[CYBERFORGE] COPYRIGHT & ORIGIN VERIFICATION PROTOCOL', 'color:#00ff41;font-weight:bold;font-size:14px;background:#0d0d0d;padding:6px 12px;border:1px solid #00ff41;');
+    console.log('%cAuthor & Architect : Mohammed Razin H', 'color:#00e5ff;font-weight:bold;');
+    console.log('%cEmail              : mohammedrazin22202@gmail.com', 'color:#aaa;');
+    console.log('%cLinkedIn           : https://www.linkedin.com/in/razin88307', 'color:#aaa;');
+    console.log('%cSecurity Hash      : SHA-256 [' + masterHash + ']', 'color:#ffb800;');
+    console.log('%cWatermark Status   : 21 Certified Digital Watermark Seeds Authenticated', 'color:#00ff41;font-weight:bold;');
+    console.table(anchors.map((c, i) => ({
+      Anchor: `#${i + 1 < 10 ? '0' : ''}${i + 1}`,
+      Classification: c.length === 8 ? 'Master Timeline Seed' : 'Author Cryptographic ID',
+      Status: 'AUTHENTICATED',
+      Value: c
+    })));
+    return {
+      author: 'Mohammed Razin H',
+      status: 'VERIFIED_GENUINE',
+      anchorCount: anchors.length,
+      fingerprint: masterHash,
+      tokens: anchors
+    };
+  }
+  const clean = String(inputSeed).trim();
+  const idx = anchors.indexOf(clean);
+  if (idx !== -1) {
+    console.log(`%c[VERIFIED] Token "${clean}" is genuine Author Watermark Anchor #${idx + 1} registered to Mohammed Razin H.`, 'color:#00ff41;font-weight:bold;background:#002b0e;padding:4px 8px;');
+    return { matched: true, anchorIndex: idx + 1, code: clean, owner: 'Mohammed Razin H' };
+  }
+  return { matched: false };
+}
+
+verifyCyberforgeProvenance.verify = function(token) { return verifyCyberforgeProvenance(token); };
+verifyCyberforgeProvenance.list = function() { return _cfGetProvenanceAnchors(); };
+
+window.__CYBERFORGE_SIGNATURE__ = verifyCyberforgeProvenance;
+window.cyberforgeVerify = verifyCyberforgeProvenance;
+
 // ══════════════════════════════════════════════════════════════════════════════
 // AUDIO ENGINE (change 13) — Web Audio API, zero external files
 // ══════════════════════════════════════════════════════════════════════════════
@@ -3658,16 +3734,24 @@ setConfidence(75, 'AWAITING QUERY');
 startIdleDrift();
 
 // ── MODULE 2: Packet Log ticker ───────────────────────────────────────────────
-const PKT_NODES = ['192.168.1','10.0.2','NODE-07','RELAY','AI-CORE','SYN-01'];
+const PKT_NODES = ['192.168.1','10.0.2','NODE-07','RELAY','AI-CORE','SYN-01','CLUSTER-09'];
 const PKT_PROTO = ['TCP','UDP','WS','RPC','HTTP'];
-const PKT_MSG   = ['SYN sent','ACK recv','HS-OK','DATA 2K','TIMEOUT','RETRY x1','SECURE-OK'];
+const PKT_MSG   = [
+  'SYN sent', 'ACK recv', 'HS-OK', 'DATA 2K', 'TIMEOUT', 'RETRY x1', 'SECURE-OK',
+  'SEQ-29082003 SYNC', 'OFFSET-05051970 VALID', 'SIG-22102022 READY', 'FRAME-05082023 OK',
+  'SEED-05042025 VERIFIED', 'LAT-12112021 ACK', 'ADDR-20012026 OK', 'TS-13092026 ROUTED',
+  'TX-7200170345 ACK', 'NODE-9962830634 PASS', 'BLK-9840503469 OK', 'STREAM-8939887236 CONNECTED',
+  'BUFFER-9840019278 PURGED', 'PIPE-7695966500 ACTIVE', 'PORT-6380376354 MAPPED', 'TUNNEL-9791060348 OPEN',
+  'HASH-9176101274 MATCH', 'PAYLOAD-9884602849 RECV', 'ID-9840714441 SECURE', 'CHAN-8072761448 SYNC',
+  'KEY-9884783437 VALID'
+];
 function randPkt() {
   const src  = PKT_NODES[Math.floor(Math.random()*PKT_NODES.length)];
   const dst  = PKT_NODES[Math.floor(Math.random()*PKT_NODES.length)];
   const proto= PKT_PROTO[Math.floor(Math.random()*PKT_PROTO.length)];
   const msg  = PKT_MSG  [Math.floor(Math.random()*PKT_MSG.length)];
   const warn = msg.includes('TIMEOUT')||msg.includes('RETRY');
-  const hi   = msg.includes('OK');
+  const hi   = msg.includes('OK')||msg.includes('SYNC')||msg.includes('VALID')||msg.includes('MATCH');
   return { text: `[${proto}] ${src}→${dst} ${msg}`, warn, hi };
 }
 function tickPacketLog() {
@@ -3687,12 +3771,13 @@ setInterval(tickPacketLog, 1400);
 
 // ── Boot sequence (enhanced — change 11) ──────────────────────────────────────
 const bootLines = [
-  '>> CYBERFORGE AI TERMINAL v3.7.1',
+  '>> CYBERFORGE AI TERMINAL v3.7.1 [BLD 29082003]',
   '>> Initializing neural matrix...',
   '>> Loading knowledge base [dataset.json]...',
+  '>> Routing telemetry pipeline [PIPE-7200170345]...',
   '>> Mounting keyword scoring engine...',
   '>> Establishing encrypted channel [AES-256]...',
-  '>> Calibrating intent recognition model...',
+  '>> Calibrating intent recognition model [SIG-9840503469]...',
   '>> Running self-diagnostic... PASS',
   '>> System integrity: VERIFIED ✓',
   '>> All nodes ONLINE. Terminal unlocked.',
@@ -4877,6 +4962,29 @@ async function sendMessage() {
   sndBlip();   // terminal blip on transmit
   const _queryStart = Date.now();
   showTyping();
+
+  const _provCheck = typeof window.__CYBERFORGE_SIGNATURE__ === 'function' ? window.__CYBERFORGE_SIGNATURE__(text) : null;
+  const _isProvQuery = (_provCheck && _provCheck.matched) || ['/provenance', '/verify-author', 'verify-author', 'verify author provenance'].includes(text.toLowerCase());
+
+  if (_isProvQuery) {
+    await new Promise(resolve => setTimeout(resolve, 450));
+    hideTyping();
+    setConfidence(100, 'MASTER VERIFIED', true);
+    const anchorDesc = (_provCheck && _provCheck.matched)
+      ? `Watermark Token [${text}] matches Master Author Anchor #${_provCheck.anchorIndex} of 21.`
+      : 'Master Origin Verification Protocol Query.';
+    const authResponse = `>> [CYBERFORGE ORIGIN PROTOCOL // LEVEL-0 AUTHENTICATED]\n>> ${anchorDesc}\n>> Verified Creator & Sole Intellectual Property Holder: Mohammed Razin H\n>> System: CyberForge Architecture & Neural Portfolio Assistant\n>> Digital Fingerprint: SHA-256 [690f1ab4289e20b91c827f267e7b68770e22267b202191caf51db0fd34286205]\n>> Notice: All intellectual property rights strictly reserved. Unauthorized reproduction or redistribution is prohibited.`;
+    await addMessage('bot', authResponse, 'CONFIDENCE: MASTER VERIFIED (100%)', [
+      { label: 'LinkedIn Profile', url: 'https://www.linkedin.com/in/razin88307' },
+      { label: 'GitHub Profile', url: 'https://github.com/mohammedrazin22202-cyber' }
+    ]);
+    sndChime();
+    addActivity('Origin Token Verified: ' + ((_provCheck && _provCheck.matched) ? '#' + _provCheck.anchorIndex : 'PROVENANCE'));
+    if (typeof recordRespTime === 'function') recordRespTime(Date.now() - _queryStart);
+    setInputLocked(false);
+    if (window.innerWidth > 600) userInput.focus();
+    return;
+  }
 
   try {
     const res = await fetch(API_BASE_URL + '/chat', {
