@@ -70,6 +70,12 @@
 
   html { scroll-behavior: smooth; }
 
+  :focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+    box-shadow: 0 0 10px var(--cyan-glow);
+  }
+
   body {
     background: var(--black);
     color: var(--matrix-green);
@@ -3967,7 +3973,7 @@
       <div class="certmodal-title" id="cert-modal-title"></div>
       <div class="certmodal-btns">
         <a class="cert-btn" id="cert-modal-download">⬇ Download</a>
-        <button class="certmodal-close" onclick="closeCertModal()">✕</button>
+        <button class="certmodal-close" onclick="closeCertModal()" aria-label="Close certificate modal">✕</button>
       </div>
     </div>
     <div class="certmodal-body" id="cert-modal-body"></div>
@@ -3977,7 +3983,7 @@
 <!-- TECH STACK MODAL -->
 <div id="techstack-modal" onclick="closeTechStack(event)">
   <div class="tsmodal-box">
-    <button class="tsmodal-close" onclick="closeTechStack()">✕</button>
+    <button class="tsmodal-close" onclick="closeTechStack()" aria-label="Close tech stack modal">✕</button>
     <div class="tsmodal-label" id="ts-label">Tech Stack</div>
     <h3 class="tsmodal-title" id="ts-title"></h3>
     <div class="tsmodal-pills" id="ts-pills"></div>

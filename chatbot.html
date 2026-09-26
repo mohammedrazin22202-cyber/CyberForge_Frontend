@@ -73,6 +73,12 @@
     --shadow-glow-a: 0 0 12px rgba(255,170,0,0.35);
   }
 
+  :focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+    box-shadow: 0 0 8px var(--cyan);
+  }
+
   /* ── Welcome Popup ── */
   @keyframes popupFadeIn {
     from { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
