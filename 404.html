@@ -21,6 +21,8 @@
 <meta name="twitter:description" content="The requested resource could not be found on the CyberForge server.">
 <meta name="twitter:image" content="social_preview.jpg">
 <link rel="icon" type="image/png" href="cyberforge_logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -36,6 +38,12 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+  }
 
   body {
     background-color: var(--bg-dark);

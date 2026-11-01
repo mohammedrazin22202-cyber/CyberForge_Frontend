@@ -19,7 +19,10 @@
   <meta name="twitter:title" content="CYBERFORGE // UI_UX_CASE_STUDY // RAZIN.OS">
   <meta name="twitter:description" content="A deep dive into the CyberForge UI/UX case study. Exploring the design, aesthetics, and implementation of high-fidelity developer-centric user interfaces.">
   <meta name="twitter:image" content="social_preview.jpg">
+  <meta name="theme-color" content="#000a00">
   <link rel="icon" type="image/png" href="cyberforge_logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -105,6 +108,12 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 2px;
+      box-shadow: 0 0 10px rgba(0, 238, 255, 0.4);
+    }
 
     html, body {
       height: 100vh;

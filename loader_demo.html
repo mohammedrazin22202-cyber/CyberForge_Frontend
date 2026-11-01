@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a0a">
 <title>CYBERFORGE // PORTFOLIO_LOADER // RAZIN.OS</title>
 <meta name="description" content="Demo of the CyberForge portfolio loader and system initialization boot sequence.">
 <meta name="keywords" content="Portfolio Loader, Boot Sequence, System Initialization, CyberForge, Mohammed Razin">
@@ -19,6 +20,9 @@
 <meta name="twitter:title" content="CYBERFORGE // PORTFOLIO_LOADER // RAZIN.OS">
 <meta name="twitter:description" content="Demo of the CyberForge portfolio loader and system initialization boot sequence.">
 <meta name="twitter:image" content="social_preview.jpg">
+<link rel="icon" type="image/png" href="cyberforge_logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -39,6 +43,12 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+    box-shadow: 0 0 10px var(--cyan-glow);
+  }
 
   body {
     background: var(--black);
