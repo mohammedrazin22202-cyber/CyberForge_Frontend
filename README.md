@@ -6,6 +6,11 @@ This directory contains the statically hosted frontend files for the CyberForge 
 - `index.html`: Main portfolio site.
 - `chatbot.html`: Intelligent chatbot query terminal interface.
 - `voice.html`: Voice-assisted chatbot terminal interface.
+- `casestudy.html`: Interactive UI/UX case study and design system overview.
+- `404.html`: Custom cyber-themed HTTP 404 error page.
+- `thanks.html`: Transmission confirmation page for contact inquiries.
+- `privacy.html`: Data telemetry and privacy policy statement.
+- `loader_demo.html`: Standalone demo for OS boot initialization loader.
 - `start.bat`: Starts local frontend server on port `1616`.
 - PDFs, images, and other assets.
 
@@ -22,6 +27,6 @@ To run the frontend locally:
 ### Backend Integration
 * **Local Auto-detection**: When accessed via `localhost`, `127.0.0.1`, or opened locally as a file (`file://` protocol), the frontend automatically attempts to connect to the local backend server running on port `6161`.
 * **Production Configuration**: When deploying the frontend to a static host (e.g. Vercel, Netlify, GitHub Pages), ensure you configure the production API URL at the top of the `<script>` tags in `chatbot.html` and `voice.html`:
-  ```javascript
-  const PROD_BACKEND_URL = 'https://your-backend-api.onrender.com';
-  ```
+   ```javascript
+   const PROD_BACKEND_URL = 'https://your-backend-api.onrender.com';
+   ```

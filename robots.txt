@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+
+# Disallow internal scripts & scratch logs
 Disallow: /scratch/
+Disallow: /start.bat
+Disallow: /commit_logs.txt
